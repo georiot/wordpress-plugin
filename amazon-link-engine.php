@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: GeoRiot Autolinker
+Plugin Name: Amazon Link Engine
 Plugin URI:
-Description: Enables GeoRiot auto linker on all pages
+Description: Automatically optimize Amazon product links for your global audience and earn commissions on sales.
 Version: 1.0.0
 Author: Steven Sundheim
 Author URI: http://sundhe.im
@@ -35,19 +35,19 @@ function deactive_georiot_autolinker() {
 }
 
 function admin_init_georiot_autolinker() {
-  register_setting('georiot-autolinker', 'georiot_tsid');
-  register_setting('georiot-autolinker', 'georiot_api_key');
-  register_setting('georiot-autolinker', 'georiot_api_secret');
-  register_setting('georiot-autolinker', 'georiot_api_remind');
+  register_setting('amazon-link-engine', 'georiot_tsid');
+  register_setting('amazon-link-engine', 'georiot_api_key');
+  register_setting('amazon-link-engine', 'georiot_api_secret');
+  register_setting('amazon-link-engine', 'georiot_api_remind');
 }
 
 
 function admin_menu_georiot_autolinker() {
-  add_options_page('GeoRiot Autolinker', 'GeoRiot Autolinker', 'manage_options', 'georiot-autolinker', 'options_page_georiot_autolinker');
+  add_options_page('Amazon Link Engine', 'Amazon Link Engine', 'manage_options', 'amazon-link-engine', 'options_page_georiot_autolinker');
 }
 
 function options_page_georiot_autolinker() {
-  include(WP_PLUGIN_DIR.'/georiot-autolinker/options.php');
+  include(WP_PLUGIN_DIR.'/amazon-link-engine/options.php');
 }
 
 
@@ -58,7 +58,7 @@ function georiot_admin_notice()
     if (get_option('georiot_api_remind') == 'yes' && get_option('georiot_tsid') == '') {
       ?>
       <div class="update-nag">
-        <p><?php _e('<strong>Your GeoRiot Autolinker plugin is installed and working.</strong> <br>To use reporting and commissions, <a href="/wp-admin/options-general.php?page=georiot-autolinker">enter your free GeoRiot API values.</a>. Or, you can <a href="/wp-admin/options-general.php?page=georiot-autolinker">disable this reminder.</a>'); ?></p>
+        <p><?php _e('<strong>Your Amazon Link Engine plugin is installed and working.</strong> <br>To use reporting and commissions, <a href="/wp-admin/options-general.php?page=amazon-link-engine">enter your free GeoRiot API values.</a>. Or, you can <a href="/wp-admin/options-general.php?page=amazon-link-engine">disable this reminder.</a>'); ?></p>
       </div>
     <?php
     }
@@ -154,7 +154,7 @@ if (!is_admin()) {
 // SHOW SETTINGS OPTION IN THE PLUGIN PAGE
 // Settings link
 function georiot_add_settings_link($actions) {
-  $actions = array('settings' => sprintf('<a href="%s" title="%s">%s</a>', '/wp-admin/options-general.php?page=georiot-autolinker', __('Configure GeoRiot Plugin.'), __('Settings'))) + $actions;
+  $actions = array('settings' => sprintf('<a href="%s" title="%s">%s</a>', '/wp-admin/options-general.php?page=amazon-link-engine', __('Configure GeoRiot Plugin.'), __('Settings'))) + $actions;
   return $actions;
 }
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'georiot_add_settings_link');

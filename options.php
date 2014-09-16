@@ -1,5 +1,5 @@
 <?php
-    $gr_image_path = plugins_url().'/georiot-autolinker/img/';
+    $gr_image_path = plugins_url().'/amazon-link-engine/img/';
 ?>
 
 <style>
@@ -215,7 +215,7 @@
 
 
   <form method="post" action="options.php" id="connect-gr-api-form" >
-    <?php settings_fields('georiot-autolinker'); ?>
+    <?php settings_fields('amazon-link-engine'); ?>
 
     <div class="gr-step-area gr-step-complete">
       <div class="gr-step-number">
