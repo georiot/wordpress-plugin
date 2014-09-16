@@ -97,7 +97,7 @@
     width: 445px;
     border-radius: 3px;
     background: rgba(255,255,255,.5);
-    border: 1px solid rgba(0,0,0,.05);
+    border: 1px solid rgba(0,0,0,.1);
     padding: 10px 20px 10px 20px;
     min-height: 48px;
     margin-bottom: 3px;
@@ -139,6 +139,7 @@
 
   .gr-georiot-logo {
     vertical-align: -5%;
+    border: none;
   }
 
   .gr-bygr {
@@ -310,8 +311,10 @@
 
 <div class="wrap">
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
-    <img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="12" /></h2>
-  <p class="gr-intro">This plugin has added Javascript that converts all iTunes and Amazon product URL’s on your site to global-friendly GeoRiot links. <a href="#">Learn more...</a></p>
+    <a href="http://georiot.com" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="12" /></a></h2>
+  <p class="gr-intro">This plugin has added Javascript that converts all iTunes and Amazon product
+    URL’s on your site to global-friendly GeoRiot links. <a href="#faq-whatisgeoriot">Learn more...</a>
+  </p>
 
   <h3>Get the most from this plugin</h3>
   <form method="post" action="options.php" id="connect-gr-api-form" class="<?php if (get_option('georiot_tsid') != '') print 'loaded-tsid'; ?>">
@@ -394,8 +397,8 @@
     <style>
       .faq {
         border-top: 1px solid #cccccc;
-        margin-top: 60px;
-        padding-top: 20px;
+        margin-top: 80px;
+        padding-top: 0px;
         max-width: 500px;
         margin-bottom: 400px;
       }
@@ -404,16 +407,12 @@
         margin: 30px 5px 0 0;
         font-size: 16px;
       }
-
-      .faq p {
-
-      }
     </style>
 
     <div class="faq">
       <h3>Frequently asked questions</h3>
 
-      <h4>What is GeoRiot</h4>
+      <h4 id="faq-whatisgeoriot">What is GeoRiot</h4>
       <p>Here is the answer to your question. Here is thasdasde answasder to your
         qasduestion. Here is the answer to your question. Here is the answer to your queasdastion.
       </p>
