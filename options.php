@@ -328,12 +328,12 @@
           <a href="#">Learn how...</a>
 
           <br><br>
-        Your GeoRiot API Key: <br>
+        API Key: <br>
         <input maxlength="32" size="33" type="text" placeholder="Paste your api key" id="georiot_api_key" name="georiot_api_key" value="<?php echo get_option('georiot_api_key'); ?>" /></td>
 
         <br><br>
-        Your GeoRiot API Secret:<br>
-        <input maxlength="32" size="33" type="text" placeholder="Paste your api key" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
+        API Secret:<br>
+        <input maxlength="32" size="33" type="text" placeholder="Paste your api secret" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
 
         <div id="gr-tsid-spinner">
           <div class="css-only-spinner">
