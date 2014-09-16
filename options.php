@@ -3,19 +3,20 @@
 ?>
 
 <style>
-  #gr-api-loading {
+  #gr-tsid-spinner {
+    display: none;
+    opacity: .5;
+  }
+  #gr-tsid-loaded {
     display: none;
   }
-  #gr-api-loaded {
-    display: none;
-  }
-  .loading-tsid #gr-api-loading {
+  .loading-tsid #gr-tsid-spinner {
     display: block;
   }
-  .loaded-tsid #gr-api-loaded {
+  .loaded-tsid #gr-tsid-loaded {
     display: block;
   }
-  #gr-api-loaded {
+  #gr-tsid-loaded {
     font-weight: bold;
     color: #79b638;
   }
@@ -24,6 +25,25 @@
     color: #6f6f6f;
     font-size: 10px;
   }
+
+
+  #gr-affiliates-spinner {
+    display: none;
+    opacity: .5;
+  }
+  .gr-loading-affiliates #gr-affiliates-spinner {
+    display: block;
+  }
+  .gr-loading-affiliates #gr-affiliates-loaded {
+    display: none;
+  }
+  #gr-affiliates-loaded {
+    opacity: .6;
+  }
+  .gr-loaded-affiliates #gr-affiliates-loaded {
+    display: block;
+  }
+
 
   /* CSS css-only-spinner */
   .css-only-spinner {
@@ -82,7 +102,9 @@
     min-height: 48px;
     margin-bottom: 3px;
   }
-
+  .gr-step-area strong {
+   font-size: 14px;
+  }
   .gr-step-number {
     float: left;
     width: 40px;
@@ -109,10 +131,6 @@
 
   #connect-gr-api-form {
     margin-top: 40px;
-  }
-
-  .gr-affiliate-status {
-    opacity: .6;
   }
 
   .gr-georiot-logo {
@@ -143,65 +161,120 @@
 
 <script>
   jQuery(document).ready(function($) {
+
+    //Update the affiliates section on page load
+    getGeoriotAffiliates();
+
+
+    //Auto highlight the API fields on focus
+    $('#georiot_api_key').click( function( event_details ) {
+      $(this).select();
+    });
+    $('#georiot_api_secret').click( function( event_details ) {
+      $(this).select();
+    });
+
+    //Detect paste into the apik key or secret fields.
     $('#georiot_api_key, #georiot_api_secret').on('paste', function () {
       var element = this;
       setTimeout(function () {
-        var text = $(element).val();
-        //alert('test');
-        $('#connect-gr-api-form').addClass('loading-tsid');
-        getGeoriotTSID();
+
+        // If both fields are correct, check the API
+        if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
+          connectGeoriotApi();
+        } else if( $('#georiot_api_key').val().length > 0 && $('#georiot_api_secret').val().length > 0 ) {
+          //if both fields have values, but are not the right length, tell the user
+          if($('#georiot_api_key').val().length != 32) alert('The API Key field appears to be invalid. Please copy and paste it again');
+          if($('#georiot_api_secret').val().length != 32) alert('The API Secret field appears to be invalid. Please copy and paste it again');
+        }
       }, 500);
     });
 
 
-    function getGeoriotTSID() {
-      //GeoRiot API Test
+    function connectGeoriotApi() {
+      // Show loading indicators
+      $('#connect-gr-api-form').addClass('loading-tsid');
+      $('#connect-gr-api-form').removeClass('loaded-tsid');
+
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
-      var georiotApiUrl = "http://api.georiot.com/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret+"&callback=?";
-      $.getJSON( georiotApiUrl, function( data ) {
-        //alert(data.Groups[0].Name);
-        grGroups = data.Groups;
-        grNumGroups = grGroups.length;
+      var georiotApiUrlGroups = "http://api.georiot.com/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret+"&callback=?";
 
-        /* We want to get the group ID with the lowest value and store it */
-        var gr_low_tsid = 999999999;
-
-        //Iterate over each group
-        $.each(data.Groups, function( key, value ) {
-          // and look at the TSID for each one. If it is lower than
-          // the last one we saw, save it.
-          if(value.Id < gr_low_tsid) {
-            gr_low_tsid = value.Id;
-          }
-        });
-        $('#gr-my-tsid-value').html( gr_low_tsid );
-        $('#georiot_tsid').val( gr_low_tsid );
-
-
-      }).done(function() {
-        //alert("Hello");
-        $('#connect-gr-api-form').removeClass('loading-tsid');
-        $('#connect-gr-api-form').addClass('loaded-tsid');
+      var requestGeoRiotGroups = $.ajax({
+        url : georiotApiUrlGroups,
+        dataType : "jsonp",
+        timeout : 10000
       })
+        .done(function( data ) {
+            grGroups = data.Groups;
+            grNumGroups = grGroups.length;
+
+            // We want to get the group ID with the lowest value and store it
+            var gr_low_tsid = 999999999;
+
+            //Iterate over each group
+            $.each(data.Groups, function( key, value ) {
+              // and look at the TSID for each one. If it is lower than
+              // the last one we saw, save it.
+              if(value.Id < gr_low_tsid) {
+                gr_low_tsid = value.Id;
+              }
+            });
+            $('#gr-my-tsid-value').html( gr_low_tsid );
+            $('#georiot_tsid').val( gr_low_tsid );
+
+            //Show completion in UI
+            $('#connect-gr-api-form').addClass('loaded-tsid');
+            $('#gr-step-2').addClass('gr-step-complete');
+        })
+        .fail(function() {
+          alert("Sorry, there was an error connecting to GeoRiot API. Please double check your API key and secret. If everything looks correct, there may be another problem connecting to the GeoRiot API. ");
+        })
+        .always(function() {
+          $('#connect-gr-api-form').removeClass('loading-tsid');
+        })
       ;
+
+      getGeoriotAffiliates();
+
     }
 
+    function getGeoriotAffiliates() {
+      //Loading effects
+      $('#connect-gr-api-form').addClass('gr-loading-affiliates');
+      $('#connect-gr-api-form').removeClass('gr-loaded-affiliates');
 
-    /* Not working
-    $.ajaxSetup({
-      beforeSend: function (jqXHR, settings) {
-          jqXHR.setRequestHeader("X-Api-Key", "226c9cd82603471d9b6a16476ffa90fd");
-          jqXHR.setRequestHeader("X-Api-Secret", "199b6b5d26ab48a48f64b69fd5e190ef");
-      }
-    });
 
-    $.ajax({
-      dataType: "json",
-      url: "http://api.georiot.com/v1/links/list?groupid=2510&numberoflinks=2&callback=?"
-    });
-    */
+      var georiotApiKey = $('#georiot_api_key').val();
+      var georiotApiSecret = $('#georiot_api_secret').val();
+      var georiotApiUrlAffiliates = "http://api.georiot.com/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret+"&callback=?";
 
+
+      var requestGeoRiotAffiliates = $.ajax({
+          url : georiotApiUrlAffiliates,
+          dataType : "jsonp",
+          timeout : 10000
+        })
+          .done(function( data ) {
+            var grProgramsAvailable = data.TotalProgramsAvailable;
+            var grProgramsEnrolled = data.TotalProgramsEnrolled;
+
+            //Print out these values
+            $('#gr-aff-enrolled').html(data.TotalProgramsEnrolled)
+            $('#gr-aff-available').html(data.TotalProgramsAvailable)
+
+            if (grProgramsEnrolled >= grProgramsAvailable) {
+              $('#gr-step-3').addClass('gr-step-complete');
+            }
+          })
+          .fail(function() {
+            alert("Sorry, there was an error connecting to GeoRiot API. Please double check your API key and secret. If everything looks correct, there may be another problem connecting to the GeoRiot API. ");
+          })
+          .always(function() {
+            $('#connect-gr-api-form').removeClass('gr-loading-affiliates');
+          })
+        ;
+    }
 
   });
 
@@ -214,10 +287,10 @@
   <p>This plugin has added Javascript that converts all iTunes and Amazon product URL’s on your site to global-friendly GeoRiot links. <a href="#">Learn more...</a></p>
 
 
-  <form method="post" action="options.php" id="connect-gr-api-form" >
+  <form method="post" action="options.php" id="connect-gr-api-form" class="<?php if (get_option('georiot_tsid') != '') print 'loaded-tsid'; ?>">
     <?php settings_fields('amazon-link-engine'); ?>
 
-    <div class="gr-step-area gr-step-complete">
+    <div id="gr-step-1" class="gr-step-area gr-step-complete">
       <div class="gr-step-number">
         <span class="gr-checkmark"></span>
         1
@@ -227,7 +300,7 @@
       </div>
     </div>
 
-    <div class="gr-step-area <?php if (get_option('georiot_tsid') != '') print 'loaded-tsid gr-step-complete'; ?>">
+    <div id="gr-step-2" class="gr-step-area <?php if (get_option('georiot_tsid') != '') print 'gr-step-complete'; ?>">
       <div class="gr-step-number">
         <span class="gr-checkmark"></span>
         2
@@ -237,14 +310,14 @@
           <a href="#">Learn how...</a>
 
           <br><br>
-        <strong>Your GeoRiot API Key:</strong> <br>
-        <input size="33" type="text" placeholder="" id="georiot_api_key" name="georiot_api_key" value="<?php echo get_option('georiot_api_key'); ?>" /></td>
+        Your GeoRiot API Key: <br>
+        <input maxlength="32" size="33" type="text" placeholder="Paste your api key" id="georiot_api_key" name="georiot_api_key" value="<?php echo get_option('georiot_api_key'); ?>" /></td>
 
         <br><br>
-        <strong>Your GeoRiot API Secret:</strong> <br>
-        <input size="33" type="text" placeholder="" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
+        Your GeoRiot API Secret:<br>
+        <input maxlength="32" size="33" type="text" placeholder="Paste your api key" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
 
-        <div id="gr-api-loading">
+        <div id="gr-tsid-spinner">
           <div class="css-only-spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
@@ -252,7 +325,7 @@
           </div>
           Connecting...
         </div>
-        <div id="gr-api-loaded">Connected! &nbsp;
+        <div id="gr-tsid-loaded">Connected! &nbsp;
             <span class="gr-my-tsid">
               (Using Group #<span id="gr-my-tsid-value"><?php print get_option('georiot_tsid') ?></span>)
             </span>
@@ -260,7 +333,7 @@
       </div>
     </div>
 
-    <div class="gr-step-area">
+    <div id="gr-step-3" class="gr-step-area">
       <div class="gr-step-number">
         <span class="gr-checkmark"></span>
         3
@@ -268,7 +341,17 @@
       <div class="gr-step-info">
         <strong>Monetize your traffic:</strong> Earn commissions for every sale by connecting  affiliate programs.
         <br>
-        <span class="gr-affiliate-status">4 of 8 affiliate programs connected. Add more...</span>
+        <div id="gr-affiliates-spinner">
+          <div class="css-only-spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+          Connecting...
+        </div>
+
+        <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
+          affiliate programs connected. <a href="http://dev-manage.georiot.com/Affiliate">Add more...</a></span>
       </div>
     </div>
 
