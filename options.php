@@ -134,7 +134,7 @@
   }
 
   #connect-gr-api-form {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .gr-georiot-logo {
@@ -160,7 +160,16 @@
     display: block;
   }
 
+  h3 {
+    font-size: 22px;
+    color: #999;
+    margin-top: 30px;
+    font-weight: normal;
+  }
 
+  .gr-intro {
+    max-width: 500px;
+  }
 </style>
 
 <script>
@@ -302,9 +311,9 @@
 <div class="wrap">
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
     <img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="12" /></h2>
-  <p>This plugin has added Javascript that converts all iTunes and Amazon product URL’s on your site to global-friendly GeoRiot links. <a href="#">Learn more...</a></p>
+  <p class="gr-intro">This plugin has added Javascript that converts all iTunes and Amazon product URL’s on your site to global-friendly GeoRiot links. <a href="#">Learn more...</a></p>
 
-
+  <h3>Get the most from this plugin</h3>
   <form method="post" action="options.php" id="connect-gr-api-form" class="<?php if (get_option('georiot_tsid') != '') print 'loaded-tsid'; ?>">
     <?php settings_fields('amazon-link-engine'); ?>
 
@@ -325,7 +334,7 @@
       </div>
       <div class="gr-step-info">
           <strong>Gain Insight with traffic reports.</strong> Create a free GeoRiot account and enter your API keys here.
-          <a href="#">Learn how...</a>
+          <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
         API Key: <br>
@@ -382,8 +391,45 @@
     <input size="10" type="hidden" name="georiot_tsid" id="georiot_tsid" value="<?php echo get_option('georiot_tsid'); ?>" />
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 
+    <style>
+      .faq {
+        border-top: 1px solid #cccccc;
+        margin-top: 60px;
+        padding-top: 20px;
+        max-width: 500px;
+        margin-bottom: 400px;
+      }
 
-    <div id="testdump"></div>
+      .faq h4 {
+        margin: 30px 5px 0 0;
+        font-size: 16px;
+      }
+
+      .faq p {
+
+      }
+    </style>
+
+    <div class="faq">
+      <h3>Frequently asked questions</h3>
+
+      <h4>What is GeoRiot</h4>
+      <p>Here is the answer to your question. Here is thasdasde answasder to your
+        qasduestion. Here is the answer to your question. Here is the answer to your queasdastion.
+      </p>
+
+      <h4 id="faq-apikeys">How do I get my API keys?</h4>
+      <p>Here is the answer to your question. Here is thasdasde answasder to your qasduestion.
+        Here is the answer to your question. Here is the answer to your queasdastion.
+      </p>
+      <p>Here is the answer to your question. He asda d  asddasd adsf f afsre is thas
+        asdasde answ asdasd ads asder to your qasdu estion. Here is the answer to your
+        question. Here is the answer to your queaa sdas d adsasd asd ad sqwae wefwef
+        asdaf sdastion.
+      </p>
+
+    </div>
+
 
   </form>
 </div>
