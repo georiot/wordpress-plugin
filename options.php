@@ -105,6 +105,10 @@
   .gr-step-area strong {
    font-size: 14px;
   }
+
+  .gr-step-area a:link, .gr-step-area a:visited {
+    text-decoration: none;
+  }
   .gr-step-number {
     float: left;
     width: 40px;
@@ -162,16 +166,30 @@
 <script>
   jQuery(document).ready(function($) {
 
-    //Update the affiliates section on page load
-    getGeoriotAffiliates();
+    //Update the affiliates section on page load, if the API keys are filled
+    if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
+      getGeoriotAffiliates();
+    }
 
 
     //Auto highlight the API fields on focus
-    $('#georiot_api_key').click( function( event_details ) {
+    $('#georiot_api_key').click( function() {
       $(this).select();
     });
-    $('#georiot_api_secret').click( function( event_details ) {
+    $('#georiot_api_secret').click( function() {
       $(this).select();
+    });
+
+    //Clear API fields and TSID
+    $('#gr-disconnect-api').click( function() {
+      $('#georiot_api_key').val('');
+      $('#georiot_api_secret').val('');
+      $('#georiot_tsid').val('');
+      $('#gr-step-2').removeClass('gr-step-complete');
+      $('#connect-gr-api-form').removeClass('loaded-tsid');
+
+      alert('Remember to click "Save Changes" to keep this disconnected.');
+
     });
 
     //Detect paste into the apik key or secret fields.
@@ -282,7 +300,7 @@
 
 
 <div class="wrap">
-  <h2>Amazon Link Conversion Engine <span class="gr-bygr">by </span>
+  <h2>Amazon Link Engine <span class="gr-bygr">by </span>
     <img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="12" /></h2>
   <p>This plugin has added Javascript that converts all iTunes and Amazon product URL’s on your site to global-friendly GeoRiot links. <a href="#">Learn more...</a></p>
 
@@ -328,6 +346,7 @@
         <div id="gr-tsid-loaded">Connected! &nbsp;
             <span class="gr-my-tsid">
               (Using Group #<span id="gr-my-tsid-value"><?php print get_option('georiot_tsid') ?></span>)
+              &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
             </span>
         </div>
       </div>
@@ -347,7 +366,7 @@
             <div class="bounce2"></div>
             <div class="bounce3"></div>
           </div>
-          Connecting...
+          Updating
         </div>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
