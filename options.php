@@ -220,9 +220,10 @@
 
 
     function connectGeoriotApi() {
-      // Show loading indicators
+      // Show loading indicators and disable submit button while we wait for a response
       $('#connect-gr-api-form').addClass('loading-tsid');
       $('#connect-gr-api-form').removeClass('loaded-tsid');
+      $('.button-primary').prop("disabled",true);
 
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
@@ -260,6 +261,7 @@
         })
         .always(function() {
           $('#connect-gr-api-form').removeClass('loading-tsid');
+          $('.button-primary').prop("disabled",false);
         })
       ;
 
