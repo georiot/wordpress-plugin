@@ -103,7 +103,7 @@ if (!is_admin()) {
 // SHOW SETTINGS OPTION IN THE PLUGIN PAGE
 // Settings link
 function georiot_add_settings_link($actions) {
-  $actions = array('settings' => sprintf('<a href="%s" title="%s">%s</a>', admin_url().'admin.php/options-general.php?page=amazon-link-engine', __('Configure GeoRiot Plugin.'), __('Settings'))) + $actions;
+  $actions = array('settings' => sprintf('<a href="%s" title="%s">%s</a>', admin_url().'options-general.php?page=amazon-link-engine', __('Configure GeoRiot Plugin.'), __('Settings'))) + $actions;
   return $actions;
 }
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'georiot_add_settings_link');

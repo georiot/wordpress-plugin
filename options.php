@@ -389,7 +389,7 @@
     </div>
 
     <br>
-    &nbsp;<input type="checkbox" name="georiot_api_remind" value="yes" <?php if (get_option('georiot_api_remind') == yes) print "checked" ?> />
+    &nbsp;<input type="checkbox" name="georiot_api_remind" value="yes" <?php if (get_option('georiot_api_remind') == 'yes') print "checked" ?> />
     Show Wordpress alert on dashboard if commissions are not enabled
 
     <br><br>
