@@ -68,71 +68,20 @@ function georiot_admin_notice()
 // BEGIN FUNCTION TO SHOW GEORIOT JS
 
 function georiot_autolinker() {
-  $georiot_tsid = get_option('georiot_tsid');
+  if (get_option('georiot_tsid') == '') {
+    $gr_use_tsid = 4632;
+  } else {
+    $gr_use_tsid = get_option('georiot_tsid');
+  }
 ?>
 
   <script src="//cdn.georiot.com/snippet.js"></script>
-
-  <!--workaround-->
-  <script>
-    function convertToGeoRiotLinks(tsid) {
-      var numberOfLinks = document.links.length;
-      var currentLinkIndex = 0;
-
-      for (currentLinkIndex = 0; currentLinkIndex < numberOfLinks; currentLinkIndex++) {
-        var currentLink = document.links[currentLinkIndex];
-        var linkType = getLinkType(currentLink.href);
-
-        if (linkType == "amazon") {
-          currentLink.href = "http://target.georiot.com/Proxy.ashx?TSID=" + tsid + "&GR_URL=" + encodeURIComponent(currentLink.href);
-        }else continue;
-      }
-    }
-
-    function extractItunesLinkFromAffiliateUrl(currentLink, linkType) {
-      if (currentLink.href.indexOf("?") > 0) {
-        var arrParams = currentLink.href.split("?");
-        var arrURLParams = arrParams[1].split("&");
-        var arrParamNames = new Array(arrURLParams.length);
-        var arrParamValues = new Array(arrURLParams.length);
-        var i = 0;
-        for (i = 0; i < arrURLParams.length; i++) {
-          var sParam = arrURLParams[i].split("=");
-          arrParamNames[i] = sParam[0];
-          if (sParam[1] != "") {
-            arrParamValues[i] = sParam[1];
-          } else arrParamValues[i] = "";
-        }
-      }
-      return "";
-    }
-
-    /* Returns link type: unknown, amazon
-     */
-    function getLinkType(currentLinkHref) {
-      var amazonRegex = /\.amazon\./;
-      var amazonLocalRegex = /local\.amazon\./;
-
-      if (currentLinkHref.indexOf("target.georiot.com") > 0 || currentLinkHref.indexOf("geni.us") > 0) {
-        return "unknown";
-      }
-
-
-      if (amazonRegex.test(currentLinkHref) && !amazonLocalRegex.test(currentLinkHref)) return "amazon";
-      else return "unknown";
-    }
-  </script>
-  <!-- End workaround -->
-
   <script type="text/javascript">
-
-
-  jQuery(document).ready(function( $ ) {
-    var tsid = <?php echo $georiot_tsid ?>;
-    convertToGeoRiotLinks(tsid);
-  });
-
-</script>
+    jQuery(document).ready(function( $ ) {
+      var tsid = <?php echo $gr_use_tsid ?>;
+      convertToGeoRiotLinks(tsid);
+    });
+  </script>
 <?php
 }
 // END FUNCTION TO SHOW GEORIOT JS
