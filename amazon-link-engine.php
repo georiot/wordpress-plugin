@@ -51,14 +51,14 @@ function options_page_georiot_autolinker() {
 }
 
 
+
 // Show notice in dashboard if API isn't connected
-function georiot_admin_notice()
-{
-  if ($_SERVER['PHP_SELF'] == '/wp-admin/index.php') {
+function georiot_admin_notice(){
+  if (strpos($_SERVER['PHP_SELF'],'wp-admin/index.php') !== false) {
     if (get_option('georiot_api_remind') == 'yes' && get_option('georiot_tsid') == '') {
       ?>
       <div class="update-nag">
-        <p><?php _e('<strong>Your Amazon Link Engine plugin is installed and working.</strong> <br>To use reporting and commissions, <a href="/wp-admin/options-general.php?page=amazon-link-engine">enter your free GeoRiot API values.</a>. Or, you can <a href="/wp-admin/options-general.php?page=amazon-link-engine">disable this reminder.</a>'); ?></p>
+        <p><?php _e('<strong>Your Amazon Link Engine plugin is installed and working.</strong> <br>To use reporting and commissions, <a href="'.admin_url().'options-general.php?page=amazon-link-engine">enter your free GeoRiot API values.</a>. Or, you can <a href="'.admin_url().'options-general.php?page=amazon-link-engine">disable this reminder.</a>'); ?></p>
       </div>
     <?php
     }
@@ -103,7 +103,7 @@ if (!is_admin()) {
 // SHOW SETTINGS OPTION IN THE PLUGIN PAGE
 // Settings link
 function georiot_add_settings_link($actions) {
-  $actions = array('settings' => sprintf('<a href="%s" title="%s">%s</a>', '/wp-admin/options-general.php?page=amazon-link-engine', __('Configure GeoRiot Plugin.'), __('Settings'))) + $actions;
+  $actions = array('settings' => sprintf('<a href="%s" title="%s">%s</a>', admin_url().'admin.php/options-general.php?page=amazon-link-engine', __('Configure GeoRiot Plugin.'), __('Settings'))) + $actions;
   return $actions;
 }
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'georiot_add_settings_link');
