@@ -415,18 +415,59 @@
       <h3>Frequently asked questions</h3>
 
       <h4 id="faq-whatisgeoriot">What is GeoRiot</h4>
-      <p>Here is the answer to your question. Here is thasdasde answasder to your
-        qasduestion. Here is the answer to your question. Here is the answer to your queasdastion.
+      <p>GeoRiot is a link management platform that maximizes your potential Amazon Associates revenue
+        by globalizing and affiliating your Amazon Links.  GeoRiot hopes to change the way online
+        commerce is conducted by providing its customers with intelligent links that automatically
+        route customers to the correct product within their own local storefront.
+      </p>
+
+      <h4 id="faq-whatisgeoriot">Do I need a GeoRiot Account to use this plugin?</h4>
+      <p><strong>No,</strong> you do NOT need a GeoRiot account to use the Amazon Link Engine plugin.
+        As soon as you download the free plugin, all of your links will be automatically
+        localized, and your customers will be routed to the product in their local storefront.
+        However, if you want to add your affiliate parameters, you will need a GeoRiot account.
       </p>
 
       <h4 id="faq-apikeys">How do I get my API keys?</h4>
-      <p>Here is the answer to your question. Here is thasdasde answasder to your qasduestion.
-        Here is the answer to your question. Here is the answer to your queasdastion.
+      <p>To get your GeoRiot API Keys, follow these simple steps:
       </p>
-      <p>Here is the answer to your question. He asda d  asddasd adsf f afsre is thas
-        asdasde answ asdasd ads asder to your qasdu estion. Here is the answer to your
-        question. Here is the answer to your queaa sdas d adsasd asd ad sqwae wefwef
-        asdaf sdastion.
+      <ol>
+        <li>If you do not have a GeoRiot account, create a free account.</li>
+        <li>Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.</li>
+        <li> Copy and paste your API keys (“Key” & “Secret”) into the Enable Reporting and Commissions area of the plugin.</li>
+        <li>Once pasted, your GeoRiot account will be automatically connected.</li>
+      </ol>
+
+
+      <h4 id="faq-international">How do I earn International Commissions?</h4>
+      <p>
+        First, connect the plugin to your GeoRiot account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
+      <ol>
+        <li>Add your Amazon Affiliate parameters to your GeoRiot dashboard.  Instructions on how to do this can be found here.
+        <br>*Note: If you’ve already done this within your existing GeoRiot account, you do not need to add your parameters again.
+        </li>
+        <li> You’re all set!  You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.</li>
+      </ol>
+
+
+      <h4 id="faq-pay">Do I have to pay for GeoRiot?</h4>
+      <p><strong>No,</strong> you never need to give us a credit card, or make payments to use the GeoRiot Service.  The service is always free.
+      </p>
+      <p><strong>Please note:</strong> It’s important to know that the GeoRiot service costs nothing out of pocket.
+        Instead GeoRiot uses a “Click Share” model where a percentage of your international
+        clicks are redirected using our own affiliate tracking parameters. This unique model helps
+        ensure you maximize your commissions, and is completely transparent via the reporting found
+        in the GeoRiot dashboard.  The maximum Click Share rate is 15%. Additional details can be
+        found on our <a href="http://www.georiot.com/our-solution/pay-with-clicks" target="_blank">Pay With Clicks</a> page. Please
+        <a href="mailto:contact@georiot.com">contact GeoRiot</a> if you have any questions.
+      </p>
+
+      <h4 id="faq-busmodel">How does GeoRiot Make Money?</h4>
+      <p>At GeoRiot, clicks are our currency, so you never give us a credit card number or receive an invoice.
+        We earn money the way you do – through international affiliate programs.  With our “Pay with Clicks”
+        payment model, we simply take 15% of your total clicks from the additional international clicks that
+        we help you monetize.  We also insert our affiliate parameters by default for countries where you do
+        not add your own.
       </p>
 
     </div>
