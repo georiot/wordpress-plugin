@@ -52,9 +52,9 @@ function options_page_georiot_autolinker() {
 
 
 
-// Show notice in dashboard if API isn't connected
+// Show notice in dashboard home page and plugin page if API isn't connected
 function georiot_admin_notice(){
-  if (strpos($_SERVER['PHP_SELF'],'wp-admin/index.php') !== false) {
+  if (strpos($_SERVER['PHP_SELF'],'wp-admin/index.php') !== false  || strpos($_SERVER['PHP_SELF'],'wp-admin/plugins.php') !== false ) {
     if (get_option('georiot_api_remind') == 'yes' && get_option('georiot_tsid') == '') {
       ?>
       <div class="update-nag">
