@@ -2,10 +2,10 @@
 /*
 Plugin Name: Amazon Link Engine
 Plugin URI:
-Description: Automatically optimize Amazon product links for your global audience and earn commissions on sales.
+Description: Automatically optimizes Amazon product links for your global audience and allows you to earn commissions on sales.
 Version: 1.0.0
-Author: Steven Sundheim
-Author URI: http://sundhe.im
+Author: GeoRiot
+Author URI: http://georiot.com
 */
 
 if (!defined('WP_CONTENT_URL'))
