@@ -27,7 +27,7 @@ function activate_georiot_autolinker() {
   add_option('georiot_api_remind', 'yes');
 }
 
-function deactive_georiot_autolinker() {
+function deactivate_georiot_autolinker() {
   delete_option('georiot_tsid');
   delete_option('georiot_api_key');
   delete_option('georiot_api_secret');
