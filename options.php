@@ -293,7 +293,7 @@
             $('#gr-aff-enrolled').html(data.TotalProgramsEnrolled)
             $('#gr-aff-available').html(data.TotalProgramsAvailable)
 
-            if (grProgramsEnrolled >= grProgramsAvailable) {
+            if (grProgramsEnrolled >= 1) {
               $('#gr-step-3').addClass('gr-step-complete');
             }
           })
@@ -314,8 +314,8 @@
 <div class="wrap">
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
     <a href="http://georiot.com" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="12" /></a></h2>
-  <p class="gr-intro">This plugin has added Javascript that converts all iTunes and Amazon product
-    URL’s on your site to global-friendly GeoRiot links. <a href="#faq-whatisgeoriot">Learn more...</a>
+  <p class="gr-intro">This plugin has added Javascript that converts all Amazon product
+    URLs on your site to global-friendly GeoRiot links. <a href="#faq-whatisgeoriot">Learn more...</a>
   </p>
 
   <h3>Get the most from this plugin</h3>
@@ -372,7 +372,7 @@
         3
       </div>
       <div class="gr-step-info">
-        <strong>Monetize your traffic:</strong> Earn commissions for every sale by connecting  affiliate programs.
+        <strong>Monetize your traffic:</strong> Earn commissions for every sale by connecting affiliate programs.
         <br>
         <div id="gr-affiliates-spinner">
           <div class="css-only-spinner">
@@ -384,7 +384,7 @@
         </div>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
-          affiliate programs connected. <a href="http://manage.georiot.com/Affiliate">Add more...</a></span>
+          Amazon affiliate programs connected. <a href="http://manage.georiot.com/Affiliate">Add more...</a></span>
       </div>
     </div>
 
