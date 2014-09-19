@@ -451,23 +451,17 @@
 
 
       <h4 id="faq-pay">Do I have to pay for GeoRiot?</h4>
-      <p><strong>No,</strong> you never need to give us a credit card, or make payments to use the GeoRiot Service.  The service is always free.
+      <p><strong>No,</strong>  you never need to give us a credit card or make payments to
+        use the GeoRiot Service. The service is always free.
       </p>
-      <p><strong>Please note:</strong> It’s important to know that the GeoRiot service costs nothing out of pocket.
-        Instead GeoRiot uses a “Click Share” model where a percentage of your international
-        clicks are redirected using our own affiliate tracking parameters. This unique model helps
-        ensure you maximize your commissions, and is completely transparent via the reporting found
-        in the GeoRiot dashboard.  The maximum Click Share rate is 15%. Additional details can be
-        found on our <a href="http://www.georiot.com/our-solution/pay-with-clicks" target="_blank">Pay With Clicks</a> page. Please
-        <a href="mailto:contact@georiot.com">contact GeoRiot</a> if you have any questions.
+      <p>At GeoRiot, clicks are our currency, and we earn money the way you do –
+        through international affiliate programs. With our “Click Share” payment model,
+        we simply take a maximum of 15% of your total clicks from the additional international
+        clicks that we help you monetize.
       </p>
-
-      <h4 id="faq-busmodel">How does GeoRiot Make Money?</h4>
-      <p>At GeoRiot, clicks are our currency, so you never give us a credit card number or receive an invoice.
-        We earn money the way you do – through international affiliate programs.  With our “Pay with Clicks”
-        payment model, we simply take 15% of your total clicks from the additional international clicks that
-        we help you monetize.  We also insert our affiliate parameters by default for countries where you do
-        not add your own.
+      <p><strong>Please note: By default, GeoRiot's affiliate parameters will be used until
+          you have added your own via the GeoRiot dashboard.</strong>
+        Please <a href="mailto:contact@georiot.com">contact GeoRiot</a> if you have any questions.
       </p>
 
     </div>

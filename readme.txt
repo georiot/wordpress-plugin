@@ -7,6 +7,7 @@ Stable tag: 1.0.0
 
 Automatically optimize Amazon product links for your global audience and earn commissions on sales.
 
+
 == Description ==
 
 Automatically converts Amazon product links to global friendly GeoRiot links so users get to the right
@@ -15,6 +16,7 @@ commissions for all sales, worldwide.
 
 For more information visit:
 http://support.georiot.com/support/solutions/articles/72229-link-building
+
 
 == Installation ==
 
@@ -36,9 +38,12 @@ No, you do NOT need a GeoRiot account to use the Amazon Link Engine plugin. As s
 
 =Do I have to pay for GeoRiot?=
 
-No, you never need to give us a credit card, or make payments to use the GeoRiot Service. The service is always free.
+No, you never need to give us a credit card or make payments to use the GeoRiot Service. The service is always free.
 
-Please note: It’s important to know that the GeoRiot service costs nothing out of pocket. Instead GeoRiot uses a “Click Share” model where a percentage of your international clicks are redirected using our own affiliate tracking parameters. This unique model helps ensure you maximize your commissions, and is completely transparent via the reporting found in the GeoRiot dashboard. The maximum Click Share rate is 15%. Additional details can be found on our Pay With Clicks page. Please contact GeoRiot if you have any questions.
+At GeoRiot, clicks are our currency, and we earn money the way you do – through international affiliate programs. With our “Click Share” payment model, we simply take a maximum of 15% of your total clicks from the additional international clicks that we help you monetize.
+
+Please note: By default, GeoRiot's affiliate parameters will be used until you have added your own via the GeoRiot dashboard.  Please contact GeoRiot if you have any questions.
+
 
 =How do I get my API keys?=
 
@@ -49,6 +54,7 @@ To get your GeoRiot API Keys, follow these simple steps:
 1. Copy and paste your API keys (“Key” & “Secret”) into the Enable Reporting and Commissions area of the plugin.
 1. Once pasted, your GeoRiot account will be automatically connected.
 
+
 =How do I earn International Commissions?=
 
 First, connect the plugin to your GeoRiot account (see “How do I get my API keys?”). Then, follow the steps below:
@@ -57,9 +63,6 @@ First, connect the plugin to your GeoRiot account (see “How do I get my API ke
 *Note: If you’ve already done this within your existing GeoRiot account, you do not need to add your parameters again.
 
 2)You’re all set! You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.
-
-=How does GeoRiot Make Money?=
-At GeoRiot, clicks are our currency, so you never give us a credit card number or receive an invoice. We earn money the way you do – through international affiliate programs. With our “Pay with Clicks” payment model, we simply take 15% of your total clicks from the additional international clicks that we help you monetize. We also insert our affiliate parameters by default for countries where you do not add your own.At GeoRiot, clicks are our currency, so you never give us a credit card number or receive an invoice. We earn money the way you do – through international affiliate programs. With our “Pay with Clicks” payment model, we simply take 15% of your total clicks from the additional international clicks that we help you monetize. We also insert our affiliate parameters by default for countries where you do not add your own.
 
 
 == Screenshots ==
