@@ -19,6 +19,7 @@
   #gr-tsid-loaded {
     font-weight: bold;
     color: #79b638;
+    margin-top: 5px;
   }
   .gr-my-tsid {
     font-weight: normal;
@@ -34,6 +35,7 @@
   #gr-tsid-error {
     display: none;
     color: #880000;
+    margin-top: 5px;
   }
   .gr-status-error-tsid #gr-tsid-error {
     display: block;
@@ -49,6 +51,7 @@
     display: none;
   }
   #gr-affiliates-loaded {
+    margin-top: 5px;
     opacity: .6;
     display: none;
   }
@@ -58,6 +61,7 @@
   #gr-affiliates-error {
     display: none;
     color: #880000;
+    margin-top: 5px;
   }
   .gr-status-error-affiliates #gr-affiliates-error {
     display: block;
@@ -244,8 +248,6 @@
     });
 
 
-
-
     function getGeoRiotTSID() {
       // Validate fields and then send request
       // If both api fields are correct, check the API
@@ -267,11 +269,11 @@
 
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
-      var georiotApiUrlGroups = "http://api.georiot.com/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret+"&callback=?";
+      var georiotApiUrlGroups = "http://api.georiot.com/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
       var requestGeoRiotGroups = $.ajax({
         url : georiotApiUrlGroups,
-        dataType : "jsonp",
+        dataType : "json",
         timeout : 10000
       })
         .done(function( data ) {
@@ -298,6 +300,7 @@
         })
         .fail(function() {
           $('#connect-gr-api-form').addClass('gr-status-error-tsid');
+          $('#gr-step-2, #gr-step-3').removeClass('gr-step-complete');
         })
         .always(function() {
           $('#connect-gr-api-form').removeClass('gr-status-loading-tsid');
@@ -305,11 +308,12 @@
         })
       ;
 
-      getGeoriotAffiliates();
+      getGeoriotAffiliates('suppressError');
+      // We don't want to inundate the user with errors, so suppress the affiliate one in this case.
 
     }
 
-    function getGeoriotAffiliates() {
+    function getGeoriotAffiliates(suppressError) {
       //Loading effects
       $('#connect-gr-api-form').addClass('gr-status-loading-affiliates');
       $('#connect-gr-api-form').removeClass('gr-status-loaded-affiliates');
@@ -318,12 +322,12 @@
 
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
-      var georiotApiUrlAffiliates = "http://api.georiot.com/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret+"&callback=?";
+      var georiotApiUrlAffiliates = "http://api.georiot.com/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
 
       var requestGeoRiotAffiliates = $.ajax({
           url : georiotApiUrlAffiliates,
-          dataType : "jsonp",
+          dataType : "json",
           timeout : 10000
         })
           .done(function( data ) {
@@ -350,7 +354,9 @@
             $('#connect-gr-api-form').addClass('gr-status-loaded-affiliates');
           })
           .fail(function() {
-            $('#connect-gr-api-form').addClass('gr-status-error-affiliates');
+            if(suppressError != 'suppressError') {
+              $('#connect-gr-api-form').addClass('gr-status-error-affiliates');
+            }
           })
           .always(function() {
             $('#connect-gr-api-form').removeClass('gr-status-loading-affiliates');
