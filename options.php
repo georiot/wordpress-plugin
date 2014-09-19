@@ -338,7 +338,7 @@
         2
       </div>
       <div class="gr-step-info">
-          <strong>Gain Insight with traffic reports.</strong> Create a free GeoRiot account and enter your API keys here.
+          <strong>Gain Insight with traffic reports.</strong> <a href="http://www.georiot.com/Sign-Up">Create a free GeoRiot account</a> and enter your API keys here.
           <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
@@ -384,7 +384,7 @@
         </div>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
-          affiliate programs connected. <a href="http://dev-manage.georiot.com/Affiliate">Add more...</a></span>
+          affiliate programs connected. <a href="http://manage.georiot.com/Affiliate">Add more...</a></span>
       </div>
     </div>
 
@@ -432,7 +432,7 @@
       <p>To get your GeoRiot API Keys, follow these simple steps:
       </p>
       <ol>
-        <li>If you do not have a GeoRiot account, create a free account.</li>
+        <li>If you do not have a GeoRiot account, <a href="http://www.georiot.com/Sign-Up">create a free account</a>.</li>
         <li>Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.</li>
         <li> Copy and paste your API keys (“Key” & “Secret”) into the Enable Reporting and Commissions area of the plugin.</li>
         <li>Once pasted, your GeoRiot account will be automatically connected.</li>
