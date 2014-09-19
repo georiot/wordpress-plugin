@@ -10,10 +10,10 @@
   #gr-tsid-loaded {
     display: none;
   }
-  .loading-tsid #gr-tsid-spinner {
+  .gr-status-loading-tsid #gr-tsid-spinner {
     display: block;
   }
-  .loaded-tsid #gr-tsid-loaded {
+  .gr-status-loaded-tsid #gr-tsid-loaded {
     display: block;
   }
   #gr-tsid-loaded {
@@ -23,24 +23,43 @@
   .gr-my-tsid {
     font-weight: normal;
     color: #6f6f6f;
+  }
+  .gr-tiny {
     font-size: 10px;
   }
 
 
+
+
+  #gr-tsid-error {
+    display: none;
+    color: #880000;
+  }
+  .gr-status-error-tsid #gr-tsid-error {
+    display: block;
+  }
   #gr-affiliates-spinner {
     display: none;
     opacity: .5;
   }
-  .gr-loading-affiliates #gr-affiliates-spinner {
+  .gr-status-loading-affiliates #gr-affiliates-spinner {
     display: block;
   }
-  .gr-loading-affiliates #gr-affiliates-loaded {
+  .gr-status-loading-affiliates #gr-affiliates-loaded {
     display: none;
   }
   #gr-affiliates-loaded {
     opacity: .6;
+    display: none;
   }
-  .gr-loaded-affiliates #gr-affiliates-loaded {
+  .gr-status-loaded-affiliates #gr-affiliates-loaded {
+    display: block;
+  }
+  #gr-affiliates-error {
+    display: none;
+    color: #880000;
+  }
+  .gr-status-error-affiliates #gr-affiliates-error {
     display: block;
   }
 
@@ -196,33 +215,45 @@
       $('#georiot_api_secret').val('');
       $('#georiot_tsid').val('');
       $('#gr-step-2').removeClass('gr-step-complete');
-      $('#connect-gr-api-form').removeClass('loaded-tsid');
+      $('#connect-gr-api-form').removeClass('gr-status-loaded-tsid');
+      $('#gr-step-3').removeClass('gr-step-complete');
+      $('#connect-gr-api-form').removeClass('gr-status-loaded-affiliates');
 
       alert('Remember to click "Save Changes" to keep this disconnected.');
 
     });
 
-    //Detect paste into the apik key or secret fields.
+    //Detect paste into the api key or secret fields.
     $('#georiot_api_key, #georiot_api_secret').on('paste', function () {
       var element = this;
       setTimeout(function () {
-
-        // If both fields are correct, check the API
-        if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
-          connectGeoriotApi();
-        } else if( $('#georiot_api_key').val().length > 0 && $('#georiot_api_secret').val().length > 0 ) {
-          //if both fields have values, but are not the right length, tell the user
-          if($('#georiot_api_key').val().length != 32) alert('The API Key field appears to be invalid. Please copy and paste it again');
-          if($('#georiot_api_secret').val().length != 32) alert('The API Secret field appears to be invalid. Please copy and paste it again');
-        }
+        getGeoRiotTSID();
       }, 500);
     });
 
+    // Re-submit button can also trigger api connect
+    $('#gr-resubmit').click( function(e) {
+      getGeoRiotTSID()
+      e.preventDefault();
+    });
+
+    function getGeoRiotTSID() {
+      // Validate fields and then send request
+      // If both api fields are correct, check the API
+      if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
+        connectGeoriotApi();
+      } else if( $('#georiot_api_key').val().length > 0 && $('#georiot_api_secret').val().length > 0 ) {
+        //if both fields have values, but are not the right length, tell the user
+        if($('#georiot_api_key').val().length != 32) alert('The API Key field appears to be invalid. Please copy and paste it again');
+        if($('#georiot_api_secret').val().length != 32) alert('The API Secret field appears to be invalid. Please copy and paste it again');
+      }
+    }
 
     function connectGeoriotApi() {
       // Show loading indicators and disable submit button while we wait for a response
-      $('#connect-gr-api-form').addClass('loading-tsid');
-      $('#connect-gr-api-form').removeClass('loaded-tsid');
+      $('#connect-gr-api-form').addClass('gr-status-loading-tsid');
+      $('#connect-gr-api-form').removeClass('gr-status-loaded-tsid');
+      $('#connect-gr-api-form').removeClass('gr-status-error-tsid');
       $('.button-primary').prop("disabled",true);
 
       var georiotApiKey = $('#georiot_api_key').val();
@@ -253,14 +284,14 @@
             $('#georiot_tsid').val( gr_low_tsid );
 
             //Show completion in UI
-            $('#connect-gr-api-form').addClass('loaded-tsid');
+            $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
             $('#gr-step-2').addClass('gr-step-complete');
         })
         .fail(function() {
-          alert("Sorry, there was an error connecting to GeoRiot API. Please double check your API key and secret. If everything looks correct, there may be another problem connecting to the GeoRiot API. ");
+          $('#connect-gr-api-form').addClass('gr-status-error-tsid');
         })
         .always(function() {
-          $('#connect-gr-api-form').removeClass('loading-tsid');
+          $('#connect-gr-api-form').removeClass('gr-status-loading-tsid');
           $('.button-primary').prop("disabled",false);
         })
       ;
@@ -271,8 +302,9 @@
 
     function getGeoriotAffiliates() {
       //Loading effects
-      $('#connect-gr-api-form').addClass('gr-loading-affiliates');
-      $('#connect-gr-api-form').removeClass('gr-loaded-affiliates');
+      $('#connect-gr-api-form').addClass('gr-status-loading-affiliates');
+      $('#connect-gr-api-form').removeClass('gr-status-loaded-affiliates');
+      $('#connect-gr-api-form').removeClass('gr-status-error-affiliates');
 
 
       var georiotApiKey = $('#georiot_api_key').val();
@@ -286,22 +318,33 @@
           timeout : 10000
         })
           .done(function( data ) {
-            var grProgramsAvailable = data.TotalProgramsAvailable;
-            var grProgramsEnrolled = data.TotalProgramsEnrolled;
+            var grAmazonEnrolled =  0;
+            var grAmazonAvailable =  0;
+
+            //Iterate over the enrolled programs and add up how many Amazon programs there are.
+            $.each(data.ProgramsEnrolled, function( key, value ) {
+              if(value.indexOf("Amazon") > -1) { grAmazonEnrolled++; }
+            });
+            //Iterate over the available programs and add up how many Amazon programs there are.
+            $.each(data.AvailablePrograms, function( key, value ) {
+              if(value.indexOf("Amazon") > -1) { grAmazonAvailable++; }
+            });
 
             //Print out these values
-            $('#gr-aff-enrolled').html(data.TotalProgramsEnrolled)
-            $('#gr-aff-available').html(data.TotalProgramsAvailable)
+            $('#gr-aff-enrolled').html(grAmazonEnrolled)
+            $('#gr-aff-available').html(grAmazonAvailable)
 
-            if (grProgramsEnrolled >= grProgramsAvailable) {
+            if (grAmazonEnrolled >= 1) {
               $('#gr-step-3').addClass('gr-step-complete');
             }
+            //Show completion in UI
+            $('#connect-gr-api-form').addClass('gr-status-loaded-affiliates');
           })
           .fail(function() {
-            alert("Sorry, there was an error connecting to GeoRiot API. Please double check your API key and secret. If everything looks correct, there may be another problem connecting to the GeoRiot API. ");
+            $('#connect-gr-api-form').addClass('gr-status-error-affiliates');
           })
           .always(function() {
-            $('#connect-gr-api-form').removeClass('gr-loading-affiliates');
+            $('#connect-gr-api-form').removeClass('gr-status-loading-affiliates');
           })
         ;
     }
@@ -314,12 +357,12 @@
 <div class="wrap">
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
     <a href="http://georiot.com" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="12" /></a></h2>
-  <p class="gr-intro">This plugin has added Javascript that converts all iTunes and Amazon product
-    URL’s on your site to global-friendly GeoRiot links. <a href="#faq-whatisgeoriot">Learn more...</a>
+  <p class="gr-intro">This plugin has added Javascript that converts all Amazon product
+    URLs on your site to global-friendly GeoRiot links. <a href="#faq-whatisgeoriot">Learn more...</a>
   </p>
 
   <h3>Get the most from this plugin</h3>
-  <form method="post" action="options.php" id="connect-gr-api-form" class="<?php if (get_option('georiot_tsid') != '') print 'loaded-tsid'; ?>">
+  <form method="post" action="options.php" id="connect-gr-api-form" class="<?php if (get_option('georiot_tsid') != '') print 'gr-status-loaded-tsid'; ?>">
     <?php settings_fields('amazon-link-engine'); ?>
 
     <div id="gr-step-1" class="gr-step-area gr-step-complete">
@@ -338,7 +381,7 @@
         2
       </div>
       <div class="gr-step-info">
-          <strong>Gain Insight with traffic reports.</strong> Create a free GeoRiot account and enter your API keys here.
+          <strong>Gain Insight with traffic reports.</strong> <a href="http://www.georiot.com/Sign-Up">Create a free GeoRiot account</a> and enter your API keys here.
           <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
@@ -358,10 +401,13 @@
           Connecting...
         </div>
         <div id="gr-tsid-loaded">Connected! &nbsp;
-            <span class="gr-my-tsid">
+            <span class="gr-my-tsid gr-tiny">
               (Using Group #<span id="gr-my-tsid-value"><?php print get_option('georiot_tsid') ?></span>)
               &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
             </span>
+        </div>
+        <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
+          <button id="gr-resubmit">Re-submit</button>
         </div>
       </div>
     </div>
@@ -372,7 +418,7 @@
         3
       </div>
       <div class="gr-step-info">
-        <strong>Monetize your traffic:</strong> Earn commissions for every sale by connecting  affiliate programs.
+        <strong>Monetize your traffic:</strong> Earn commissions for every sale by <a href="http://manage.georiot.com/Affiliate">connecting affiliate programs</a>.
         <br>
         <div id="gr-affiliates-spinner">
           <div class="css-only-spinner">
@@ -384,7 +430,10 @@
         </div>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
-          affiliate programs connected. <a href="http://dev-manage.georiot.com/Affiliate">Add more...</a></span>
+          Amazon programs connected. <a  class="gr-tiny" href="http://manage.georiot.com/Affiliate">Add more...</a>
+        </span>
+        <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeoRiot API.
+        </div>
       </div>
     </div>
 
@@ -432,7 +481,7 @@
       <p>To get your GeoRiot API Keys, follow these simple steps:
       </p>
       <ol>
-        <li>If you do not have a GeoRiot account, create a free account.</li>
+        <li>If you do not have a GeoRiot account, <a href="http://www.georiot.com/Sign-Up">create a free account</a>.</li>
         <li>Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.</li>
         <li> Copy and paste your API keys (“Key” & “Secret”) into the Enable Reporting and Commissions area of the plugin.</li>
         <li>Once pasted, your GeoRiot account will be automatically connected.</li>
@@ -451,27 +500,20 @@
 
 
       <h4 id="faq-pay">Do I have to pay for GeoRiot?</h4>
-      <p><strong>No,</strong> you never need to give us a credit card, or make payments to use the GeoRiot Service.  The service is always free.
+      <p><strong>No,</strong>  you never need to give us a credit card or make payments to
+        use the GeoRiot Service. The service is always free.
       </p>
-      <p><strong>Please note:</strong> It’s important to know that the GeoRiot service costs nothing out of pocket.
-        Instead GeoRiot uses a “Click Share” model where a percentage of your international
-        clicks are redirected using our own affiliate tracking parameters. This unique model helps
-        ensure you maximize your commissions, and is completely transparent via the reporting found
-        in the GeoRiot dashboard.  The maximum Click Share rate is 15%. Additional details can be
-        found on our <a href="http://www.georiot.com/our-solution/pay-with-clicks" target="_blank">Pay With Clicks</a> page. Please
-        <a href="mailto:contact@georiot.com">contact GeoRiot</a> if you have any questions.
+      <p>At GeoRiot, clicks are our currency, and we earn money the way you do –
+        through international affiliate programs. With our “Click Share” payment model,
+        we simply take a maximum of 15% of your total clicks from the additional international
+        clicks that we help you monetize.
       </p>
-
-      <h4 id="faq-busmodel">How does GeoRiot Make Money?</h4>
-      <p>At GeoRiot, clicks are our currency, so you never give us a credit card number or receive an invoice.
-        We earn money the way you do – through international affiliate programs.  With our “Pay with Clicks”
-        payment model, we simply take 15% of your total clicks from the additional international clicks that
-        we help you monetize.  We also insert our affiliate parameters by default for countries where you do
-        not add your own.
+      <p><strong>Please note: By default, GeoRiot's affiliate parameters will be used until
+          you have added your own via the GeoRiot dashboard.</strong>
+        Please <a href="mailto:contact@georiot.com">contact GeoRiot</a> if you have any questions.
       </p>
 
     </div>
-
 
   </form>
 </div>
