@@ -213,6 +213,8 @@
       $('#georiot_tsid').val('');
       $('#gr-step-2').removeClass('gr-step-complete');
       $('#connect-gr-api-form').removeClass('gr-status-loaded-tsid');
+      $('#gr-step-3').removeClass('gr-step-complete');
+      $('#connect-gr-api-form').removeClass('gr-status-loaded-affiliates');
 
       alert('Remember to click "Save Changes" to keep this disconnected.');
 
@@ -299,6 +301,7 @@
       //Loading effects
       $('#connect-gr-api-form').addClass('gr-status-loading-affiliates');
       $('#connect-gr-api-form').removeClass('gr-status-loaded-affiliates');
+      $('#connect-gr-api-form').removeClass('gr-status-error-affiliates');
 
 
       var georiotApiKey = $('#georiot_api_key').val();
@@ -397,7 +400,7 @@
         <div id="gr-tsid-loaded">Connected! &nbsp;
             <span class="gr-my-tsid">
               (Using Group #<span id="gr-my-tsid-value"><?php print get_option('georiot_tsid') ?></span>)
-              &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
+              &nbsp; <a href="#" class="gr-tiny" id="gr-disconnect-api">Disconnect</a>
             </span>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
