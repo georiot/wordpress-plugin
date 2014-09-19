@@ -286,14 +286,23 @@
           timeout : 20000
         })
           .done(function( data ) {
-            var grProgramsAvailable = data.TotalProgramsAvailable;
-            var grProgramsEnrolled = data.TotalProgramsEnrolled;
+            var grAmazonEnrolled =  0;
+            var grAmazonAvailable =  0;
+
+            //Iterate over the enrolled programs and add up how many Amazon programs there are.
+            $.each(data.ProgramsEnrolled, function( key, value ) {
+              if(value.indexOf("Amazon") > -1) { grAmazonEnrolled++; }
+            });
+            //Iterate over the available programs and add up how many Amazon programs there are.
+            $.each(data.AvailablePrograms, function( key, value ) {
+              if(value.indexOf("Amazon") > -1) { grAmazonAvailable++; }
+            });
 
             //Print out these values
-            $('#gr-aff-enrolled').html(data.TotalProgramsEnrolled)
-            $('#gr-aff-available').html(data.TotalProgramsAvailable)
+            $('#gr-aff-enrolled').html(grAmazonEnrolled)
+            $('#gr-aff-available').html(grAmazonAvailable)
 
-            if (grProgramsEnrolled >= 1) {
+            if (grAmazonEnrolled >= 1) {
               $('#gr-step-3').addClass('gr-step-complete');
             }
           })
@@ -465,7 +474,6 @@
       </p>
 
     </div>
-
 
   </form>
 </div>
