@@ -232,10 +232,19 @@
     });
 
     // Re-submit button can also trigger api connect
-    $('#gr-resubmit').click( function(e) {
-      getGeoRiotTSID()
+    $('.gr-resubmit').click( function(e) {
+      getGeoRiotTSID();
       e.preventDefault();
     });
+
+    // Refrsh button for the affiliates section
+    $('.gr-refresh-affiliates').click( function(e) {
+      getGeoriotAffiliates();
+      e.preventDefault();
+    });
+
+
+
 
     function getGeoRiotTSID() {
       // Validate fields and then send request
@@ -407,7 +416,7 @@
             </span>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
-          <button id="gr-resubmit">Re-submit</button>
+          <button class="gr-resubmit">Re-submit</button>
         </div>
       </div>
     </div>
@@ -430,7 +439,7 @@
         </div>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
-          Amazon programs connected. <a  class="gr-tiny" href="http://manage.georiot.com/Affiliate">Add more...</a>
+          Amazon programs connected. <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
         </span>
         <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeoRiot API.
         </div>
