@@ -23,8 +23,11 @@
   .gr-my-tsid {
     font-weight: normal;
     color: #6f6f6f;
+  }
+  .gr-tiny {
     font-size: 10px;
   }
+
 
 
 
@@ -398,9 +401,9 @@
           Connecting...
         </div>
         <div id="gr-tsid-loaded">Connected! &nbsp;
-            <span class="gr-my-tsid">
+            <span class="gr-my-tsid gr-tiny">
               (Using Group #<span id="gr-my-tsid-value"><?php print get_option('georiot_tsid') ?></span>)
-              &nbsp; <a href="#" class="gr-tiny" id="gr-disconnect-api">Disconnect</a>
+              &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
             </span>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
@@ -415,7 +418,7 @@
         3
       </div>
       <div class="gr-step-info">
-        <strong>Monetize your traffic:</strong> Earn commissions for every sale by connecting affiliate programs.
+        <strong>Monetize your traffic:</strong> Earn commissions for every sale by <a href="http://manage.georiot.com/Affiliate">connecting affiliate programs</a>.
         <br>
         <div id="gr-affiliates-spinner">
           <div class="css-only-spinner">
@@ -427,7 +430,7 @@
         </div>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
-          Amazon affiliate programs connected. <a href="http://manage.georiot.com/Affiliate">Add more...</a>
+          Amazon programs connected. <a  class="gr-tiny" href="http://manage.georiot.com/Affiliate">Add more...</a>
         </span>
         <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeoRiot API.
         </div>
