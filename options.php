@@ -223,7 +223,7 @@
       $('#gr-step-3').removeClass('gr-step-complete');
       $('#connect-gr-api-form').removeClass('gr-status-loaded-affiliates');
 
-      alert('Remember to click "Save Changes" to keep this disconnected.');
+      alert('Your API values have been cleared. To finish, remember to click "Save Changes".');
 
     });
 
