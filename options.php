@@ -283,7 +283,7 @@
       var requestGeoRiotAffiliates = $.ajax({
           url : georiotApiUrlAffiliates,
           dataType : "jsonp",
-          timeout : 10000
+          timeout : 20000
         })
           .done(function( data ) {
             var grProgramsAvailable = data.TotalProgramsAvailable;
