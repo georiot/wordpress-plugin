@@ -498,7 +498,8 @@
       <ol>
         <li>If you do not have a GeoRiot account, <a href="http://www.georiot.com/Sign-Up">create a free account</a>.</li>
         <li>Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.</li>
-        <li> Copy and paste your API keys (“Key” & “Secret”) into the Enable Reporting and Commissions area of the plugin.</li>
+        <li> After you create your key, please wait 3 minutes for it to become usable.</li>
+        <li>Return to the plugin options page, and paste your API keys (“Key” & “Secret”) into the designated fields.</li>
         <li>Once pasted, your GeoRiot account will be automatically connected.</li>
       </ol>
 

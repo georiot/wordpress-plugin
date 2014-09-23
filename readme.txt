@@ -51,7 +51,8 @@ To get your GeoRiot API Keys, follow these simple steps:
 
 1. If you do not have a GeoRiot account, create a free account.
 1. Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.
-1. Copy and paste your API keys (“Key” & “Secret”) into the Enable Reporting and Commissions area of the plugin.
+1. After you create your key, please wait 3 minutes for it to become usable.
+1. Return to the plugin options page and paste your API keys (“Key” & “Secret”) into the designated fields.
 1. Once pasted, your GeoRiot account will be automatically connected.
 
 
