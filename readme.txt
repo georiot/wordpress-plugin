@@ -49,10 +49,11 @@ Please note: By default, GeoRiot's affiliate parameters will be used until you h
 
 To get your GeoRiot API Keys, follow these simple steps:
 
-1. If you do not have a GeoRiot account, create a free account.
-1. Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.
-1. Copy and paste your API keys (“Key” & “Secret”) into the Enable Reporting and Commissions area of the plugin.
-1. Once pasted, your GeoRiot account will be automatically connected.
+1.     If you do not have a GeoRiot account, create a free account.
+1.     Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.
+1.     Click the “plus” sign to get your API keys.
+1.     Next, simply copy and paste the “Key” and “Secret” codes into the “Enable Reporting and Commissions” area of the plugin. **Please note: It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.
+1.     Once pasted, your GeoRiot account will be automatically connected.
 
 
 =How do I earn International Commissions?=
