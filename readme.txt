@@ -1,19 +1,19 @@
 === Amazon Link Engine  ===
 Contributors: GeoRiot Networks, Inc.
-Tags: javascript, georiot
+Tags: javascript, georiot, amazon
 Requires at least: 2.7
 Tested up to: 4.0
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Turn every Amazon link across your site into an opportunity for worldwide sales!
+Automatically localize and affiliate Amazon product links to ensure a better user experience, improve conversions and earn global commissions.
 
 
 == Description ==
 
 The Amazon Link Engine plugin is the easiest way to convert all Amazon links within your
-WorPress site into affiliated links that work across all Amazon storefronts.  By “Localizing”
+WordPress site into affiliated links that work across all Amazon storefronts.  By “Localizing”
 these links, you ensure all clicks from international viewers, are redirected to the appropriate
 item in their own local storefront with your correct affiliate ID attached.  This improves
 conversions by giving the best user experience possible and allows you to earn the
@@ -116,10 +116,10 @@ Please note: It’s important to know that the GeoRiot service costs nothing out
 
 First, connect the plugin to your GeoRiot account (see “How do I get my API keys?”). Then, follow the steps below:
 
-1) Add your Amazon Affiliate parameters to your GeoRiot dashboard. Instructions on how to do this can be found here.
+1. Add your Amazon Affiliate parameters to your GeoRiot dashboard. Instructions on how to do this can be found here.
 *Note: If you’ve already done this within your existing GeoRiot account, you do not need to add your parameters again.
 
-2)You’re all set! You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.
+1. You’re all set! You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.
 
 
 = Is the Amazon Link Engine compatible with other affiliate tools? =
