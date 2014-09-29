@@ -102,11 +102,10 @@ To get your GeoRiot API Keys, follow these simple steps:
 
 No, you never need to give us a credit card or make payments to use the GeoRiot Service. The service is always free.
 
-Please note: It’s important to know that the GeoRiot service costs nothing out of pocket. Instead GeoRiot uses a "Click Share" model where a percentage of your international clicks are redirected using our own affiliate tracking parameters. This unique model helps ensure you maximize your commissions, and is completely transparent via the reporting found in the GeoRiot dashboard.  The maximum Click Share rate is 15%. Additional details can be found on our Pay With Clicks page. Please contact GeoRiot if you have any questions.
+At GeoRiot, clicks are our currency, and we earn money the way you do – through international affiliate programs. With our "Click Share" payment model, we simply take a maximum of 15% of your total clicks from the additional international clicks that we help you monetize.
 
+Please note: By default, GeoRiot's affiliate parameters will be used until you have added your own via the GeoRiot dashboard.  Please contact GeoRiot if you have any questions.
 
-= How does GeoRiot Make Money? =
-	At GeoRiot, clicks are our currency, so you never give us a credit card number or receive an invoice.  We earn money the way you do – through international affiliate programs.  With our "Click Share" payment model, we simply take 15% of your total clicks from the additional international clicks that we help you monetize.  We also insert our affiliate parameters by default for countries where you do not add your own.
 
 = Do I need to update the JavaScript myself? =
 	No, the A.L.E. plugin is instantly pulled from a remote server each time your page loads, which means that the snippet is always up to date.  If we update the code from our end, it will instantly be updated on your website upon page load.
