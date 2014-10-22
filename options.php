@@ -396,7 +396,7 @@
         2
       </div>
       <div class="gr-step-info">
-          <strong>Gain Insight with traffic reports.</strong> <a href="http://www.georiot.com/Sign-Up">Create a free GeoRiot account</a> and enter your API keys here.
+          <strong>Gain Insight with traffic reports.</strong> <a href="http://www.georiot.com/wordpress-plugin/sign-up">Create a free GeoRiot account</a> and enter your API keys here.
           <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
@@ -496,14 +496,14 @@
       <p>To get your GeoRiot API Keys, follow these simple steps:
       </p>
       <ol>
-        <li>If you do not have a GeoRiot account, <a href="http://www.georiot.com/Sign-Up">create a free account</a>.</li>
+        <li>If you do not have a GeoRiot account, <a href="http://www.georiot.com/wordpress-plugin/sign-up">create a free account</a>.</li>
 
         <li>Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.</li>
 
         <li>Click the “plus” sign to get your API keys.</li>
 
         <li>Next, simply copy and paste the “Key” and “Secret” codes into the “Enable Reporting and Commissions” area of the plugin.<br>
-          **Please note: It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.</li>
+          <strong>Please note:</strong> It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.</li>
         <li>Once pasted, your GeoRiot account will be automatically connected.</li>
 
       </ol>
@@ -513,8 +513,8 @@
       <p>
         First, connect the plugin to your GeoRiot account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
       <ol>
-        <li>Add your Amazon Affiliate parameters to your GeoRiot dashboard.  Instructions on how to do this can be found here.
-        <br>*Note: If you’ve already done this within your existing GeoRiot account, you do not need to add your parameters again.
+        <li>Add your Amazon Affiliate parameters to your GeoRiot dashboard.  Instructions on how to do this can be found <a href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
+        <br><strong>Note:</strong> If you’ve already done this within your existing GeoRiot account, you do not need to add your parameters again.
         </li>
         <li> You’re all set!  You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.</li>
       </ol>
