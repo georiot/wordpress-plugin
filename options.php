@@ -269,7 +269,7 @@
 
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
-      var georiotApiUrlGroups = "http://api.georiot.com/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
+      var georiotApiUrlGroups = "https://api.georiot.com/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
       var requestGeoRiotGroups = $.ajax({
         url : georiotApiUrlGroups,
@@ -322,7 +322,7 @@
 
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
-      var georiotApiUrlAffiliates = "http://api.georiot.com/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
+      var georiotApiUrlAffiliates = "https://api.georiot.com/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
 
       var requestGeoRiotAffiliates = $.ajax({

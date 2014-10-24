@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, georiot, ale, javascript 
 Requires at least: 2.7
 Tested up to: 4.0
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -146,6 +146,7 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 
 
 == Changelog ==
+
 = 1.0 =
 * Initial release
 
@@ -153,7 +154,10 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 * Readme and FAQ updates
 
 = 1.0.5 =
-*Force JS over HTTP (HTTPS under development)
+* Force JS over HTTP (HTTPS under development)
 
 = 1.0.6 =
 * Reinstate HTTPS support
+
+= 1.0.7 =
+* API calls now get made over https
