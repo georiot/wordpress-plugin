@@ -29,9 +29,6 @@
     font-size: 10px;
   }
 
-
-
-
   #gr-tsid-error {
     display: none;
     color: #880000;
@@ -113,7 +110,7 @@
         -webkit-transform: scale(1.0);
       }
   }
-  /* End CSS css-only-spinner */
+  /* End CSS css-only-spinner. */
 
 
   .gr-step-area {
