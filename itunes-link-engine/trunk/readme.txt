@@ -137,13 +137,8 @@ The iTunes Publisher Studio tool is unfortunately not compatible with this versi
 
 == Screenshots ==
 
-1. **iTunes Link Engine Interface.**
-1. **Before:** You have links to an item within a single iTunes storefront.
-1. **After:** When you install the iTunes Link Engine, we automatically globalize and affiliate all links on your WordPress site.
-1. **The workflow:** Nothing changes for you once the plugin is installed. You can still add iTunes links for every page, just as you’ve done before.
-1. **The Results:** Each user gets sent to the correct item in their local store. This is an example of a user from the United Kingdom clicking your link. They’re sent to [iTunes.co.uk](http://www.iTunes.co.uk) with your proper UK Associates ID attached.
-1. **The Results:** Each user gets sent to the correct item in their local store. This is an example of a user from the United States clicking your link. They’re sent to [iTunes.com](http://www.iTunes.com) with your US Associates ID attached.
-
+1. **Screenshots coming soon**
+1. **Screenshots coming soon**
 
 == Changelog ==
 
