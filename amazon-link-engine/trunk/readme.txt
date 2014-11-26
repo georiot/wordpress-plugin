@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, georiot, ale, javascript 
 Requires at least: 2.7
 Tested up to: 4.0
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -161,3 +161,8 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 
 = 1.0.7 =
 * API calls now get made over https
+
+= 1.0.8 =
+* Plugin compatibility with iTunes Link Engine
+
+
