@@ -75,11 +75,11 @@ function georiot_ile() {
   }
 ?>
 
-  <script src="//cdn.georiot.com/snippet.js"></script>
+  <script src="https://cdn.georiot.com/snippet.js"></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
       var tsid = <?php echo $gr_use_tsid ?>;
-      convertToGeoRiotLinks(tsid);
+      Georiot.itunes.convertToGeoRiotLinks(tsid);
     });
   </script>
 <?php
