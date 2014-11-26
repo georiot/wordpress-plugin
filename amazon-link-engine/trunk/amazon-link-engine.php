@@ -3,7 +3,7 @@
 Plugin Name: Amazon Link Engine
 Plugin URI:
 Description: Automatically optimizes Amazon product links for your global audience and allows you to earn commissions on sales.
-Version: 1.0.5
+Version: 1.0.8
 Author: GeoRiot Networks, Inc.
 Author URI: http://georiot.com
 */
@@ -75,11 +75,11 @@ function georiot_autolinker() {
   }
 ?>
 
-  <script src="http://cdn.georiot.com/snippet.js"></script>
+  <script src="https://cdn.georiot.com/snippet.js"></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
       var tsid = <?php echo $gr_use_tsid ?>;
-      convertToGeoRiotLinks(tsid);
+      Georiot.amazon.convertToGeoRiotLinks(tsid);
     });
   </script>
 <?php
