@@ -47,9 +47,6 @@
   .gr-status-loading-affiliates #gr-affiliates-spinner {
     display: block;
   }
-  .gr-status-loading-affiliates #gr-affiliates-loaded {
-    display: none;
-  }
   #gr-affiliates-loaded {
     margin-top: 5px;
     display: none;
@@ -57,6 +54,20 @@
   .gr-status-loaded-affiliates #gr-affiliates-loaded {
     display: block;
   }
+
+  /* Affiliate connection success */
+  .gr-success {
+    display: none;
+  }
+
+.gr-step-complete .gr-success {
+    display: inline;
+}
+.gr-step-complete .gr-no-affs {
+    display: none;
+}
+
+
   #gr-affiliates-error {
     display: none;
     color: #880000;
@@ -347,10 +358,6 @@
             });
             */
 
-            //Create Success mesage
-            //$('#gr-aff-enrolled').html(griTunesEnrolled)  //Not used since there is only one program
-            //$('#gr-aff-available').html(griTunesAvailable) //Not used since there is only one program
-
             if (griTunesEnrolled >= 1) {
               $('#gr-step-3').addClass('gr-step-complete');
             }
@@ -449,7 +456,9 @@
         </div>
 
         <span id="gr-affiliates-loaded">
-           <span class="gr-success">iTunes program connected.</span> <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
+          <span class="gr-success">iTunes program connected.</span>
+          <span class="gr-no-affs">No affiliate program set up.</span>
+          <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
         </span>
         <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeoRiot API.
         </div>
