@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, georiot, ile, javascript
 Requires at least: 2.7
 Tested up to: 4.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,17 +70,17 @@ To get your GeoRiot API Keys, follow these simple steps:
 1.     If you do not have a GeoRiot account, [create a free account](http://www.georiot.com/Wordpress-Plugin/iTunes-Sign-Up).
 1.     Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.
 1.     Click the "plus" sign to get your API keys.
-1.     Navigate to the iTunes Link Engine Settings under “Settings” in your WordPress dashboard.
+1.     Navigate to the iTunes Link Engine settings under “Settings” in your WordPress dashboard.
 1.     Next, simply copy and paste the "Key" and "Secret" codes into the "Enable Reporting and Commissions" area of the plugin. **Please note:** It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.
 1.     Once pasted, your GeoRiot account will be automatically connected.
 
-= How do I earn International Commissions? =
+= How do I affiliate my links? =
 
 First, connect the plugin to your GeoRiot account (see "How do I get my API keys?"). Then, follow the steps below:
 
 1. Add your PHG affiliate parameter to your GeoRiot dashboard.  Instructions on how to do this can be found [here](http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate).
 *Note:* If you’ve already done this within your existing GeoRiot account, you do not need to add your parameter again.
-1. You’re all set! You’ll start earning international commissions from anything purchased in iTunes’s international storefronts.
+1. You’re all set! You’ll start earning commissions from anything purchased from iTunes.
 
 **Please Note:** If you are already using affiliated links on your website, they will not remain affiliated if you use the iTunes Link Engine Plugin.  In order to affiliate your links, you must [sign up for a GeoRiot account](http://www.georiot.com/Wordpress-Plugin/iTunes-Sign-Up) and add your affiliate parameters to the dashboard.  Once you have done this, and connected your account using the API keys, each of your links will be automatically affiliated.
 
