@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, georiot, ile, javascript
 Requires at least: 2.7
 Tested up to: 4.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -140,3 +140,6 @@ The iTunes Publisher Studio tool is unfortunately not compatible with this versi
 
 = 1.0.1 =
 * Updated Readme
+
+= 1.0.2 =
+* Switch to "//" to allow non-https delivery of JS
