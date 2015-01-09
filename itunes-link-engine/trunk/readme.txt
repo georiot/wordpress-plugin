@@ -2,8 +2,8 @@
 Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, georiot, ile, javascript
 Requires at least: 2.7
-Tested up to: 4.0
-Stable tag: 1.0.1
+Tested up to: 4.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,11 +11,16 @@ Download the iTunes Link Engine to automatically localize and affiliate iTunes p
 
 == Description ==
 
-Turn every iTunes link across your site into an opportunity for worldwide sales by instantly converting all your links to the iTunes, App Store, iBooks, and Mac App Store, into intelligently localized and affiliated links. For every click, your links will automatically redirect to the same item in a visitor’s local iTunes storefront to bridge the gap between iTunes’ geographically segmented storefronts and your international audience.    Whether you are promoting music, TV, movies, books or apps, within the iTunes ecosystem, the iLE is the easiest way to localize and affiliate every link so that it works across every iTunes Storefront.  By “localizing” these links, you ensure all clicks from your viewers around the world are redirected to the appropriate item in their own local storefront with your affiliate ID attached. This improves the user’s experience by bringing them to the place they’re most likely to purchase, and helps you earn the commissions you deserve. 
+Turn every iTunes link across your site into an opportunity for worldwide sales by instantly converting all your links to the iTunes, App Store, iBooks, and Mac App Store, into intelligently localized and affiliated links. For every click, your links will automatically redirect to the same item in a visitor’s local iTunes storefront to bridge the gap between iTunes’ geographically segmented storefronts and your international audience.    
+
+Whether you are promoting music, TV, movies, books or apps, within the iTunes ecosystem, the iLE is the easiest way to localize and affiliate every link so that it works across every iTunes Storefront.  By “localizing” these links, you ensure all clicks from your viewers around the world are redirected to the appropriate item in their own local storefront with your affiliate ID attached. This improves the user’s experience by bringing them to the place they’re most likely to purchase, and helps you earn the commissions you deserve. 
 
 = How is GeoRiot different? =
 
-Most link “localization” plugins only translate a link for an international click when the same ADAM (Apple Digital Asset Management) ID exists in both storefronts.  However, due to many factors including Digital Rights licensing and the use of various distributors across different countries, the ADAM ID is not guaranteed to be the same. The iTunes Link Engine plugin uses GeoRiot’s patented five-step algorithm to find the metadata available from each product, and then match the product across storefronts. Our algorithm ensures that the user is sent to the most relevant product instead of sending your users to a non-existent item or an error message. In addition, connecting your GeoRiot account to the iTunes Link Engine gives you access to comprehensive reporting on clicks and commissions that no other plugin can offer. GeoRiot’s reports allow you to review performance metrics such as product types purchased, click referrer, browser, device, operating system, geography, and more.
+Most link “localization” plugins only translate a link for an international click when the same ADAM (Apple Digital Asset Management) ID exists in both storefronts.  However, due to many factors including Digital Rights licensing and the use of various distributors across different countries, the ADAM ID is not guaranteed to be the same. The iTunes Link Engine plugin uses GeoRiot’s patented five-step algorithm to find the metadata available from each product, and then match the product across storefronts. Our algorithm ensures that the user is sent to the most relevant product instead of sending your users to a non-existent item or an error message. 
+
+In addition, connecting your GeoRiot account to the iTunes Link Engine gives you access to comprehensive reporting on clicks and commissions that no other plugin can offer. GeoRiot’s reports allow you to review performance metrics such as product types purchased, click referrer, browser, device, operating system, geography, and more.
+
 = How does the iTunes Link Engine plugin work? =
 
 As soon as the plugin is installed and activated, your iTunes product links are instantly localized every time a user loads the page. You can even add new links to your WordPress site and each will be automatically converted without any additional work from you – just continue your normal workflow.
@@ -29,11 +34,20 @@ To earn affiliate commissions, you first need to [create a free GeoRiot account]
 Further, it’s important to note that the iLE plugin does not currently recognize the affiliate parameters added to the iTunes links on your site.  In order to properly affiliate iTunes links you’ll need to do so with a correctly connected GeoRiot account.
 
 = Key Features: =
-* Automatic localization and translation of all iTunes links based off a visitor’s location.* Simple, easy to use interface.* One time configuration. Simply install the plugin, set up your GeoRiot account, and connect the two with an API key.  We take care of the rest.* No need to have access to the iTunes API or build links through the iTunes Link Builder in PHG. Just paste normal iTunes links anywhere on your site (even behind images). * Your workflow remains the same.  No need to learn a new linking syntax, or disrupt your current flow.
+* Automatic localization and translation of all iTunes links based off a visitor’s location.
+* Simple, easy to use interface.
+* One time configuration. Simply install the plugin, set up your GeoRiot account, and connect the two with an API key.  We take care of the rest.
+* No need to have access to the iTunes API or build links through the iTunes Link Builder in PHG. Just paste normal iTunes links anywhere on your site (even behind images). 
+* Your workflow remains the same.  No need to learn a new linking syntax, or disrupt your current flow.
 * Automatically converts LinkShare, Tradedoubler, and DGM (Pro) formatted iTunes Affiliate links (from before the PHG rollout).
 
 = What makes the iTunes Link Engine different from other Affiliate WP plugins? =
-* Other plugins do not offer support for the new PHG affiliate program.	* After iTunes made the switch to PHG in late 2013 and early 2014, similar plugins became obsolete.* Completely free support from the GeoRiot team.* No need to build links manually with a special link format.  All of your links are automatically converted to localized links when the page loads.* Always free.  You never need to give us a credit card or send payment.	* GeoRiot only makes money when we help you make more money.
+* Other plugins do not offer support for the new PHG affiliate program.
+	* After iTunes made the switch to PHG in late 2013 and early 2014, similar plugins became obsolete.
+* Completely free support from the GeoRiot team.
+* No need to build links manually with a special link format.  All of your links are automatically converted to localized links when the page loads.
+* Always free.  You never need to give us a credit card or send payment.
+	* GeoRiot only makes money when we help you make more money.
 
 == Installation ==
 
@@ -45,10 +59,15 @@ There are three easy steps to get the most value from the iTunes Link Engine.
 1. Once activated, your links will be automatically translated and affiliated.
 
 = To get detailed reporting: =
-1. If you don’t have an account already, create a free GeoRiot account [here](http://www.georiot.com/Wordpress-Plugin/iTunes-Sign-Up).1. After signing in, navigate to the Account page to create a new API token. 1. Copy the API Key and API Secret into your iTunes Link Engine plugin found under “Settings” in your WordPress dashboard. 1. Your iTunes information will now be available in your GeoRiot dashboard.
+1. If you don’t have an account already, create a free GeoRiot account [here](http://www.georiot.com/Wordpress-Plugin/iTunes-Sign-Up).
+1. After signing in, navigate to the Account page to create a new API token. 
+1. Copy the API Key and API Secret into your iTunes Link Engine plugin found under “Settings” in your WordPress dashboard. 
+1. Your iTunes information will now be available in your GeoRiot dashboard.
 
 = To affiliate your links: =
-1. If you have already added your affiliate parameters to your GeoRiot account, you’re good to go.1. If you haven’t already, sign up for the [PHG affiliate program](https://itunes.phgconsole.performancehorizon.com/login/itunes) (instructions on how to sign up can be found on [our site](http://support.georiot.com/support/solutions/articles/3000013782-how-to-sign-up-for-phg)).1. Once approved, jump into your GeoRiot dashboard and click on the “Affiliate” tab. Then, click “Connect an affiliate program” button and paste in your PHG affiliate token.
+1. If you have already added your affiliate parameters to your GeoRiot account, you’re good to go.
+1. If you haven’t already, sign up for the [PHG affiliate program](https://itunes.phgconsole.performancehorizon.com/login/itunes) (instructions on how to sign up can be found on [our site](http://support.georiot.com/support/solutions/articles/3000013782-how-to-sign-up-for-phg)).
+1. Once approved, jump into your GeoRiot dashboard and click on the “Affiliate” tab. Then, click “Connect an affiliate program” button and paste in your PHG affiliate token.
 
 Once saved into the dashboard your links will automatically be affiliated with your PHG parameter when they are clicked.
 
@@ -97,7 +116,8 @@ No, the iLE plugin is instantly pulled from a remote server each time your page 
 
 
 = Is the iTunes Link Engine compatible with other affiliate tools? =
-* **Amazon Link Engine:**The iTunes Link Engine is fully compatible with the Amazon Link Engine plugin. 
+* **Amazon Link Engine:**
+The iTunes Link Engine is fully compatible with the Amazon Link Engine plugin. 
 
 * **Skimlinks:**
 The iTunes Link Engine plugin works perfectly with Skimlinks.
@@ -117,3 +137,9 @@ The iTunes Publisher Studio tool is unfortunately not compatible with this versi
 
 = 1.0 =
 * Initial release
+
+= 1.0.1 =
+* Updated Readme
+
+= 1.0.2 =
+* Switch to "//" to allow non-https delivery of JS
