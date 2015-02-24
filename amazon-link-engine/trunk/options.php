@@ -393,7 +393,7 @@
         2
       </div>
       <div class="gr-step-info">
-          <strong>Gain Insight with traffic reports.</strong> <a href="http://www.georiot.com/wordpress-plugin/sign-up">Create a free GeoRiot account</a> and enter your API keys here.
+          <strong>Gain Insight with traffic reports.</strong> <a href="http://www.georiot.com/wordpress-plugin/sign-up">Create a GeoRiot account</a> and enter your API keys here.
           <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
@@ -476,24 +476,18 @@
       <h3>Frequently asked questions</h3>
 
       <h4 id="faq-whatisgeoriot">What is GeoRiot</h4>
-      <p>GeoRiot is a link management platform that maximizes your potential Amazon Associates revenue
-        by globalizing and affiliating your Amazon Links.  GeoRiot hopes to change the way online
-        commerce is conducted by providing its customers with intelligent links that automatically
-        route customers to the correct product within their own local storefront.
+      <p>GeoRiot is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content within the Amazon ecosystem, GeoRiot allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. In addition, with a GeoRiot account, you can enter your affiliate parameters to earn international commissions from all of your clicks.
       </p>
 
       <h4 id="faq-whatisgeoriot">Do I need a GeoRiot Account to use this plugin?</h4>
-      <p><strong>No,</strong> you do NOT need a GeoRiot account to use the Amazon Link Engine plugin.
-        As soon as you download the free plugin, all of your links will be automatically
-        localized, and your customers will be routed to the product in their local storefront.
-        However, if you want to add your affiliate parameters, you will need a GeoRiot account.
+      <p><strong>No,</strong> you do NOT need a GeoRiot account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your affiliate parameters, you will need a GeoRiot account.
       </p>
 
       <h4 id="faq-apikeys">How do I get my API keys?</h4>
       <p>To get your GeoRiot API Keys, follow these simple steps:
       </p>
       <ol>
-        <li>If you do not have a GeoRiot account, <a href="http://www.georiot.com/wordpress-plugin/sign-up">create a free account</a>.</li>
+        <li>If you do not have a GeoRiot account, <a href="http://www.georiot.com/wordpress-plugin/sign-up">create an account</a>.</li>
 
         <li>Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.</li>
 
@@ -518,13 +512,9 @@
 
 
       <h4 id="faq-pay">Do I have to pay for GeoRiot?</h4>
-      <p><strong>No,</strong>  you never need to give us a credit card or make payments to
-        use the GeoRiot Service. The service is always free.
+      <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
       </p>
-      <p>At GeoRiot, clicks are our currency, and we earn money the way you do –
-        through international affiliate programs. With our “Click Share” payment model,
-        we simply take a maximum of 15% of your total clicks from the additional international
-        clicks that we help you monetize.
+      <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to sign up for a GeoRiot account.
       </p>
       <p><strong>Please note: By default, GeoRiot's affiliate parameters will be used until
           you have added your own via the GeoRiot dashboard.</strong>
