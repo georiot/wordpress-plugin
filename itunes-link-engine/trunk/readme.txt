@@ -2,7 +2,7 @@
 Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, georiot, ile, javascript
 Requires at least: 2.7
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -153,4 +153,4 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 * GeoRiot pricing changes and screenshots included
 
 = 1.0.4 = 
-* Added: “To connect your GeoRiot account” instructions. Tested to 4.2
+* Added: “To connect your GeoRiot account” instructions. Tested to 4.3
