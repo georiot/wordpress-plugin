@@ -2,8 +2,8 @@
 Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, georiot, ile, javascript
 Requires at least: 2.7
-Tested up to: 4.1
-Stable tag: 1.0.3
+Tested up to: 4.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,7 +58,7 @@ There are three easy steps to get the most value from the iTunes Link Engine.
 1. Activate the plugin through the “Plugins” menu in your WordPress Dashboard.
 1. Once activated, your links will be automatically translated.
 
-= To get detailed reporting: =
+= To connect your GeoRiot account: =
 1. If you don’t have an account already, create a GeoRiot account [here](http://www.georiot.com/Wordpress-Plugin/iTunes-Sign-Up).
 1. After signing in, navigate to the Account page to create a new API token. 
 1. Copy the API Key and API Secret into your iTunes Link Engine plugin found under “Settings” in your WordPress dashboard. 
@@ -151,3 +151,6 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 
 = 1.0.3 = 
 * GeoRiot pricing changes and screenshots included
+
+= 1.0.4 = 
+* Added: “To connect your GeoRiot account” instructions. Tested to 4.3
