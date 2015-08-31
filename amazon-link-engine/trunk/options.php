@@ -158,7 +158,7 @@
   }
 
   .gr-georiot-logo {
-    vertical-align: -5%;
+    vertical-align: -13%;
     border: none;
   }
 
@@ -368,7 +368,7 @@
 
 <div class="wrap">
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
-    <a href="http://georiot.com" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="12" /></a></h2>
+    <a href="http://georiot.com" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="16" /></a></h2>
   <p class="gr-intro">This plugin has added Javascript that converts all Amazon product
     URLs on your site to global-friendly GeoRiot links. <a href="#faq-whatisgeoriot">Learn more...</a>
   </p>
