@@ -3,24 +3,28 @@
 ?>
 
 <style>
-  #gr-tsid-spinner {
+  .gr-tsid-spinner {
     display: none;
     opacity: .5;
   }
-  #gr-tsid-loaded {
+  .gr-tsid-loaded {
     display: none;
   }
-  .gr-status-loading-tsid #gr-tsid-spinner {
+  .gr-status-loading-tsid .gr-tsid-spinner {
     display: block;
   }
-  .gr-status-loaded-tsid #gr-tsid-loaded {
+  .gr-status-loaded-tsid .gr-tsid-loaded {
     display: block;
   }
-  #gr-tsid-loaded {
-    font-weight: bold;
-    color: #79b638;
+  .gr-tsid-loaded {
     margin-top: 5px;
   }
+
+  .gr-connected-success {
+    font-weight: bold;
+    color: #79b638;
+  }
+
   .gr-my-tsid {
     font-weight: normal;
     color: #6f6f6f;
@@ -191,15 +195,71 @@
   .gr-intro {
     max-width: 500px;
   }
+
+  #gr-advanced-options {
+    position: relative;
+    min-height: 0;
+  }
+
+  .gr-advanced-options-fields {
+    overflow: hidden;
+    transition: height .3s;
+    height: 0;
+  }
+
+  .expanded .gr-advanced-options-fields {
+    height: 150px;
+    transition: height .3s;
+  }
+
+  .gr-expand, .gr-collapse {
+    font-size: 18px;
+    text-align: right;
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-style: normal;
+    font-weight: bold;
+    color: #444444;
+  }
+
+  .gr-expand, .gr-collapse, h5 {
+    cursor: pointer;
+  }
+
+  .gr-collapse {
+    display: none;
+  }
+
+  .expanded .gr-collapse {
+    display: block;
+  }
+  .expanded .gr-expand {
+    display: none;
+  }
+
+
+  #gr-advanced-options h5{
+    font-size: 14px;
+    margin: 0;
+  }
+
 </style>
 
 <script>
   jQuery(document).ready(function($) {
 
-    //Update the affiliates section on page load, if the API keys are filled
+    //Update the affiliates section and load groups on page load, if the API keys are filled
     if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
       getGeoriotAffiliates();
+      connectGeoriotApi();
     }
+
+
+    $('.gr-expand, .gr-collapse, #gr-advanced-options h5').click( function() {
+      $('#gr-advanced-options').toggleClass('expanded');;
+    });
 
 
     //Auto highlight the API fields on focus
@@ -238,12 +298,11 @@
       e.preventDefault();
     });
 
-    // Refrsh button for the affiliates section
+    // Refresh button for the affiliates section
     $('.gr-refresh-affiliates').click( function(e) {
       getGeoriotAffiliates();
       e.preventDefault();
     });
-
 
     function getGeoRiotTSID() {
       // Validate fields and then send request
@@ -256,6 +315,7 @@
         if($('#georiot_api_secret').val().length != 32) alert('The API Secret field appears to be invalid. Please copy and paste it again');
       }
     }
+
 
     function connectGeoriotApi() {
       // Show loading indicators and disable submit button while we wait for a response
@@ -277,19 +337,55 @@
             grGroups = data.Groups;
             grNumGroups = grGroups.length;
 
-            // We want to get the group ID with the lowest value and store it
+            // We want to know the group ID with the lowest value use it, by default
+            //Initial default value:
             var gr_low_tsid = 999999999;
 
-            //Iterate over each group
-            $.each(data.Groups, function( key, value ) {
-              // and look at the TSID for each one. If it is lower than
-              // the last one we saw, save it.
+
+            // Sort the JSON data by Id, ascending
+            prop = 'Name'; //Sort by this key in Groups
+            grGroups = grGroups.sort(function(a, b) {
+              return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+              //Descending: return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+            });
+            //console.log(grGroups); //debug
+
+
+
+
+            //Iterate over each group to find the "default" (lowest ID), and populate the select option
+            // First, clear out the select field first in case it already has options
+            $('#georiot_tsid_select').html('');
+
+            $.each(grGroups, function( key, value ) {
+              //Append this group to the select field
+              $('#georiot_tsid_select').append('<option value="'+value.Id+'">'+value.Name+'</option>');
+              // Look at the TSID for each one. If it is lower than the last, save it.
+              //console.log(value.Name +' '+ value.Id); //debug
               if(value.Id < gr_low_tsid) {
                 gr_low_tsid = value.Id;
               }
             });
-            $('#gr-my-tsid-value').html( gr_low_tsid );
-            $('#georiot_tsid').val( gr_low_tsid );
+
+             $('#georiot_tsid_select').prepend('<option value="'+gr_low_tsid+'">(No preference)</option>');
+
+
+            // Select default group
+            //Mark the oldest/lowest group tsid value as selected, only if they don't already have a group chosen
+            if ($('#georiot_tsid').val() == '' ) {
+              //Mark group as selected in the select field
+              $("#georiot_tsid_select option[value="+gr_low_tsid+"]").attr('selected', 'selected');
+              //Show user which tsid they are using
+              $('#gr-my-tsid-value').html( gr_low_tsid );
+              //Set the group to be used by the plugin
+              $('#georiot_tsid').val( gr_low_tsid );
+            } else {
+              //Mark the active group as selected
+              existingTsid = $('#georiot_tsid').val();
+              $("#georiot_tsid_select option[value="+existingTsid+"]").attr('selected', 'selected');
+            }
+
+
 
             //Show completion in UI
             $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
@@ -361,6 +457,13 @@
         ;
     }
 
+
+    //Group Selection
+    $( "#georiot_tsid_select" ).change(function() {
+      newgroup = $(this).val();
+      $('#georiot_tsid').val(newgroup);
+    });
+
   });
 
 </script>
@@ -404,7 +507,7 @@
         API Secret:<br>
         <input maxlength="32" size="33" type="text" placeholder="Paste your api secret" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
 
-        <div id="gr-tsid-spinner">
+        <div class="gr-tsid-spinner">
           <div class="css-only-spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
@@ -412,7 +515,7 @@
           </div>
           Connecting...
         </div>
-        <div id="gr-tsid-loaded">Connected! &nbsp;
+        <div class="gr-tsid-loaded"><span class="gr-connected-success">Connected!</span> &nbsp;
             <span class="gr-my-tsid gr-tiny">
               (Using Group #<span id="gr-my-tsid-value"><?php print get_option('georiot_tsid') ?></span>)
               &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
@@ -448,10 +551,35 @@
         </div>
       </div>
     </div>
+    <div id="gr-advanced-options" class="gr-step-area">
+      <em class="gr-expand">+</em>
+      <em class="gr-collapse">--</em>
+      <h5>Advanced Options...</h5>
+      <div class="gr-advanced-options-fields">
+        <br>
+        <div class="gr-tsid-spinner">
+          <div class="css-only-spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+          Loading your groups...
+        </div>
+        <div class="gr-tsid-loaded">
+          Use GeniusLink Group:
+        <select name="georiot_tsid_select" id="georiot_tsid_select"></select>
+        </div>
+        <br>
+        <input type="checkbox" name="georiot_preserve_tracking" value="yes"
+            <?php if (get_option('georiot_preserve_tracking') == 'yes') print "checked" ?> />Honor existing affiliate tracking Id’s
+        <a href="#faq-honor-tracking">(?)</a>
+        <br><br>
+        <input type="checkbox" name="georiot_api_remind" value="yes" <?php if (get_option('georiot_api_remind') == 'yes') print "checked" ?> />
+        Show Wordpress alert on dashboard if commissions are not enabled
+        <br><br>
+      </div>
+    </div>
 
-    <br>
-    &nbsp;<input type="checkbox" name="georiot_api_remind" value="yes" <?php if (get_option('georiot_api_remind') == 'yes') print "checked" ?> />
-    Show Wordpress alert on dashboard if commissions are not enabled
 
     <br><br>
     <input size="10" type="hidden" name="georiot_tsid" id="georiot_tsid" value="<?php echo get_option('georiot_tsid'); ?>" />
@@ -512,6 +640,16 @@
 
 
       <h4 id="faq-pay">Do I have to pay for GeoRiot?</h4>
+      <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
+      </p>
+      <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to sign up for a GeoRiot account.
+      </p>
+      <p><strong>Please note: By default, GeoRiot's affiliate parameters will be used until
+          you have added your own via the GeoRiot dashboard.</strong>
+        Please <a href="mailto:contact@georiot.com">contact GeoRiot</a> if you have any questions.
+      </p>
+
+      <h4 id="faq-honor-tracking">What is "Honor existing affiliate tracking id's"?</h4>
       <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
       </p>
       <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to sign up for a GeoRiot account.

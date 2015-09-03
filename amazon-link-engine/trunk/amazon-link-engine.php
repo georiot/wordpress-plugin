@@ -25,6 +25,7 @@ function activate_georiot_autolinker() {
   add_option('georiot_api_key', '');
   add_option('georiot_api_secret', '');
   add_option('georiot_api_remind', 'yes');
+  add_option('georiot_preserve_tracking', 'no');
 }
 
 function deactivate_georiot_autolinker() {
@@ -32,6 +33,7 @@ function deactivate_georiot_autolinker() {
   delete_option('georiot_api_key');
   delete_option('georiot_api_secret');
   delete_option('georiot_api_remind');
+  delete_option('georiot_preserve_tracking');
 }
 
 function admin_init_georiot_autolinker() {
@@ -39,6 +41,7 @@ function admin_init_georiot_autolinker() {
   register_setting('amazon-link-engine', 'georiot_api_key');
   register_setting('amazon-link-engine', 'georiot_api_secret');
   register_setting('amazon-link-engine', 'georiot_api_remind');
+  register_setting('amazon-link-engine', 'georiot_preserve_tracking');
 }
 
 
@@ -68,18 +71,26 @@ function georiot_admin_notice(){
 // BEGIN FUNCTION TO SHOW GEORIOT JS
 
 function georiot_autolinker() {
+
   if (get_option('georiot_tsid') == '') {
     $gr_use_tsid = 4632;
   } else {
     $gr_use_tsid = get_option('georiot_tsid');
   }
+
+  $preserve_tracking = 'false';
+
+  if (get_option('georiot_preserve_tracking') == 'yes') {
+    $preserve_tracking = 'true';
+  }
+
 ?>
 
   <script src="//cdn.georiot.com/snippet.js"></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
       var tsid = <?php echo $gr_use_tsid ?>;
-      Georiot.amazon.convertToGeoRiotLinks(tsid);
+      Georiot.amazon.convertToGeoRiotLinks(tsid, <?php print($preserve_tracking)?>);
     });
   </script>
 <?php
