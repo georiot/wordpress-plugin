@@ -354,8 +354,6 @@
             //console.log(grGroups); //debug
 
 
-
-
             //Iterate over each group to find the "default" (lowest ID), and populate the select option
             // First, clear out the select field first in case it already has options
             $('#georiot_tsid_select').html('');
@@ -543,14 +541,6 @@
       <div class="gr-step-info">
         <strong>Monetize your traffic:</strong> Earn commissions for every sale by <a href="http://manage.georiot.com/Affiliate">connecting affiliate programs</a>.
         <br>
-        <div id="gr-affiliates-spinner">
-          <div class="css-only-spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-          </div>
-          Updating
-        </div>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
           Amazon programs connected. <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
