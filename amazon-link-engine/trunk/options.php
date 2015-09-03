@@ -215,10 +215,8 @@
   .gr-expand, .gr-collapse {
     font-size: 18px;
     text-align: right;
-    display: block;
-    position: absolute;
-    right: 20px;
-    top: 10px;
+    display: inline-block;
+    width: 20px;
     font-style: normal;
     font-weight: bold;
     color: #444444;
@@ -233,7 +231,7 @@
   }
 
   .expanded .gr-collapse {
-    display: block;
+    display: inline-block;
   }
   .expanded .gr-expand {
     display: none;
@@ -244,6 +242,7 @@
     font-size: 14px;
     margin: 0;
   }
+
 
 </style>
 
@@ -552,9 +551,11 @@
       </div>
     </div>
     <div id="gr-advanced-options" class="gr-step-area">
-      <em class="gr-expand">+</em>
-      <em class="gr-collapse">--</em>
-      <h5>Advanced Options...</h5>
+      <h5>
+        <em class="gr-expand">+</em>
+        <em class="gr-collapse">--</em>
+        Advanced Options...
+      </h5>
       <div class="gr-advanced-options-fields">
         <br>
         <div class="gr-tsid-spinner">
