@@ -3,24 +3,28 @@
 ?>
 
 <style>
-  #gr-tsid-spinner {
+  .gr-tsid-spinner {
     display: none;
     opacity: .5;
   }
-  #gr-tsid-loaded {
+  .gr-tsid-loaded {
     display: none;
   }
-  .gr-status-loading-tsid #gr-tsid-spinner {
+  .gr-status-loading-tsid .gr-tsid-spinner {
     display: block;
   }
-  .gr-status-loaded-tsid #gr-tsid-loaded {
+  .gr-status-loaded-tsid .gr-tsid-loaded {
     display: block;
   }
-  #gr-tsid-loaded, .gr-success {
-    font-weight: bold;
-    color: #79b638;
+  .gr-tsid-loaded {
     margin-top: 5px;
   }
+
+  .gr-connected-success {
+    font-weight: bold;
+    color: #00b9ee;
+  }
+
   .gr-my-tsid {
     font-weight: normal;
     color: #6f6f6f;
@@ -28,9 +32,6 @@
   .gr-tiny {
     font-size: 10px;
   }
-
-
-
 
   #gr-tsid-error {
     display: none;
@@ -47,27 +48,17 @@
   .gr-status-loading-affiliates #gr-affiliates-spinner {
     display: block;
   }
+  .gr-status-loading-affiliates #gr-affiliates-loaded {
+    display: none;
+  }
   #gr-affiliates-loaded {
     margin-top: 5px;
+    opacity: .6;
     display: none;
   }
   .gr-status-loaded-affiliates #gr-affiliates-loaded {
     display: block;
   }
-
-  /* Affiliate connection success */
-  .gr-success {
-    display: none;
-  }
-
-.gr-step-complete .gr-success {
-    display: inline;
-}
-.gr-step-complete .gr-no-affs {
-    display: none;
-}
-
-
   #gr-affiliates-error {
     display: none;
     color: #880000;
@@ -123,7 +114,7 @@
         -webkit-transform: scale(1.0);
       }
   }
-  /* End CSS css-only-spinner */
+  /* End CSS css-only-spinner. */
 
 
   .gr-step-area {
@@ -136,7 +127,7 @@
     margin-bottom: 3px;
   }
   .gr-step-area strong {
-   font-size: 14px;
+    font-size: 14px;
   }
 
   .gr-step-area a:link, .gr-step-area a:visited {
@@ -157,8 +148,8 @@
   }
 
   .gr-step-complete .gr-step-number {
-    border: 2px solid #79b638;
-    color: #79b638;
+    border: 2px solid #00b9ee;
+    color: #00b9ee;
     background-color: #ffffff;www;
   }
 
@@ -182,7 +173,7 @@
   .gr-checkmark {
     height: 20px;
     width: 20px;
-    background: #79b638 url('<?php print $gr_image_path ?>check.png') center center no-repeat;
+    background: #00b9ee url('<?php print $gr_image_path ?>check.png') center center no-repeat;
     border-radius: 10px;
     position: absolute;
     left: 28px;
@@ -204,16 +195,73 @@
   .gr-intro {
     max-width: 500px;
   }
+
+  #gr-advanced-options {
+    position: relative;
+    min-height: 0;
+  }
+
+  .gr-advanced-options-fields {
+    overflow: hidden;
+    transition: height .3s;
+    height: 0;
+  }
+
+  .expanded .gr-advanced-options-fields {
+    height: 120px;
+    transition: height .3s;
+  }
+
+  .gr-expand, .gr-collapse {
+    font-size: 18px;
+    text-align: right;
+    display: inline-block;
+    width: 20px;
+    font-style: normal;
+    font-weight: bold;
+    color: #444444;
+  }
+
+  .gr-expand, .gr-collapse, h5 {
+    cursor: pointer;
+  }
+
+  .gr-collapse {
+    display: none;
+  }
+
+  .expanded .gr-collapse {
+    display: inline-block;
+  }
+  .expanded .gr-expand, .expanded .hidden-expanded {
+    display: none;
+  }
+
+
+  #gr-advanced-options h5{
+    font-size: 14px;
+    margin: 0;
+  }
+
+
+  #georiot_tsid_select {
+  }
+
+
 </style>
 
 <script>
   jQuery(document).ready(function($) {
 
-    //Update the affiliates section on page load, if the API keys are filled
+    //Update the affiliates section and load groups on page load, if the API keys are filled
     if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
       getGeoriotAffiliates();
+      connectGeoriotApi();
     }
 
+    $('.gr-expand, .gr-collapse, #gr-advanced-options h5').click( function() {
+      $('#gr-advanced-options').toggleClass('expanded');;
+    });
 
     //Auto highlight the API fields on focus
     $('#georiot_api_key').click( function() {
@@ -241,24 +289,24 @@
     $('#georiot_api_key, #georiot_api_secret').on('paste', function () {
       var element = this;
       setTimeout(function () {
-        getGeoRiotTSID();
+        getGeniusLinkTSID();
       }, 500);
     });
 
     // Re-submit button can also trigger api connect
     $('.gr-resubmit').click( function(e) {
-      getGeoRiotTSID();
+      getGeniusLinkTSID();
       e.preventDefault();
     });
 
-    // Refrsh button for the affiliates section
+    // Refresh button for the affiliates section
     $('.gr-refresh-affiliates').click( function(e) {
       getGeoriotAffiliates();
       e.preventDefault();
     });
 
 
-    function getGeoRiotTSID() {
+    function getGeniusLinkTSID() {
       // Validate fields and then send request
       // If both api fields are correct, check the API
       if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
@@ -281,7 +329,7 @@
       var georiotApiSecret = $('#georiot_api_secret').val();
       var georiotApiUrlGroups = "https://api.georiot.com/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
-      var requestGeoRiotGroups = $.ajax({
+      var requestGeniusLinkGroups = $.ajax({
         url : georiotApiUrlGroups,
         dataType : "json",
         timeout : 10000
@@ -290,19 +338,43 @@
             grGroups = data.Groups;
             grNumGroups = grGroups.length;
 
-            // We want to get the group ID with the lowest value and store it
+            // We want to know the group ID with the lowest value use it, by default
+            //Initial default value:
             var gr_low_tsid = 999999999;
 
-            //Iterate over each group
-            $.each(data.Groups, function( key, value ) {
-              // and look at the TSID for each one. If it is lower than
-              // the last one we saw, save it.
+            //Iterate over each group to find the "default" (lowest ID), and populate the select option
+            // First, clear out the select field first in case it already has options
+            $('#georiot_tsid_select').html('');
+
+            $.each(grGroups, function( key, value ) {
+              //Append this group to the select field
+              $('#georiot_tsid_select').append('<option value="'+value.Id+'">'+value.Name+'</option>');
+              // Look at the TSID for each one. If it is lower than the last, save it.
+              //console.log(value.Name +' '+ value.Id); //debug
               if(value.Id < gr_low_tsid) {
                 gr_low_tsid = value.Id;
               }
             });
-            $('#gr-my-tsid-value').html( gr_low_tsid );
-            $('#georiot_tsid').val( gr_low_tsid );
+
+            // Add a default field
+            //$('#georiot_tsid_select').prepend('<option value="'+gr_low_tsid+'">(No preference)</option>');
+
+
+            // Select default group
+            //Mark the oldest/lowest group tsid value as selected, only if they don't already have a group chosen
+            if ($('#georiot_tsid').val() == '' ) {
+              //Mark group as selected in the select field
+              $("#georiot_tsid_select option[value="+gr_low_tsid+"]").attr('selected', 'selected');
+              //Show user which tsid they are using
+              $('#gr-my-tsid-value').html( gr_low_tsid );
+              //Set the group to be used by the plugin
+              $('#georiot_tsid').val( gr_low_tsid );
+            } else {
+              //Mark the active group as selected
+              existingTsid = $('#georiot_tsid').val();
+              $("#georiot_tsid_select option[value="+existingTsid+"]").attr('selected', 'selected');
+            }
+
 
             //Show completion in UI
             $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
@@ -335,7 +407,7 @@
       var georiotApiUrlAffiliates = "https://api.georiot.com/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
 
-      var requestGeoRiotAffiliates = $.ajax({
+      var requestGeniusLinkAffiliates = $.ajax({
           url : georiotApiUrlAffiliates,
           dataType : "json",
           timeout : 10000
@@ -375,6 +447,13 @@
         ;
     }
 
+
+    //Group Selection
+    $( "#georiot_tsid_select" ).change(function() {
+      newgroup = $(this).val();
+      $('#georiot_tsid').val(newgroup);
+    });
+
   });
 
 </script>
@@ -383,8 +462,8 @@
 <div class="wrap">
   <h2>iTunes Link Engine <span class="gr-bygr">by </span>
     <a href="http://georiot.com" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="16" /></a></h2>
-  <p class="gr-intro">This plugin has added Javascript that converts all iTunes
-    URLs on your site to global-friendly GeoRiot links. <a href="#faq-whatisgeoriot">Learn more...</a>
+  <p class="gr-intro">This plugin has added JavaScript that converts all iTunes
+    URLs on your site to global-friendly GeniusLink links. <a href="#faq-whatisgeoriot">Learn more...</a>
   </p>
 
   <h3>Get the most from this plugin</h3>
@@ -407,7 +486,7 @@
         2
       </div>
       <div class="gr-step-info">
-          <strong>Gain Insight with traffic reports.</strong> <a href="http://www.georiot.com/wordpress-plugin/itunes-sign-up">Create a GeoRiot account</a> and enter your API keys here.
+          <strong>Gain Insight with traffic reports.</strong> <a href="http://my.geni.us/Join?utm_source=ILE&utm_medium=API&utm_campaign=ILE%20Signup"">Create a GeniusLink account</a> and enter your API keys here.
           <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
@@ -418,7 +497,7 @@
         API Secret:<br>
         <input maxlength="32" size="33" type="text" placeholder="Paste your api secret" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
 
-        <div id="gr-tsid-spinner">
+        <div class="gr-tsid-spinner">
           <div class="css-only-spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
@@ -426,14 +505,18 @@
           </div>
           Connecting...
         </div>
-        <div id="gr-tsid-loaded">Connected! &nbsp;
-            <span class="gr-my-tsid gr-tiny">
-              (Using Group #<span id="gr-my-tsid-value"><?php print get_option('georiot_tsid') ?></span>)
-              &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
-            </span>
+        <div class="gr-tsid-loaded"><span class="gr-connected-success">Connected!</span> &nbsp;
+          <span class="gr-my-tsid gr-tiny">
+            &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
+          </span>
+          <br><br>
+          Using Link Group:<br>
+          <select name="georiot_tsid_select" id="georiot_tsid_select"><option>--Error: No groups loaded--</option></select>
+          <br><br>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
           <button class="gr-resubmit">Re-submit</button>
+        </div>
         </div>
       </div>
     </div>
@@ -460,7 +543,7 @@
           <span class="gr-no-affs">No affiliate program set up.</span>
           <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
         </span>
-        <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeoRiot API.
+        <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeniusLink API.
         </div>
       </div>
     </div>
@@ -491,21 +574,21 @@
     <div class="faq">
       <h3>Frequently asked questions</h3>
 
-      <h4 id="faq-whatisgeoriot">What is GeoRiot</h4>
-      <p>GeoRiot is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content on the iTunes, App Store, iBooks, and Mac App Store, GeoRiot allows you to build intelligent links that automatically route customers to the correct product within their local storefront.  In addition, with a GeoRiot account, you can enter your affiliate parameter to earn commissions from all of your clicks.
+      <h4 id="faq-whatisgeoriot">What is GeniusLink</h4>
+      <p>GeniusLink is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content on the iTunes, App Store, iBooks, and Mac App Store, GeniusLink allows you to build intelligent links that automatically route customers to the correct product within their local storefront.  In addition, with a GeniusLink account, you can enter your affiliate parameter to earn commissions from all of your clicks.
       </p>
 
-      <h4 id="faq-whatisgeoriot">Do I need a GeoRiot Account to use this plugin?</h4>
-      <p><strong>No,</strong> you do NOT need a GeoRiot account to use the iTunes Link Engine plugin.  As soon as you download and install the free plugin, all of your links will be automatically localized, and your customers will be routed to the correct product in their local storefront.  However, if you want to add your affiliate parameters, you will need a GeoRiot account.
+      <h4 id="faq-whatisgeoriot">Do I need a GeniusLink Account to use this plugin?</h4>
+      <p><strong>No,</strong> you do NOT need a GeniusLink account to use the iTunes Link Engine plugin.  As soon as you download and install the free plugin, all of your links will be automatically localized, and your customers will be routed to the correct product in their local storefront.  However, if you want to add your affiliate parameters, you will need a GeniusLink account.
       </p>
 
       <h4 id="faq-apikeys">How do I get my API keys?</h4>
-      <p>To get your GeoRiot API Keys, follow these simple steps:
+      <p>To get your GeniusLink API Keys, follow these simple steps:
       </p>
       <ol>
-        <li>If you do not have a GeoRiot account, <a href="http://www.georiot.com/Wordpress-Plugin/iTunes-Sign-Up">create an account</a>.</li>
+        <li>If you do not have a GeniusLink account, <a href="http://www.georiot.com/Wordpress-Plugin/iTunes-Sign-Up">create an account</a>.</li>
 
-        <li>Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.</li>
+        <li>Log into your GeniusLink Dashboard, and navigate to the to the Account Tab.</li>
 
         <li>Click the “plus” sign to get your API keys.</li>
         
@@ -513,33 +596,33 @@
 
         <li>Next, simply copy and paste the “Key” and “Secret” codes into the “Enable Reporting and Commissions” area of the plugin.<br>
           <strong>Please note:</strong> It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.</li>
-        <li>Once pasted, your GeoRiot account will be automatically connected.</li>
+        <li>Once pasted, your GeniusLink account will be automatically connected.</li>
 
       </ol>
 
 
       <h4 id="faq-international">How do I affiliate my links?</h4>
       <p>
-        First, connect the plugin to your GeoRiot account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
+        First, connect the plugin to your GeniusLink account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
       <ol>
-        <li>Add your PHG affiliate parameter to your GeoRiot dashboard.  Instructions on how to do this can be found <a href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
-        <br><strong>Note:</strong> If you’ve already done this within your existing GeoRiot account, you do not need to add your parameter again.
+        <li>Add your PHG affiliate parameter to your GeniusLink dashboard.  Instructions on how to do this can be found <a href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
+        <br><strong>Note:</strong> If you’ve already done this within your existing GeniusLink account, you do not need to add your parameter again.
         </li>
         <li> You’re all set! You’ll start earning commissions from anything purchased from iTunes.</li>
         <p>
-          <strong>Please Note:</strong> If you are already using affiliated links on your website, they will not remain affiliated if you use the iTunes Link Engine Plugin.  In order to affiliate your links, you must <a href="http://www.georiot.com/Wordpress-Plugin/iTunes-Sign-Up">sign up for a GeoRiot account</a> and add your affiliate parameters to the dashboard.  Once you have done this, and connected your account using the API keys, each of your links will be automatically affiliated.
+          <strong>Please Note:</strong> If you are already using affiliated links on your website, they will not remain affiliated if you use the iTunes Link Engine Plugin.  In order to affiliate your links, you must <a href="http://www.georiot.com/Wordpress-Plugin/iTunes-Sign-Up">sign up for a GeniusLink account</a> and add your affiliate parameters to the dashboard.  Once you have done this, and connected your account using the API keys, each of your links will be automatically affiliated.
         </p>
       </ol>
                
                
-      <h4 id="faq-pay">Do I have to pay for GeoRiot?</h4>
+      <h4 id="faq-pay">Do I have to pay for GeniusLink?</h4>
       <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the iTunes Link Engine is completely free.
       </p>
-      <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to sign up for a GeoRiot account.
+      <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to sign up for a GeniusLink account.
       </p>
-      <p><strong>Please note: By default, GeoRiot's affiliate parameters will be used until
-          you have added your own via the GeoRiot dashboard.</strong>
-        Please <a href="mailto:contact@georiot.com">contact GeoRiot</a> if you have any questions.
+      <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
+          you have added your own via the GeniusLink dashboard.</strong>
+        Please <a href="mailto:contact@georiot.com">contact GeniusLink</a> if you have any questions.
       </p>
 
     </div>
