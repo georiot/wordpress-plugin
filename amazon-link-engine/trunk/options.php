@@ -498,7 +498,7 @@
         2
       </div>
       <div class="gr-step-info">
-          <strong>Gain Insight with traffic reports.</strong> <a href="http://my.geni.us/Join?utm_source=ALE&utm_medium=API&utm_campaign=ALE%20Signup">Create a GeniusLink account</a> and enter your API keys here.
+          <strong>Gain Insight with traffic reports.</strong> <a target="_blank" href="http://social.geni.us/ALEGenius">Create a GeniusLink account</a> and enter your API keys here.
           <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
@@ -539,7 +539,7 @@
         3
       </div>
       <div class="gr-step-info">
-        <strong>Monetize your traffic:</strong> Earn commissions for every sale by <a href="http://manage.georiot.com/Affiliate">connecting affiliate programs</a>.
+        <strong>Monetize your traffic:</strong> Earn commissions for every sale by <a target="_blank" href="http://my.geni.us/Affiliate">connecting affiliate programs</a>.
         <br>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
@@ -611,7 +611,7 @@
       <p>To get your GeniusLink API Keys, follow these simple steps:
       </p>
       <ol>
-        <li>If you do not have a GeniusLink account, <a href="http://www.georiot.com/wordpress-plugin/sign-up">create an account</a>.</li>
+        <li>If you do not have a GeniusLink account, <a target="_blank" href="http://social.geni.us/ALEGenius">create an account</a>.</li>
 
         <li>Log into your GeniusLink Dashboard, and navigate to the to the Account Tab.</li>
 
@@ -628,7 +628,7 @@
       <p>
         First, connect the plugin to your GeniusLink account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
       <ol>
-        <li>Add your Amazon Affiliate parameters to your GeniusLink dashboard.  Instructions on how to do this can be found <a href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
+        <li>Add your Amazon Affiliate parameters to your GeniusLink dashboard.  Instructions on how to do this can be found <a target="_blank" href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
         <br><strong>Note:</strong> If you’ve already done this within your existing GeniusLink account, you do not need to add your parameters again.
         </li>
         <li> You’re all set!  You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.</li>
@@ -638,7 +638,8 @@
       <h4 id="faq-pay">Do I have to pay for GeniusLink?</h4>
       <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
       </p>
-      <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to sign up for a GeniusLink account.
+      <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to
+        <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a GeniusLink account</a>.
       </p>
       <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
           you have added your own via the GeniusLink dashboard.</strong>
@@ -648,7 +649,8 @@
       <h4 id="faq-honor-tracking">What is "Honor existing affiliate tracking id's"?</h4>
       <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
       </p>
-      <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to sign up for a GeniusLink account.
+      <p>However, if you would like access to advanced reporting features and be able to affiliate
+        all of your links, you will need to <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a GeniusLink account</a>.
       </p>
       <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
           you have added your own via the GeniusLink dashboard.</strong>
