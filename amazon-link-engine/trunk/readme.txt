@@ -1,5 +1,5 @@
 === Amazon Link Engine  ===
-Contributors: Geniuslink
+Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, geniuslink, ale, javascript 
 Requires at least: 2.7
 Tested up to: 4.3

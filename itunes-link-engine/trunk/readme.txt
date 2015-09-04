@@ -1,5 +1,5 @@
 === iTunes Link Engine  ===
-Contributors: Geniuslink
+Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, Geniuslink, ile, javascript
 Requires at least: 2.7
 Tested up to: 4.3
