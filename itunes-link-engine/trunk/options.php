@@ -247,7 +247,6 @@
   #georiot_tsid_select {
   }
 
-
 </style>
 
 <script>
@@ -517,7 +516,6 @@
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
           <button class="gr-resubmit">Re-submit</button>
         </div>
-        </div>
       </div>
     </div>
 
@@ -555,81 +553,79 @@
     <br><br>
     <input size="10" type="hidden" name="georiot_tsid" id="georiot_tsid" value="<?php echo get_option('georiot_tsid'); ?>" />
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
-
-    <style>
-      .faq {
-        border-top: 1px solid #cccccc;
-        margin-top: 80px;
-        padding-top: 0px;
-        max-width: 500px;
-        margin-bottom: 400px;
-      }
-
-      .faq h4 {
-        margin: 30px 5px 0 0;
-        font-size: 16px;
-      }
-    </style>
-
-    <div class="faq">
-      <h3>Frequently asked questions</h3>
-
-      <h4 id="faq-whatisgeoriot">What is GeniusLink</h4>
-      <p>GeniusLink is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content on the iTunes, App Store, iBooks, and Mac App Store, GeniusLink allows you to build intelligent links that automatically route customers to the correct product within their local storefront.  In addition, with a GeniusLink account, you can enter your affiliate parameter to earn commissions from all of your clicks.
-      </p>
-
-      <h4 id="faq-whatisgeoriot">Do I need a GeniusLink Account to use this plugin?</h4>
-      <p><strong>No,</strong> you do NOT need a GeniusLink account to use the iTunes Link Engine plugin.  As soon as you download and install the free plugin, all of your links will be automatically localized, and your customers will be routed to the correct product in their local storefront.  However, if you want to add your affiliate parameters, you will need a GeniusLink account.
-      </p>
-
-      <h4 id="faq-apikeys">How do I get my API keys?</h4>
-      <p>To get your GeniusLink API Keys, follow these simple steps:
-      </p>
-      <ol>
-        <li>If you do not have a GeniusLink account, <a target="_blank" href="http://social.geni.us/iLESignup">create an account</a>.</li>
-
-        <li>Log into your GeniusLink Dashboard, and navigate to the to the Account Tab.</li>
-
-        <li>Click the “plus” sign to get your API keys.</li>
-        
-        <li>Navigate to the iTunes Link Engine settings under “Settings” in your WordPress dashboard.</li>
-
-        <li>Next, simply copy and paste the “Key” and “Secret” codes into the “Enable Reporting and Commissions” area of the plugin.<br>
-          <strong>Please note:</strong> It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.</li>
-        <li>Once pasted, your GeniusLink account will be automatically connected.</li>
-
-      </ol>
-
-
-      <h4 id="faq-international">How do I affiliate my links?</h4>
-      <p>
-        First, connect the plugin to your GeniusLink account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
-      <ol>
-        <li>Add your PHG affiliate parameter to your GeniusLink dashboard.  Instructions on how to do this can be found <a target="_blank" href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
-        <br><strong>Note:</strong> If you’ve already done this within your existing GeniusLink account, you do not need to add your parameter again.
-        </li>
-        <li> You’re all set! You’ll start earning commissions from anything purchased from iTunes.</li>
-        <p>
-          <strong>Please Note:</strong> If you are already using affiliated links on your website,
-          they will not remain affiliated if you use the iTunes Link Engine Plugin.
-          In order to affiliate your links, you must
-          <a target="_blank" href="http://social.geni.us/iLESignup">sign up for a GeniusLink account</a> and add your affiliate parameters to the dashboard.  Once you have done this, and connected your account using the API keys, each of your links will be automatically affiliated.
-        </p>
-      </ol>
-               
-               
-      <h4 id="faq-pay">Do I have to pay for GeniusLink?</h4>
-      <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the iTunes Link Engine is completely free.
-      </p>
-      <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to
-        <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a GeniusLink account</a>.
-      </p>
-      <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
-          you have added your own via the GeniusLink dashboard.</strong>
-        Please <a href="mailto:contact@georiot.com">contact GeniusLink</a> if you have any questions.
-      </p>
-
-    </div>
-
   </form>
+
+  <style>
+    .faq {
+      border-top: 1px solid #cccccc;
+      margin-top: 80px;
+      padding-top: 0px;
+      max-width: 500px;
+      margin-bottom: 400px;
+    }
+
+    .faq h4 {
+      margin: 30px 5px 0 0;
+      font-size: 16px;
+    }
+  </style>
+
+  <div class="faq">
+    <h3>Frequently asked questions</h3>
+
+    <h4 id="faq-whatisgeoriot">What is GeniusLink</h4>
+    <p>GeniusLink is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content on the iTunes, App Store, iBooks, and Mac App Store, GeniusLink allows you to build intelligent links that automatically route customers to the correct product within their local storefront.  In addition, with a GeniusLink account, you can enter your affiliate parameter to earn commissions from all of your clicks.
+    </p>
+
+    <h4 id="faq-whatisgeoriot">Do I need a GeniusLink Account to use this plugin?</h4>
+    <p><strong>No,</strong> you do NOT need a GeniusLink account to use the iTunes Link Engine plugin.  As soon as you download and install the free plugin, all of your links will be automatically localized, and your customers will be routed to the correct product in their local storefront.  However, if you want to add your affiliate parameters, you will need a GeniusLink account.
+    </p>
+
+    <h4 id="faq-apikeys">How do I get my API keys?</h4>
+    <p>To get your GeniusLink API Keys, follow these simple steps:
+    </p>
+    <ol>
+      <li>If you do not have a GeniusLink account, <a target="_blank" href="http://social.geni.us/iLESignup">create an account</a>.</li>
+
+      <li>Log into your GeniusLink Dashboard, and navigate to the to the Account Tab.</li>
+
+      <li>Click the “plus” sign to get your API keys.</li>
+
+      <li>Navigate to the iTunes Link Engine settings under “Settings” in your WordPress dashboard.</li>
+
+      <li>Next, simply copy and paste the “Key” and “Secret” codes into the “Enable Reporting and Commissions” area of the plugin.<br>
+        <strong>Please note:</strong> It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.</li>
+      <li>Once pasted, your GeniusLink account will be automatically connected.</li>
+
+    </ol>
+
+
+    <h4 id="faq-international">How do I affiliate my links?</h4>
+    <p>
+      First, connect the plugin to your GeniusLink account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
+    <ol>
+      <li>Add your PHG affiliate parameter to your GeniusLink dashboard.  Instructions on how to do this can be found <a target="_blank" href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
+      <br><strong>Note:</strong> If you’ve already done this within your existing GeniusLink account, you do not need to add your parameter again.
+      </li>
+      <li> You’re all set! You’ll start earning commissions from anything purchased from iTunes.</li>
+      <p>
+        <strong>Please Note:</strong> If you are already using affiliated links on your website,
+        they will not remain affiliated if you use the iTunes Link Engine Plugin.
+        In order to affiliate your links, you must
+        <a target="_blank" href="http://social.geni.us/iLESignup">sign up for a GeniusLink account</a> and add your affiliate parameters to the dashboard.  Once you have done this, and connected your account using the API keys, each of your links will be automatically affiliated.
+      </p>
+    </ol>
+
+
+    <h4 id="faq-pay">Do I have to pay for GeniusLink?</h4>
+    <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the iTunes Link Engine is completely free.
+    </p>
+    <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to
+      <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a GeniusLink account</a>.
+    </p>
+    <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
+        you have added your own via the GeniusLink dashboard.</strong>
+      Please <a href="mailto:contact@georiot.com">contact GeniusLink</a> if you have any questions.
+    </p>
+  </div>
 </div>
