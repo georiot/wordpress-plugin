@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, Geniuslink, ile, javascript
 Requires at least: 2.7
 Tested up to: 4.3
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -160,4 +160,7 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 * Added: “To connect your Geniuslink account” instructions. Tested to 4.3
 
 = 1.0.5 = 
-* Added ability to choose a group 
+* Added ability to choose a group
+
+= 1.0.6 =
+* Fix contributors in Readme

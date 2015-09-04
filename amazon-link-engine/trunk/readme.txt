@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, geniuslink, ale, javascript 
 Requires at least: 2.7
 Tested up to: 4.3
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -193,3 +193,6 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 
 = 1.1.3 = 
 * Added ability to choose a group & honor existing Associates IDs
+
+= 1.1.4 =
+* Fix contributors in Readme
