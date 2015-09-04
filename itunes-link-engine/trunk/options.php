@@ -604,7 +604,8 @@
     <p>
       First, connect the plugin to your GeniusLink account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
     <ol>
-      <li>Add your PHG affiliate parameter to your GeniusLink dashboard.  Instructions on how to do this can be found <a target="_blank" href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
+      <li>Add your PHG affiliate parameter to your GeniusLink dashboard.  Instructions on how to do this can be found
+        <a target="_blank" href="http://help.geni.us/support/solutions/articles/3000034945">here</a>.
       <br><strong>Note:</strong> If you’ve already done this within your existing GeniusLink account, you do not need to add your parameter again.
       </li>
       <li> You’re all set! You’ll start earning commissions from anything purchased from iTunes.</li>
@@ -617,6 +618,13 @@
     </ol>
 
 
+    <h4 id="faq-groups">How do I change the default group?</h4>
+    <p>In order to change the group that the plugin syncs with, you must first connect your
+      Geniuslink account using your API keys. Once you have done this, you can simply select
+      the group you would like to use from the drop down menu under “Using Link Group” in the
+      iTunes Link Engine Settings.
+    </p>
+
     <h4 id="faq-pay">Do I have to pay for GeniusLink?</h4>
     <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the iTunes Link Engine is completely free.
     </p>
@@ -625,7 +633,7 @@
     </p>
     <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
         you have added your own via the GeniusLink dashboard.</strong>
-      Please <a href="mailto:contact@georiot.com">contact GeniusLink</a> if you have any questions.
+      Please <a href="mailto:hi@geni.us">contact GeniusLink</a> if you have any questions.
     </p>
   </div>
 </div>

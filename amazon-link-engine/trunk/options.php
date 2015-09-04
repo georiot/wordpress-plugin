@@ -628,7 +628,8 @@
     <p>
       First, connect the plugin to your GeniusLink account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
     <ol>
-      <li>Add your Amazon Affiliate parameters to your GeniusLink dashboard.  Instructions on how to do this can be found <a target="_blank" href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
+      <li>Add your Amazon Affiliate parameters to your GeniusLink dashboard.  Instructions on how to do this can be found
+        <a target="_blank" href="http://help.geni.us/support/solutions/articles/3000034942">here</a>.
       <br><strong>Note:</strong> If you’ve already done this within your existing GeniusLink account, you do not need to add your parameters again.
       </li>
       <li> You’re all set!  You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.</li>
@@ -643,18 +644,28 @@
     </p>
     <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
         you have added your own via the GeniusLink dashboard.</strong>
-      Please <a href="mailto:contact@georiot.com">contact GeniusLink</a> if you have any questions.
+      Please <a href="mailto:hi@geni.us">contact GeniusLink</a> if you have any questions.
     </p>
 
-    <h4 id="faq-honor-tracking">What is "Honor existing affiliate tracking id's"?</h4>
-    <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
+    <h4 id="faq-groups">How do I change the default group?</h4>
+    <p>In order to change the group that the plugin syncs with, you must first connect your
+      Geniuslink account using your API keys. Once you have done this, you can simply select
+      the group you would like to use from the drop down menu under “Using Link Group” in the
+      Amazon Link Engine Settings.
     </p>
-    <p>However, if you would like access to advanced reporting features and be able to affiliate
-      all of your links, you will need to <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a GeniusLink account</a>.
+
+    <h4 id="faq-honor-tracking">Will the ALE honor existing Associate IDs?</h4>
+    <p>Yes. To honor existing Associates IDs, simply select the “Honor Existing Associate IDs”
+      checkbox in Amazon Link Engine settings  under "Advanced Settings".
     </p>
-    <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
-        you have added your own via the GeniusLink dashboard.</strong>
-      Please <a href="mailto:contact@georiot.com">contact GeniusLink</a> if you have any questions.
+    <p>This is great for blogs that have multiple editors with multiple Amazon Associates
+      IDs to keep track of clicks, commissions, etc. per editor. By selecting this option the ALE
+      will honor any existing Associates IDs already within links on the site, ensuring those
+      editors continue to get the credit they deserve for helping you earn those affiliate commissions.
+    </p>
+    <p>Please note: By default the plugin will overwrite any IDs within your site with the
+      ones you’ve added in your GeoRiot account. You must select the “Honor Existing Associate
+      IDs” checkbox in order to honor existing IDs.
     </p>
   </div>
 </div>
