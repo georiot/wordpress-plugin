@@ -538,7 +538,6 @@
 
         <span id="gr-affiliates-loaded">
           <span class="gr-success">iTunes program connected.</span>
-          <span class="gr-no-affs">No affiliate program set up.</span>
           <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
         </span>
         <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeniusLink API.
