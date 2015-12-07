@@ -329,7 +329,7 @@
 
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
-      var georiotApiUrlGroups = "https://api.georiot.com/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
+      var georiotApiUrlGroups = "https://api.geni.us/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
       var requestGeniusLinkGroups = $.ajax({
         url : georiotApiUrlGroups,
@@ -417,7 +417,7 @@
 
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
-      var georiotApiUrlAffiliates = "https://api.georiot.com/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
+      var georiotApiUrlAffiliates = "https://api.geni.us/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
 
       var requestGeniusLinkAffiliates = $.ajax({
@@ -473,7 +473,7 @@
 
 <div class="wrap">
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
-    <a href="http://georiot.com" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="16" /></a></h2>
+    <a href="http://geni.us" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="16" /></a></h2>
   <p class="gr-intro">This plugin has added JavaScript that converts all Amazon product
     URLs on your site to global-friendly GeniusLink links. <a href="#faq-whatisgeoriot">Learn more...</a>
   </p>
