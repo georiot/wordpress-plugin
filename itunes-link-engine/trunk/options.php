@@ -29,6 +29,18 @@
     font-weight: normal;
     color: #6f6f6f;
   }
+
+  .gr-program-connected{
+    display: none;
+  }
+  .gr-step-complete .gr-program-connected{
+    display: inline;
+  }
+  .gr-step-complete .gr-no-program{
+    display: none
+  }
+
+
   .gr-tiny {
     font-size: 10px;
   }
@@ -537,7 +549,8 @@
         </div>
 
         <span id="gr-affiliates-loaded">
-          <span class="gr-success">iTunes program connected.</span>
+          <span class="gr-program-connected">iTunes program connected.</span>
+          <span class="gr-no-program">No programs connected.</span>
           <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
         </span>
         <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeniusLink API.
