@@ -196,3 +196,7 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 
 = 1.1.4 =
 * Fix contributors in Readme
+
+= 1.1.5 =
+* Fixed issue where the group ID would persist after switching to a different Genius Link account
+* Switched to api.geni.us api URL

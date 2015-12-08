@@ -3,9 +3,9 @@
 Plugin Name: iTunes Link Engine
 Plugin URI:
 Description: Automatically optimizes iTunes product links for your global audience and allows you to earn commissions on sales.
-Version: 1.0.6
+Version: 1.0.7
 Author: GeoRiot Networks, Inc.
-Author URI: http://georiot.com
+Author URI: http://geni.us
 */
 
 if (!defined('WP_CONTENT_URL'))

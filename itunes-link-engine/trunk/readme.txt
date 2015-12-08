@@ -164,3 +164,8 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 
 = 1.0.6 =
 * Fix contributors in Readme
+
+= 1.0.7 =
+* Fixed "No programs connected" showing after PHG was connected.
+* Fixed issue where the group ID would persist after switching to a different Genius Link account
+* Switched to api.geni.us api URL
