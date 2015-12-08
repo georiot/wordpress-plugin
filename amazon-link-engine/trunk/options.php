@@ -3,24 +3,28 @@
 ?>
 
 <style>
-  #gr-tsid-spinner {
+  .gr-tsid-spinner {
     display: none;
     opacity: .5;
   }
-  #gr-tsid-loaded {
+  .gr-tsid-loaded {
     display: none;
   }
-  .gr-status-loading-tsid #gr-tsid-spinner {
+  .gr-status-loading-tsid .gr-tsid-spinner {
     display: block;
   }
-  .gr-status-loaded-tsid #gr-tsid-loaded {
+  .gr-status-loaded-tsid .gr-tsid-loaded {
     display: block;
   }
-  #gr-tsid-loaded {
-    font-weight: bold;
-    color: #79b638;
+  .gr-tsid-loaded {
     margin-top: 5px;
   }
+
+  .gr-connected-success {
+    font-weight: bold;
+    color: #00b9ee;
+  }
+
   .gr-my-tsid {
     font-weight: normal;
     color: #6f6f6f;
@@ -144,8 +148,8 @@
   }
 
   .gr-step-complete .gr-step-number {
-    border: 2px solid #79b638;
-    color: #79b638;
+    border: 2px solid #00b9ee;
+    color: #00b9ee;
     background-color: #ffffff;www;
   }
 
@@ -158,7 +162,7 @@
   }
 
   .gr-georiot-logo {
-    vertical-align: -5%;
+    vertical-align: -13%;
     border: none;
   }
 
@@ -169,7 +173,7 @@
   .gr-checkmark {
     height: 20px;
     width: 20px;
-    background: #79b638 url('<?php print $gr_image_path ?>check.png') center center no-repeat;
+    background: #00b9ee url('<?php print $gr_image_path ?>check.png') center center no-repeat;
     border-radius: 10px;
     position: absolute;
     left: 28px;
@@ -191,15 +195,74 @@
   .gr-intro {
     max-width: 500px;
   }
+
+  #gr-advanced-options {
+    position: relative;
+    min-height: 0;
+  }
+
+  .gr-advanced-options-fields {
+    overflow: hidden;
+    transition: height .3s;
+    height: 0;
+  }
+
+  .expanded .gr-advanced-options-fields {
+    height: 120px;
+    transition: height .3s;
+  }
+
+  .gr-expand, .gr-collapse {
+    font-size: 18px;
+    text-align: right;
+    display: inline-block;
+    width: 20px;
+    font-style: normal;
+    font-weight: bold;
+    color: #444444;
+  }
+
+  .gr-expand, .gr-collapse, h5 {
+    cursor: pointer;
+  }
+
+  .gr-collapse {
+    display: none;
+  }
+
+  .expanded .gr-collapse {
+    display: inline-block;
+  }
+  .expanded .gr-expand, .expanded .hidden-expanded {
+    display: none;
+  }
+
+
+  #gr-advanced-options h5{
+    font-size: 14px;
+    margin: 0;
+  }
+
+
+  #georiot_tsid_select {
+  }
+
+
 </style>
 
 <script>
   jQuery(document).ready(function($) {
 
-    //Update the affiliates section on page load, if the API keys are filled
+    //Update the affiliates section and load groups on page load, if the API keys are filled
     if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
       getGeoriotAffiliates();
+      connectGeoriotApi();
     }
+
+
+    $('.gr-expand, .gr-collapse, #gr-advanced-options h5').click( function() {
+      $('#gr-advanced-options').toggleClass('expanded');;
+    });
 
 
     //Auto highlight the API fields on focus
@@ -228,24 +291,23 @@
     $('#georiot_api_key, #georiot_api_secret').on('paste', function () {
       var element = this;
       setTimeout(function () {
-        getGeoRiotTSID();
+        getGeniusLinkTSID();
       }, 500);
     });
 
     // Re-submit button can also trigger api connect
     $('.gr-resubmit').click( function(e) {
-      getGeoRiotTSID();
+      getGeniusLinkTSID();
       e.preventDefault();
     });
 
-    // Refrsh button for the affiliates section
+    // Refresh button for the affiliates section
     $('.gr-refresh-affiliates').click( function(e) {
       getGeoriotAffiliates();
       e.preventDefault();
     });
 
-
-    function getGeoRiotTSID() {
+    function getGeniusLinkTSID() {
       // Validate fields and then send request
       // If both api fields are correct, check the API
       if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
@@ -257,6 +319,7 @@
       }
     }
 
+
     function connectGeoriotApi() {
       // Show loading indicators and disable submit button while we wait for a response
       $('#connect-gr-api-form').addClass('gr-status-loading-tsid');
@@ -266,34 +329,79 @@
 
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
-      var georiotApiUrlGroups = "https://api.georiot.com/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
+      var georiotApiUrlGroups = "https://api.geni.us/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
-      var requestGeoRiotGroups = $.ajax({
+      var requestGeniusLinkGroups = $.ajax({
         url : georiotApiUrlGroups,
         dataType : "json",
         timeout : 10000
       })
         .done(function( data ) {
-            grGroups = data.Groups;
-            grNumGroups = grGroups.length;
+          grGroups = data.Groups;
+          grNumGroups = grGroups.length;
+          existingTsid = $('#georiot_tsid').val(); //This is the previous selected tsid in the <select>
+          sameAccount = false;
 
-            // We want to get the group ID with the lowest value and store it
-            var gr_low_tsid = 999999999;
+          // We want to know the group ID with the lowest value use it, by default
+          //Initial default value:
+          var gr_low_tsid = 999999999;
 
-            //Iterate over each group
-            $.each(data.Groups, function( key, value ) {
-              // and look at the TSID for each one. If it is lower than
-              // the last one we saw, save it.
-              if(value.Id < gr_low_tsid) {
-                gr_low_tsid = value.Id;
-              }
-            });
+
+          // Sort the JSON data by Id, ascending
+          prop = 'Name'; //Sort by this key in Groups
+          grGroups = grGroups.sort(function(a, b) {
+            return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+            //Descending: return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+          });
+
+
+          //Iterate over each group to find the "default" (lowest ID), and populate the select option
+          // First, clear out the select field first in case it already has options
+          $('#georiot_tsid_select').html('');
+
+          $.each(grGroups, function( key, value ) {
+            //Append this group to the select field
+            $('#georiot_tsid_select').append('<option value="'+value.Id+'">'+value.Name+'</option>');
+
+            if(value.Id == existingTsid) {
+              sameAccount = true;
+              // If the list contains a group with the same TSID as was loaded initially, we know we are looking at the same Account info
+              // and we will not auto select the default group (lowest tsid) for the user
+              console.log('list contains a group with the same TSID');
+            }
+
+            // Look at the TSID for each one. If it is lower than the last, save it.
+            //console.log(value.Name +' '+ value.Id); //debug
+            if(value.Id < gr_low_tsid) {
+              gr_low_tsid = value.Id;
+            }
+          });
+
+           // Add a default field
+           //$('#georiot_tsid_select').prepend('<option value="'+gr_low_tsid+'">(No preference)</option>');
+
+
+          // Select default group
+          //Mark the oldest/lowest group tsid value as selected, only if they don't already have a valid group chosen
+          if ( !sameAccount ) {
+            // User entered keys for a different account, so let's auto select the default group for them
+            //Mark group as selected in the select field
+            $("#georiot_tsid_select option[value="+gr_low_tsid+"]").attr('selected', 'selected');
+            //Show user which tsid they are using
             $('#gr-my-tsid-value').html( gr_low_tsid );
+            //Set the group to be used by the plugin
             $('#georiot_tsid').val( gr_low_tsid );
+          } else {
+            //Preserve the previously selected group
+            existingTsid = $('#georiot_tsid').val();
+            $("#georiot_tsid_select option[value="+existingTsid+"]").attr('selected', 'selected');
+          }
 
-            //Show completion in UI
-            $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
-            $('#gr-step-2').addClass('gr-step-complete');
+
+
+          //Show completion in UI
+          $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
+          $('#gr-step-2').addClass('gr-step-complete');
         })
         .fail(function() {
           $('#connect-gr-api-form').addClass('gr-status-error-tsid');
@@ -319,10 +427,10 @@
 
       var georiotApiKey = $('#georiot_api_key').val();
       var georiotApiSecret = $('#georiot_api_secret').val();
-      var georiotApiUrlAffiliates = "https://api.georiot.com/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
+      var georiotApiUrlAffiliates = "https://api.geni.us/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
 
-      var requestGeoRiotAffiliates = $.ajax({
+      var requestGeniusLinkAffiliates = $.ajax({
           url : georiotApiUrlAffiliates,
           dataType : "json",
           timeout : 10000
@@ -361,6 +469,13 @@
         ;
     }
 
+
+    //Group Selection
+    $( "#georiot_tsid_select" ).change(function() {
+      newgroup = $(this).val();
+      $('#georiot_tsid').val(newgroup);
+    });
+
   });
 
 </script>
@@ -368,9 +483,9 @@
 
 <div class="wrap">
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
-    <a href="http://georiot.com" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="12" /></a></h2>
-  <p class="gr-intro">This plugin has added Javascript that converts all Amazon product
-    URLs on your site to global-friendly GeoRiot links. <a href="#faq-whatisgeoriot">Learn more...</a>
+    <a href="http://geni.us" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="16" /></a></h2>
+  <p class="gr-intro">This plugin has added JavaScript that converts all Amazon product
+    URLs on your site to global-friendly GeniusLink links. <a href="#faq-whatisgeoriot">Learn more...</a>
   </p>
 
   <h3>Get the most from this plugin</h3>
@@ -393,7 +508,7 @@
         2
       </div>
       <div class="gr-step-info">
-          <strong>Gain Insight with traffic reports.</strong> <a href="http://www.georiot.com/wordpress-plugin/sign-up">Create a GeoRiot account</a> and enter your API keys here.
+          <strong>Gain Insight with traffic reports.</strong> <a target="_blank" href="http://social.geni.us/ALEGenius">Create a GeniusLink account</a> and enter your API keys here.
           <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
@@ -404,7 +519,7 @@
         API Secret:<br>
         <input maxlength="32" size="33" type="text" placeholder="Paste your api secret" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
 
-        <div id="gr-tsid-spinner">
+        <div class="gr-tsid-spinner">
           <div class="css-only-spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
@@ -412,11 +527,15 @@
           </div>
           Connecting...
         </div>
-        <div id="gr-tsid-loaded">Connected! &nbsp;
-            <span class="gr-my-tsid gr-tiny">
-              (Using Group #<span id="gr-my-tsid-value"><?php print get_option('georiot_tsid') ?></span>)
-              &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
-            </span>
+        <div class="gr-tsid-loaded">
+          <span class="gr-connected-success">Connected!</span> &nbsp;
+          <span class="gr-my-tsid gr-tiny">
+            &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
+          </span>
+          <br><br>
+          Using Link Group:<br>
+          <select name="georiot_tsid_select" id="georiot_tsid_select"><option>--Error: No groups loaded--</option></select>
+          <br><br>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
           <button class="gr-resubmit">Re-submit</button>
@@ -430,98 +549,133 @@
         3
       </div>
       <div class="gr-step-info">
-        <strong>Monetize your traffic:</strong> Earn commissions for every sale by <a href="http://manage.georiot.com/Affiliate">connecting affiliate programs</a>.
+        <strong>Monetize your traffic:</strong> Earn commissions for every sale by <a target="_blank" href="http://my.geni.us/Affiliate">connecting affiliate programs</a>.
         <br>
-        <div id="gr-affiliates-spinner">
+
+        <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
+          Amazon programs connected. <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
+        </span>
+        <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeniusLink API.
+        </div>
+      </div>
+    </div>
+    <div id="gr-advanced-options" class="gr-step-area">
+      <h5>
+        <em class="gr-expand">+</em>
+        <em class="gr-collapse">--</em>
+        Advanced Options<span class="hidden-expanded">...</span>
+      </h5>
+      <div class="gr-advanced-options-fields">
+        <br>
+        <div class="gr-tsid-spinner">
           <div class="css-only-spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
             <div class="bounce3"></div>
           </div>
-          Updating
+          Loading your groups...
         </div>
-
-        <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
-          Amazon programs connected. <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
-        </span>
-        <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeoRiot API.
-        </div>
+        <br>
+        <input type="checkbox" name="georiot_preserve_tracking" value="yes"
+            <?php if (get_option('georiot_preserve_tracking') == 'yes') print "checked" ?> />Honor existing Associate IDs
+        <a href="#faq-honor-tracking">(?)</a>
+        <br><br>
+        <input type="checkbox" name="georiot_api_remind" value="yes" <?php if (get_option('georiot_api_remind') == 'yes') print "checked" ?> />
+        Show Wordpress alert on dashboard if commissions are not enabled
+        <br><br>
       </div>
     </div>
 
-    <br>
-    &nbsp;<input type="checkbox" name="georiot_api_remind" value="yes" <?php if (get_option('georiot_api_remind') == 'yes') print "checked" ?> />
-    Show Wordpress alert on dashboard if commissions are not enabled
 
     <br><br>
     <input size="10" type="hidden" name="georiot_tsid" id="georiot_tsid" value="<?php echo get_option('georiot_tsid'); ?>" />
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
-
-    <style>
-      .faq {
-        border-top: 1px solid #cccccc;
-        margin-top: 80px;
-        padding-top: 0px;
-        max-width: 500px;
-        margin-bottom: 400px;
-      }
-
-      .faq h4 {
-        margin: 30px 5px 0 0;
-        font-size: 16px;
-      }
-    </style>
-
-    <div class="faq">
-      <h3>Frequently asked questions</h3>
-
-      <h4 id="faq-whatisgeoriot">What is GeoRiot</h4>
-      <p>GeoRiot is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content within the Amazon ecosystem, GeoRiot allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. In addition, with a GeoRiot account, you can enter your affiliate parameters to earn international commissions from all of your clicks.
-      </p>
-
-      <h4 id="faq-whatisgeoriot">Do I need a GeoRiot Account to use this plugin?</h4>
-      <p><strong>No,</strong> you do NOT need a GeoRiot account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your affiliate parameters, you will need a GeoRiot account.
-      </p>
-
-      <h4 id="faq-apikeys">How do I get my API keys?</h4>
-      <p>To get your GeoRiot API Keys, follow these simple steps:
-      </p>
-      <ol>
-        <li>If you do not have a GeoRiot account, <a href="http://www.georiot.com/wordpress-plugin/sign-up">create an account</a>.</li>
-
-        <li>Log into your GeoRiot Dashboard, and navigate to the to the Account Tab.</li>
-
-        <li>Click the “plus” sign to get your API keys.</li>
-
-        <li>Next, simply copy and paste the “Key” and “Secret” codes into the “Enable Reporting and Commissions” area of the plugin.<br>
-          <strong>Please note:</strong> It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.</li>
-        <li>Once pasted, your GeoRiot account will be automatically connected.</li>
-
-      </ol>
-
-
-      <h4 id="faq-international">How do I earn International Commissions?</h4>
-      <p>
-        First, connect the plugin to your GeoRiot account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
-      <ol>
-        <li>Add your Amazon Affiliate parameters to your GeoRiot dashboard.  Instructions on how to do this can be found <a href="http://support.georiot.com/support/solutions/articles/71867-add-existing-affiliate">here</a>.
-        <br><strong>Note:</strong> If you’ve already done this within your existing GeoRiot account, you do not need to add your parameters again.
-        </li>
-        <li> You’re all set!  You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.</li>
-      </ol>
-
-
-      <h4 id="faq-pay">Do I have to pay for GeoRiot?</h4>
-      <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
-      </p>
-      <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to sign up for a GeoRiot account.
-      </p>
-      <p><strong>Please note: By default, GeoRiot's affiliate parameters will be used until
-          you have added your own via the GeoRiot dashboard.</strong>
-        Please <a href="mailto:contact@georiot.com">contact GeoRiot</a> if you have any questions.
-      </p>
-
-    </div>
-
   </form>
+  <style>
+    .faq {
+      border-top: 1px solid #cccccc;
+      margin-top: 80px;
+      padding-top: 0px;
+      max-width: 500px;
+      margin-bottom: 400px;
+    }
+
+    .faq h4 {
+      margin: 30px 5px 0 0;
+      font-size: 16px;
+    }
+  </style>
+
+  <div class="faq">
+    <h3>Frequently asked questions</h3>
+
+    <h4 id="faq-whatisgeoriot">What is GeniusLink</h4>
+    <p>GeniusLink is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content within the Amazon ecosystem, GeniusLink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. In addition, with a GeniusLink account, you can enter your affiliate parameters to earn international commissions from all of your clicks.
+    </p>
+
+    <h4 id="faq-whatisgeoriot">Do I need a GeniusLink Account to use this plugin?</h4>
+    <p><strong>No,</strong> you do NOT need a GeniusLink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your affiliate parameters, you will need a GeniusLink account.
+    </p>
+
+    <h4 id="faq-apikeys">How do I get my API keys?</h4>
+    <p>To get your GeniusLink API Keys, follow these simple steps:
+    </p>
+    <ol>
+      <li>If you do not have a GeniusLink account, <a target="_blank" href="http://social.geni.us/ALEGenius">create an account</a>.</li>
+
+      <li>Log into your GeniusLink Dashboard, and navigate to the to the Account Tab.</li>
+
+      <li>Click the “plus” sign to get your API keys.</li>
+
+      <li>Next, simply copy and paste the “Key” and “Secret” codes into the “Enable Reporting and Commissions” area of the plugin.<br>
+        <strong>Please note:</strong> It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.</li>
+      <li>Once pasted, your GeniusLink account will be automatically connected.</li>
+
+    </ol>
+
+
+    <h4 id="faq-international">How do I earn International Commissions?</h4>
+    <p>
+      First, connect the plugin to your GeniusLink account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
+    <ol>
+      <li>Add your Amazon Affiliate parameters to your GeniusLink dashboard.  Instructions on how to do this can be found
+        <a target="_blank" href="http://help.geni.us/support/solutions/articles/3000034942">here</a>.
+      <br><strong>Note:</strong> If you’ve already done this within your existing GeniusLink account, you do not need to add your parameters again.
+      </li>
+      <li> You’re all set!  You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.</li>
+    </ol>
+
+
+    <h4 id="faq-pay">Do I have to pay for GeniusLink?</h4>
+    <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
+    </p>
+    <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to
+      <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a GeniusLink account</a>.
+    </p>
+    <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
+        you have added your own via the GeniusLink dashboard.</strong>
+      Please <a href="mailto:hi@geni.us">contact GeniusLink</a> if you have any questions.
+    </p>
+
+    <h4 id="faq-groups">How do I change the default group?</h4>
+    <p>In order to change the group that the plugin syncs with, you must first connect your
+      Geniuslink account using your API keys. Once you have done this, you can simply select
+      the group you would like to use from the drop down menu under “Using Link Group” in the
+      Amazon Link Engine Settings.
+    </p>
+
+    <h4 id="faq-honor-tracking">Will the ALE honor existing Associate IDs?</h4>
+    <p>Yes. To honor existing Associates IDs, simply select the “Honor Existing Associate IDs”
+      checkbox in Amazon Link Engine settings  under "Advanced Settings".
+    </p>
+    <p>This is great for blogs that have multiple editors with multiple Amazon Associates
+      IDs to keep track of clicks, commissions, etc. per editor. By selecting this option the ALE
+      will honor any existing Associates IDs already within links on the site, ensuring those
+      editors continue to get the credit they deserve for helping you earn those affiliate commissions.
+    </p>
+    <p>Please note: By default the plugin will overwrite any IDs within your site with the
+      ones you’ve added in your GeoRiot account. You must select the “Honor Existing Associate
+      IDs” checkbox in order to honor existing IDs.
+    </p>
+  </div>
 </div>
