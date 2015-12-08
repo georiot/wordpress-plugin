@@ -337,61 +337,71 @@
         timeout : 10000
       })
         .done(function( data ) {
-            grGroups = data.Groups;
-            grNumGroups = grGroups.length;
+          grGroups = data.Groups;
+          grNumGroups = grGroups.length;
+          existingTsid = $('#georiot_tsid').val(); //This is the previous selected tsid in the <select>
+          sameAccount = false;
 
-            // We want to know the group ID with the lowest value use it, by default
-            //Initial default value:
-            var gr_low_tsid = 999999999;
-
-
-            // Sort the JSON data by Id, ascending
-            prop = 'Name'; //Sort by this key in Groups
-            grGroups = grGroups.sort(function(a, b) {
-              return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
-              //Descending: return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
-            });
-            //console.log(grGroups); //debug
+          // We want to know the group ID with the lowest value use it, by default
+          //Initial default value:
+          var gr_low_tsid = 999999999;
 
 
-            //Iterate over each group to find the "default" (lowest ID), and populate the select option
-            // First, clear out the select field first in case it already has options
-            $('#georiot_tsid_select').html('');
-
-            $.each(grGroups, function( key, value ) {
-              //Append this group to the select field
-              $('#georiot_tsid_select').append('<option value="'+value.Id+'">'+value.Name+'</option>');
-              // Look at the TSID for each one. If it is lower than the last, save it.
-              //console.log(value.Name +' '+ value.Id); //debug
-              if(value.Id < gr_low_tsid) {
-                gr_low_tsid = value.Id;
-              }
-            });
-
-             // Add a default field
-             //$('#georiot_tsid_select').prepend('<option value="'+gr_low_tsid+'">(No preference)</option>');
+          // Sort the JSON data by Id, ascending
+          prop = 'Name'; //Sort by this key in Groups
+          grGroups = grGroups.sort(function(a, b) {
+            return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+            //Descending: return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+          });
 
 
-            // Select default group
-            //Mark the oldest/lowest group tsid value as selected, only if they don't already have a group chosen
-            if ($('#georiot_tsid').val() == '' ) {
-              //Mark group as selected in the select field
-              $("#georiot_tsid_select option[value="+gr_low_tsid+"]").attr('selected', 'selected');
-              //Show user which tsid they are using
-              $('#gr-my-tsid-value').html( gr_low_tsid );
-              //Set the group to be used by the plugin
-              $('#georiot_tsid').val( gr_low_tsid );
-            } else {
-              //Mark the active group as selected
-              existingTsid = $('#georiot_tsid').val();
-              $("#georiot_tsid_select option[value="+existingTsid+"]").attr('selected', 'selected');
+          //Iterate over each group to find the "default" (lowest ID), and populate the select option
+          // First, clear out the select field first in case it already has options
+          $('#georiot_tsid_select').html('');
+
+          $.each(grGroups, function( key, value ) {
+            //Append this group to the select field
+            $('#georiot_tsid_select').append('<option value="'+value.Id+'">'+value.Name+'</option>');
+
+            if(value.Id == existingTsid) {
+              sameAccount = true;
+              // If the list contains a group with the same TSID as was loaded initially, we know we are looking at the same Account info
+              // and we will not auto select the default group (lowest tsid) for the user
+              console.log('list contains a group with the same TSID');
             }
 
+            // Look at the TSID for each one. If it is lower than the last, save it.
+            //console.log(value.Name +' '+ value.Id); //debug
+            if(value.Id < gr_low_tsid) {
+              gr_low_tsid = value.Id;
+            }
+          });
+
+           // Add a default field
+           //$('#georiot_tsid_select').prepend('<option value="'+gr_low_tsid+'">(No preference)</option>');
 
 
-            //Show completion in UI
-            $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
-            $('#gr-step-2').addClass('gr-step-complete');
+          // Select default group
+          //Mark the oldest/lowest group tsid value as selected, only if they don't already have a valid group chosen
+          if ( !sameAccount ) {
+            // User entered keys for a different account, so let's auto select the default group for them
+            //Mark group as selected in the select field
+            $("#georiot_tsid_select option[value="+gr_low_tsid+"]").attr('selected', 'selected');
+            //Show user which tsid they are using
+            $('#gr-my-tsid-value').html( gr_low_tsid );
+            //Set the group to be used by the plugin
+            $('#georiot_tsid').val( gr_low_tsid );
+          } else {
+            //Preserve the previously selected group
+            existingTsid = $('#georiot_tsid').val();
+            $("#georiot_tsid_select option[value="+existingTsid+"]").attr('selected', 'selected');
+          }
+
+
+
+          //Show completion in UI
+          $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
+          $('#gr-step-2').addClass('gr-step-complete');
         })
         .fail(function() {
           $('#connect-gr-api-form').addClass('gr-status-error-tsid');
