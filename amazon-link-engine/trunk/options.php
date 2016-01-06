@@ -3,6 +3,16 @@
 ?>
 
 <style>
+  .gr-icon-alert {
+    display: inline-block;
+    background-color: #880000;
+    height: 18px;
+    width: 18px;
+    border-radius: 9px;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+  }
   .gr-tsid-spinner {
     display: none;
     opacity: .5;
@@ -10,6 +20,11 @@
   .gr-tsid-loaded {
     display: none;
   }
+
+  .gr-status-loading-tsid {
+    opacity: .5;
+  }
+
   .gr-status-loading-tsid .gr-tsid-spinner {
     display: block;
   }
@@ -268,12 +283,10 @@
 <script>
   jQuery(document).ready(function($) {
 
-    var pluginPageInitializing = true;
-
     //Update the affiliates section and load groups on page load, if the API keys are filled
     if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
       getGeoriotAffiliates();
-      connectGeoriotApi();
+      connectGeoriotApi(true);
     }
 
 
@@ -308,13 +321,13 @@
     $('#georiot_api_key, #georiot_api_secret').on('paste', function () {
       var element = this;
       setTimeout(function () {
-        getGeniusLinkTSID();
+        submitApiKeys();
       }, 500);
     });
 
     // Re-submit button can also trigger api connect
     $('.gr-resubmit').click( function(e) {
-      getGeniusLinkTSID();
+      submitApiKeys();
       e.preventDefault();
     });
 
@@ -324,7 +337,7 @@
       e.preventDefault();
     });
 
-    function getGeniusLinkTSID() {
+    function submitApiKeys() {
       // Validate fields and then send request
       // If both api fields are correct, check the API
       if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
@@ -337,7 +350,11 @@
     }
 
 
-    function connectGeoriotApi() {
+    function connectGeoriotApi(pageLoadup) {
+
+      // We run some different checks if this function is run on initial page load.
+      if (typeof(pageLoadup)==='undefined') pageLoadup = false;
+
       // Show loading indicators and disable submit button while we wait for a response
       $('#connect-gr-api-form').addClass('gr-status-loading-tsid');
       $('#connect-gr-api-form').removeClass('gr-status-loaded-tsid');
@@ -348,7 +365,7 @@
       var georiotApiSecret = $('#georiot_api_secret').val();
       var georiotApiUrlGroups = "https://api.geni.us/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
-      var requestGeniusLinkGroups = $.ajax({
+      var requestGeniuslinkGroups = $.ajax({
         url : georiotApiUrlGroups,
         dataType : "json",
         timeout : 10000
@@ -411,7 +428,7 @@
             //Set the group to be used by the plugin
             $('#georiot_tsid').val( gr_low_tsid );
 
-            if(pluginPageInitializing) {
+            if(pageLoadup) {
               // User just loaded or refreshed the plugin page, and the TSID stored in WP is not included in their Genius account
               // Let's show an alert to describe this problem. This could be  asign that the DB table is not writable.
               $('#gr-tsid-mismatch-error').show();
@@ -426,9 +443,6 @@
           //Show completion in UI
           $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
           $('#gr-step-2').addClass('gr-step-complete');
-
-          pluginPageInitializing = false;
-
 
         })
         .fail(function() {
@@ -458,7 +472,7 @@
       var georiotApiUrlAffiliates = "https://api.geni.us/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
 
-      var requestGeniusLinkAffiliates = $.ajax({
+      var requestGeniuslinkAffiliates = $.ajax({
           url : georiotApiUrlAffiliates,
           dataType : "json",
           timeout : 10000
@@ -513,18 +527,21 @@
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
     <a href="http://geni.us" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="16" /></a></h2>
   <p class="gr-intro">This plugin has added JavaScript that converts all Amazon product
-    URLs on your site to global-friendly GeniusLink links. <a href="#faq-whatisgeoriot">Learn more...</a>
+    URLs on your site to global-friendly Geniuslink links. <a href="#faq-whatisgeoriot">Learn more...</a>
   </p>
 
   <h3>Get the most from this plugin</h3>
 
   <div id="gr-tsid-mismatch-error">
-    <strong>Problem detected</strong><br>
+    <strong><span class='gr-icon-alert'>!</span> Uh oh!</strong><br>
     <p>
-    The GeniusLink group ID stored in your Wordpress database is not found in your GeniusLink account.
-      Until this is resolved, you may not receive commissions and clicks will not show in your GeniusLink reports.</p>
-    <p>Try choosing a group again under step 2 below and click "Save Changes".
-    If you continue to see this error, there is likely a problem with your DB write permissions.</p>
+      It looks like we weren't able to save your group selection correctly.
+      This can happen if we aren't able to connect to your WordPress backend.
+      For a quick troubleshooting step, please try selecting the group and clicking "Save" again.
+    </p>
+    <p>
+      If that doesn't work, shoot us an email at help@geni.us and we will get you squared away.
+    </p>
   </div>
 
 
@@ -547,7 +564,7 @@
         2
       </div>
       <div class="gr-step-info">
-          <strong>Gain Insight with traffic reports.</strong> <a target="_blank" href="http://social.geni.us/ALEGenius">Create a GeniusLink account</a> and enter your API keys here.
+          <strong>Gain Insight with traffic reports.</strong> <a target="_blank" href="http://social.geni.us/ALEGenius">Create a Geniuslink account</a> and enter your API keys here.
           <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
@@ -594,7 +611,7 @@
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>
           Amazon programs connected. <a class="gr-refresh-affiliates gr-tiny" href="#">Refresh</a>
         </span>
-        <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the GeniusLink API.
+        <div id="gr-affiliates-error"><strong>Sorry,</strong> there was a problem connecting to the Geniuslink API.
         </div>
       </div>
     </div>
@@ -648,52 +665,52 @@
   <div class="faq">
     <h3>Frequently asked questions</h3>
 
-    <h4 id="faq-whatisgeoriot">What is GeniusLink</h4>
-    <p>GeniusLink is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content within the Amazon ecosystem, GeniusLink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. In addition, with a GeniusLink account, you can enter your affiliate parameters to earn international commissions from all of your clicks.
+    <h4 id="faq-whatisgeoriot">What is Geniuslink</h4>
+    <p>Geniuslink is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content within the Amazon ecosystem, Geniuslink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. In addition, with a Geniuslink account, you can enter your affiliate parameters to earn international commissions from all of your clicks.
     </p>
 
-    <h4 id="faq-whatisgeoriot">Do I need a GeniusLink Account to use this plugin?</h4>
-    <p><strong>No,</strong> you do NOT need a GeniusLink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your affiliate parameters, you will need a GeniusLink account.
+    <h4 id="faq-whatisgeoriot">Do I need a Geniuslink Account to use this plugin?</h4>
+    <p><strong>No,</strong> you do NOT need a Geniuslink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your affiliate parameters, you will need a Geniuslink account.
     </p>
 
     <h4 id="faq-apikeys">How do I get my API keys?</h4>
-    <p>To get your GeniusLink API Keys, follow these simple steps:
+    <p>To get your Geniuslink API Keys, follow these simple steps:
     </p>
     <ol>
-      <li>If you do not have a GeniusLink account, <a target="_blank" href="http://social.geni.us/ALEGenius">create an account</a>.</li>
+      <li>If you do not have a Geniuslink account, <a target="_blank" href="http://social.geni.us/ALEGenius">create an account</a>.</li>
 
-      <li>Log into your GeniusLink Dashboard, and navigate to the to the Account Tab.</li>
+      <li>Log into your Geniuslink Dashboard, and navigate to the to the Account Tab.</li>
 
       <li>Click the “plus” sign to get your API keys.</li>
 
       <li>Next, simply copy and paste the “Key” and “Secret” codes into the “Enable Reporting and Commissions” area of the plugin.<br>
         <strong>Please note:</strong> It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.</li>
-      <li>Once pasted, your GeniusLink account will be automatically connected.</li>
+      <li>Once pasted, your Geniuslink account will be automatically connected.</li>
 
     </ol>
 
 
     <h4 id="faq-international">How do I earn International Commissions?</h4>
     <p>
-      First, connect the plugin to your GeniusLink account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
+      First, connect the plugin to your Geniuslink account (see “How do I get my API keys?”).  Then, follow the steps below:</p>
     <ol>
-      <li>Add your Amazon Affiliate parameters to your GeniusLink dashboard.  Instructions on how to do this can be found
+      <li>Add your Amazon Affiliate parameters to your Geniuslink dashboard.  Instructions on how to do this can be found
         <a target="_blank" href="http://help.geni.us/support/solutions/articles/3000034942">here</a>.
-      <br><strong>Note:</strong> If you’ve already done this within your existing GeniusLink account, you do not need to add your parameters again.
+      <br><strong>Note:</strong> If you’ve already done this within your existing Geniuslink account, you do not need to add your parameters again.
       </li>
       <li> You’re all set!  You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.</li>
     </ol>
 
 
-    <h4 id="faq-pay">Do I have to pay for GeniusLink?</h4>
+    <h4 id="faq-pay">Do I have to pay for Geniuslink?</h4>
     <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
     </p>
     <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to
-      <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a GeniusLink account</a>.
+      <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a Geniuslink account</a>.
     </p>
-    <p><strong>Please note: By default, GeniusLink's affiliate parameters will be used until
-        you have added your own via the GeniusLink dashboard.</strong>
-      Please <a href="mailto:hi@geni.us">contact GeniusLink</a> if you have any questions.
+    <p><strong>Please note: By default, Geniuslink's affiliate parameters will be used until
+        you have added your own via the Geniuslink dashboard.</strong>
+      Please <a href="mailto:hi@geni.us">contact Geniuslink</a> if you have any questions.
     </p>
 
     <h4 id="faq-groups">How do I change the default group?</h4>
