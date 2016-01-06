@@ -41,6 +41,21 @@
   .gr-status-error-tsid #gr-tsid-error {
     display: block;
   }
+
+  #gr-tsid-mismatch-error {
+    display: none;
+    color: #880000;
+    margin-top: 5px;
+    width: 447px;
+    padding: 20px;
+    border: 1px solid #880000;
+    border-radius: 6px;
+  }
+
+  #gr-tsid-mismatch-error strong {
+    font-size: 140%;
+  }
+
   #gr-affiliates-spinner {
     display: none;
     opacity: .5;
@@ -253,6 +268,8 @@
 <script>
   jQuery(document).ready(function($) {
 
+    var pluginPageInitializing = true;
+
     //Update the affiliates section and load groups on page load, if the API keys are filled
     if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
       getGeoriotAffiliates();
@@ -273,7 +290,7 @@
       $(this).select();
     });
 
-    //Clear API fields and TSID
+    //Clear API fields and TSID if user clicks disconnect button
     $('#gr-disconnect-api').click( function() {
       $('#georiot_api_key').val('');
       $('#georiot_api_secret').val('');
@@ -366,8 +383,8 @@
             if(value.Id == existingTsid) {
               sameAccount = true;
               // If the list contains a group with the same TSID as was loaded initially, we know we are looking at the same Account info
-              // and we will not auto select the default group (lowest tsid) for the user
-              console.log('list contains a group with the same TSID');
+              // and we will not auto select the default group (lowest tsid) for the user ( because we only do that the first time API creds are entered)
+              //console.log('list contains a group with the same TSID');
             }
 
             // Look at the TSID for each one. If it is lower than the last, save it.
@@ -375,6 +392,7 @@
             if(value.Id < gr_low_tsid) {
               gr_low_tsid = value.Id;
             }
+
           });
 
            // Add a default field
@@ -383,6 +401,7 @@
 
           // Select default group
           //Mark the oldest/lowest group tsid value as selected, only if they don't already have a valid group chosen
+
           if ( !sameAccount ) {
             // User entered keys for a different account, so let's auto select the default group for them
             //Mark group as selected in the select field
@@ -391,17 +410,26 @@
             $('#gr-my-tsid-value').html( gr_low_tsid );
             //Set the group to be used by the plugin
             $('#georiot_tsid').val( gr_low_tsid );
+
+            if(pluginPageInitializing) {
+              // User just loaded or refreshed the plugin page, and the TSID stored in WP is not included in their Genius account
+              // Let's show an alert to describe this problem. This could be  asign that the DB table is not writable.
+              $('#gr-tsid-mismatch-error').show();
+            }
+
           } else {
             //Preserve the previously selected group
             existingTsid = $('#georiot_tsid').val();
             $("#georiot_tsid_select option[value="+existingTsid+"]").attr('selected', 'selected');
           }
 
-
-
           //Show completion in UI
           $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
           $('#gr-step-2').addClass('gr-step-complete');
+
+          pluginPageInitializing = false;
+
+
         })
         .fail(function() {
           $('#connect-gr-api-form').addClass('gr-status-error-tsid');
@@ -489,6 +517,17 @@
   </p>
 
   <h3>Get the most from this plugin</h3>
+
+  <div id="gr-tsid-mismatch-error">
+    <strong>Problem detected</strong><br>
+    <p>
+    The GeniusLink group ID stored in your Wordpress database is not found in your GeniusLink account.
+      Until this is resolved, you may not receive commissions and clicks will not show in your GeniusLink reports.</p>
+    <p>Try choosing a group again under step 2 below and click "Save Changes".
+    If you continue to see this error, there is likely a problem with your DB write permissions.</p>
+  </div>
+
+
   <form method="post" action="options.php" id="connect-gr-api-form" class="<?php if (get_option('georiot_tsid') != '') print 'gr-status-loaded-tsid'; ?>">
     <?php settings_fields('amazon-link-engine'); ?>
 
