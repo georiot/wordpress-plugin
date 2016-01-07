@@ -2,8 +2,8 @@
 Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, Geniuslink, ile, javascript
 Requires at least: 2.7
-Tested up to: 4.3
-Stable tag: 1.0.6
+Tested up to: 4.4
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -169,3 +169,6 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 * Fixed "No programs connected" showing after PHG was connected.
 * Fixed issue where the group ID would persist after switching to a different Genius Link account
 * Switched to api.geni.us api URL
+
+= 1.0.8 =
+* Added error check to test if group ID's are successfully being saved to Wordpress DB after submitting settings.
