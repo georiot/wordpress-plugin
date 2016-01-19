@@ -491,8 +491,8 @@
             });
 
             /* Print out these values */
-            $('#gr-aff-enrolled').html(grAmazonEnrolled)
-            $('#gr-aff-available').html(grAmazonAvailable)
+            $('#gr-aff-enrolled').html(grAmazonEnrolled);
+            $('#gr-aff-available').html(grAmazonAvailable);
 
             if (grAmazonEnrolled >= 1) {
               $('#gr-step-3').addClass('gr-step-complete');

@@ -205,4 +205,4 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 * Added error check to test if group ID's are successfully being saved to Wordpress DB after submitting settings.
 
 = 1.1.7 =
-* Updated JS comments so they don't break things on hosts that remove line breaks in the HTML.
+* Updated JS comments and syntax so it doesn't break things on hosts that remove line breaks in the HTML.
