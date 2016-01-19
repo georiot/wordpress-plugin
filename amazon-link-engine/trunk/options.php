@@ -99,7 +99,7 @@
   }
 
 
-  /* CSS css-only-spinner */
+  /* CSS css-only-spinner  */
   .css-only-spinner {
     margin: 5px 5px 0 0;
     text-align: left;
@@ -115,7 +115,7 @@
     display: inline-block;
     -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
     animation: bouncedelay 1.4s infinite ease-in-out;
-    /* Prevent first frame from flickering when animation starts */
+    /* Prevent first frame from flickering when animation starts  */
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
   }
@@ -144,7 +144,7 @@
         -webkit-transform: scale(1.0);
       }
   }
-  /* End CSS css-only-spinner. */
+  /* End CSS css-only-spinner.  */
 
 
   .gr-step-area {
@@ -180,7 +180,7 @@
   .gr-step-complete .gr-step-number {
     border: 2px solid #00b9ee;
     color: #00b9ee;
-    background-color: #ffffff;www;
+    background-color: #ffffff;
   }
 
   .gr-step-info {
@@ -283,7 +283,7 @@
 <script>
   jQuery(document).ready(function($) {
 
-    //Update the affiliates section and load groups on page load, if the API keys are filled
+    /* Update the affiliates section and load groups on page load, if the API keys are filled  */
     if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
       getGeoriotAffiliates();
       connectGeoriotApi(true);
@@ -295,7 +295,7 @@
     });
 
 
-    //Auto highlight the API fields on focus
+    /*Auto highlight the API fields on focus  */
     $('#georiot_api_key').click( function() {
       $(this).select();
     });
@@ -303,7 +303,7 @@
       $(this).select();
     });
 
-    //Clear API fields and TSID if user clicks disconnect button
+    /*Clear API fields and TSID if user clicks disconnect button */
     $('#gr-disconnect-api').click( function() {
       $('#georiot_api_key').val('');
       $('#georiot_api_secret').val('');
@@ -317,7 +317,7 @@
 
     });
 
-    //Detect paste into the api key or secret fields.
+    /*Detect paste into the api key or secret fields. */
     $('#georiot_api_key, #georiot_api_secret').on('paste', function () {
       var element = this;
       setTimeout(function () {
@@ -325,25 +325,25 @@
       }, 500);
     });
 
-    // Re-submit button can also trigger api connect
+    /* Re-submit button can also trigger api connect */
     $('.gr-resubmit').click( function(e) {
       submitApiKeys();
       e.preventDefault();
     });
 
-    // Refresh button for the affiliates section
+    /* Refresh button for the affiliates section */
     $('.gr-refresh-affiliates').click( function(e) {
       getGeoriotAffiliates();
       e.preventDefault();
     });
 
     function submitApiKeys() {
-      // Validate fields and then send request
-      // If both api fields are correct, check the API
+      /* Validate fields and then send request */
+      /* If both api fields are correct, check the API */
       if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
         connectGeoriotApi();
       } else if( $('#georiot_api_key').val().length > 0 && $('#georiot_api_secret').val().length > 0 ) {
-        //if both fields have values, but are not the right length, tell the user
+        /* if both fields have values, but are not the right length, tell the user */
         if($('#georiot_api_key').val().length != 32) alert('The API Key field appears to be invalid. Please copy and paste it again');
         if($('#georiot_api_secret').val().length != 32) alert('The API Secret field appears to be invalid. Please copy and paste it again');
       }
@@ -352,10 +352,10 @@
 
     function connectGeoriotApi(pageLoadup) {
 
-      // We run some different checks if this function is run on initial page load.
+      /*  We run some different checks if this function is run on initial page load. */
       if (typeof(pageLoadup)==='undefined') pageLoadup = false;
 
-      // Show loading indicators and disable submit button while we wait for a response
+      /*  Show loading indicators and disable submit button while we wait for a response */
       $('#connect-gr-api-form').addClass('gr-status-loading-tsid');
       $('#connect-gr-api-form').removeClass('gr-status-loaded-tsid');
       $('#connect-gr-api-form').removeClass('gr-status-error-tsid');
@@ -373,74 +373,74 @@
         .done(function( data ) {
           grGroups = data.Groups;
           grNumGroups = grGroups.length;
-          existingTsid = $('#georiot_tsid').val(); //This is the previous selected tsid in the <select>
+          existingTsid = $('#georiot_tsid').val(); /* This is the previous selected tsid in the <select> */
           sameAccount = false;
 
-          // We want to know the group ID with the lowest value use it, by default
-          //Initial default value:
+          /*  We want to know the group ID with the lowest value use it, by default */
+          /* Initial default value: */
           var gr_low_tsid = 999999999;
 
 
-          // Sort the JSON data by Id, ascending
-          prop = 'Name'; //Sort by this key in Groups
+          /*  Sort the JSON data by Id, ascending */
+          prop = 'Name'; /* Sort by this key in Groups  */
           grGroups = grGroups.sort(function(a, b) {
             return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
-            //Descending: return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+            /* Descending: return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0); */
           });
 
 
-          //Iterate over each group to find the "default" (lowest ID), and populate the select option
-          // First, clear out the select field first in case it already has options
+          /* Iterate over each group to find the "default" (lowest ID), and populate the select option */
+          /*  First, clear out the select field first in case it already has options */
           $('#georiot_tsid_select').html('');
 
           $.each(grGroups, function( key, value ) {
-            //Append this group to the select field
+            /* Append this group to the select field */
             $('#georiot_tsid_select').append('<option value="'+value.Id+'">'+value.Name+'</option>');
 
             if(value.Id == existingTsid) {
               sameAccount = true;
-              // If the list contains a group with the same TSID as was loaded initially, we know we are looking at the same Account info
-              // and we will not auto select the default group (lowest tsid) for the user ( because we only do that the first time API creds are entered)
-              //console.log('list contains a group with the same TSID');
+              /*  If the list contains a group with the same TSID as was loaded initially, we know we are looking at the same Account info */
+              /*  and we will not auto select the default group (lowest tsid) for the user ( because we only do that the first time API creds are entered) */
+              /* console.log('list contains a group with the same TSID'); */
             }
 
-            // Look at the TSID for each one. If it is lower than the last, save it.
-            //console.log(value.Name +' '+ value.Id); //debug
+            /*  Look at the TSID for each one. If it is lower than the last, save it. */
+            /* console.log(value.Name +' '+ value.Id);  */
             if(value.Id < gr_low_tsid) {
               gr_low_tsid = value.Id;
             }
 
           });
 
-           // Add a default field
-           //$('#georiot_tsid_select').prepend('<option value="'+gr_low_tsid+'">(No preference)</option>');
+          /*  Add a default field */
+          /* $('#georiot_tsid_select').prepend('<option value="'+gr_low_tsid+'">(No preference)</option>'); */
 
 
-          // Select default group
-          //Mark the oldest/lowest group tsid value as selected, only if they don't already have a valid group chosen
+          /* Select default group */
+          /* Mark the oldest/lowest group tsid value as selected, only if they don't already have a valid group chosen */
 
           if ( !sameAccount ) {
-            // User entered keys for a different account, so let's auto select the default group for them
-            //Mark group as selected in the select field
+            /*  User entered keys for a different account, so let's auto select the default group for them */
+            /* Mark group as selected in the select field */
             $("#georiot_tsid_select option[value="+gr_low_tsid+"]").attr('selected', 'selected');
-            //Show user which tsid they are using
+            /* Show user which tsid they are using */
             $('#gr-my-tsid-value').html( gr_low_tsid );
-            //Set the group to be used by the plugin
+            /* Set the group to be used by the plugin */
             $('#georiot_tsid').val( gr_low_tsid );
 
             if(pageLoadup) {
-              // User just loaded or refreshed the plugin page, and the TSID stored in WP is not included in their Genius account
-              // Let's show an alert to describe this problem. This could be  asign that the DB table is not writable.
+              /*  User just loaded or refreshed the plugin page, and the TSID stored in WP is not included in their Genius account */
+              /*  Let's show an alert to describe this problem. This could be  asign that the DB table is not writable. */
               $('#gr-tsid-mismatch-error').show();
             }
 
           } else {
-            //Preserve the previously selected group
+            /* Preserve the previously selected group */
             existingTsid = $('#georiot_tsid').val();
             $("#georiot_tsid_select option[value="+existingTsid+"]").attr('selected', 'selected');
           }
 
-          //Show completion in UI
+          /* Show completion in UI */
           $('#connect-gr-api-form').addClass('gr-status-loaded-tsid');
           $('#gr-step-2').addClass('gr-step-complete');
 
@@ -456,12 +456,12 @@
       ;
 
       getGeoriotAffiliates('suppressError');
-      // We don't want to inundate the user with errors, so suppress the affiliate one in this case.
+      /*  We don't want to inundate the user with errors, so suppress the affiliate one in this case. */
 
     }
 
     function getGeoriotAffiliates(suppressError) {
-      //Loading effects
+      /* Loading effects */
       $('#connect-gr-api-form').addClass('gr-status-loading-affiliates');
       $('#connect-gr-api-form').removeClass('gr-status-loaded-affiliates');
       $('#connect-gr-api-form').removeClass('gr-status-error-affiliates');
@@ -481,23 +481,23 @@
             var grAmazonEnrolled =  0;
             var grAmazonAvailable =  0;
 
-            //Iterate over the enrolled programs and add up how many Amazon programs there are.
+            /* Iterate over the enrolled programs and add up how many Amazon programs there are. */
             $.each(data.ProgramsEnrolled, function( key, value ) {
               if(value.indexOf("Amazon") > -1) { grAmazonEnrolled++; }
             });
-            //Iterate over the available programs and add up how many Amazon programs there are.
+            /* Iterate over the available programs and add up how many Amazon programs there are. */
             $.each(data.AvailablePrograms, function( key, value ) {
               if(value.indexOf("Amazon") > -1) { grAmazonAvailable++; }
             });
 
-            //Print out these values
+            /* Print out these values */
             $('#gr-aff-enrolled').html(grAmazonEnrolled)
             $('#gr-aff-available').html(grAmazonAvailable)
 
             if (grAmazonEnrolled >= 1) {
               $('#gr-step-3').addClass('gr-step-complete');
             }
-            //Show completion in UI
+            /* Show completion in UI */
             $('#connect-gr-api-form').addClass('gr-status-loaded-affiliates');
           })
           .fail(function() {
@@ -512,7 +512,7 @@
     }
 
 
-    //Group Selection
+    /* Group Selection */
     $( "#georiot_tsid_select" ).change(function() {
       newgroup = $(this).val();
       $('#georiot_tsid').val(newgroup);
@@ -669,7 +669,7 @@
     <p>Geniuslink is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content within the Amazon ecosystem, Geniuslink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. In addition, with a Geniuslink account, you can enter your affiliate parameters to earn international commissions from all of your clicks.
     </p>
 
-    <h4 id="faq-whatisgeoriot">Do I need a Geniuslink Account to use this plugin?</h4>
+    <h4 id="faq-account-optional">Do I need a Geniuslink Account to use this plugin?</h4>
     <p><strong>No,</strong> you do NOT need a Geniuslink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your affiliate parameters, you will need a Geniuslink account.
     </p>
 
