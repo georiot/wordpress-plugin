@@ -69,7 +69,7 @@ function georiot_ile_admin_notice(){
 
 function georiot_ile() {
   if (get_option('georiot_tsid') == '') {
-    $gr_use_tsid = 4632;
+    $gr_use_tsid = 6218;
   } else {
     $gr_use_tsid = get_option('georiot_tsid');
   }
