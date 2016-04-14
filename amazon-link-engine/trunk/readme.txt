@@ -2,8 +2,8 @@
 Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, geniuslink, ale, javascript 
 Requires at least: 2.7
-Tested up to: 4.3
-Stable tag: 1.1.4
+Tested up to: 4.4
+Stable tag: 1.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -200,3 +200,9 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 = 1.1.5 =
 * Fixed issue where the group ID would persist after switching to a different Genius Link account
 * Switched to api.geni.us api URL
+
+= 1.1.6 =
+* Added error check to test if group ID's are successfully being saved to Wordpress DB after submitting settings.
+
+= 1.1.8 =
+* Updated JS comments and syntax so it doesn't break things on hosts that remove line breaks in the HTML.
