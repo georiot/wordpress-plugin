@@ -2,8 +2,8 @@
 Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, geniuslink, ale, javascript 
 Requires at least: 2.7
-Tested up to: 4.4
-Stable tag: 1.1.8
+Tested up to: 4.5
+Stable tag: 1.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,19 +12,12 @@ Automatically localize and affiliate Amazon product links to improve user experi
 
 == Description ==
 
-The Amazon Link Engine plugin is the easiest way to convert all Amazon links within your
-WordPress site into globalized links that work across all [Amazon storefronts](https://affiliate-program.amazon.com/gp/associates/help/t22/a13). By "Localizing"
-these links, you ensure all clicks from international viewers are redirected to the appropriate item in their own local storefront, thus improving
-conversions. In addition, signup for a Geniuslink account to get access to Advanced Reporting metrics, as well as the ability to attach your Associates IDs to ensure that you earn the international affiliate commissions that you deserve.
+The Amazon Link Engine plugin is the easiest way to convert all Amazon links on your
+WordPress site into globalized links that work across all [Amazon storefronts](https://affiliate-program.amazon.com/gp/associates/help/t22/a13). This means that all clicks from your international audience are sent to the appropriate item in their own local storefront, improving conversions. 
 
+The Amazon Link Engine is a tool by Geniuslink. By signing up for Geniuslink and syncing the Amazon Link Engine to your Geniuslink account, you can also get access to advanced reporting metrics and attach your Associates IDs to ensure that you earn the international affiliate commissions that you deserve.
 
-= How is Geniuslink (Formerly GeoRiot) different? =
-
-Most link "localization" plugins only translate a link for an international click when the same product ID exists in both storefronts.  The team at Geniuslink has found, however, that oftentimes the same item in different storefronts has a completely different product ID.  In addition, even if the ID does match, the product may be an overpriced "import" item or may never be in stock.  To address this, Geniuslink matches on more than just the product ID to ensure every click gets to the best possible destination.
-
-The Amazon Link Engine plugin uses Geniuslink’s [patented](https://www.google.com/patents/US8838767) five-step algorithm to dig deep into Amazon’s stores to find the best possible result.  This algorithm uses the metadata available from each product to match across storefronts and ensure that the user is sent to the most relevant product. So instead of sending your users to blank search results, we guarantee the best possible user experience.
-
-In addition, connecting your Geniuslink account to the Amazon Link Engine, gives you access to comprehensive reporting on clicks and commissions that no other plugin can offer. These reports allow you to review your link’s performance across many metrics including product type, referrer, browser, device, operating system, destination storefront, and geography.
+*Note:* You are not required to have a Geniuslink account, to use this plugin. However, if you would like to earn affiliate commissions, you must sign up for a Geniuslink Account. [Try it out for free](http://social.geni.us/ALESignup) and check out pricing for the Geniuslink service on [our website](https://www.geni.us/pricing). 
 
 = How does the Amazon Link Engine plugin work? =
 
@@ -32,16 +25,23 @@ As soon as the plugin is installed, your Amazon links are instantly localized ev
 
 = How do I earn commissions from my links? =
 
-To earn international affiliate commissions, you must [create a Geniuslink account](http://social.geni.us/ALESignup), and connect it to your plugin (detailed instructions can be found in the [FAQ](https://wordpress.org/plugins/amazon-link-engine/faq/)). 
+To earn international affiliate commissions, you must [create a Geniuslink account](http://social.geni.us/ALESignup), and connect it to your plugin with your API keys (detailed instructions can be found in the [FAQ](https://wordpress.org/plugins/amazon-link-engine/faq/)). 
 
-Next, add and manage your Associates IDs for each of the Amazon affiliate programs you’ve signed up for within the Geniuslink Dashboard. Once your IDs are added, the Amazon Link Engine will automatically add the correct Associates ID per country for each click.
+Once signed up, add and manage your Associates IDs for each of the Amazon affiliate programs you’ve signed up for within the Geniuslink Dashboard. Once your IDs are added, the Amazon Link Engine will automatically add the correct Associates ID per country for each click.
 
-* *Note: The Amazon Link Engine WordPress plugin is completely free to use. However, in order to earn international affiliate commissions and take advantage of the in-depth reporting, you must have a Geniuslink account. By default, Geniuslink’s Associates IDs will be used until you have connected your account and added your own via the Geniuslink Dashboard.
+* *Note:* The Amazon Link Engine WordPress plugin is completely free to use and will always globalize your links for you. However, in order to earn international affiliate commissions and take advantage of the in-depth reporting, **you must have a Geniuslink account**. By default, Geniuslink’s Associates IDs will be used until you have connected your account and added your own via the Geniuslink Dashboard.
+
+= How is Geniuslink different? =
+
+Most link "localization" plugins only translate a link for an international click when the same product ID exists in both storefronts. However, oftentimes the same item in different storefronts has a completely different product ID, and even if the ID is the same, the product may be an overpriced "import" item or may never be in stock. The Amazon Link Engine and Geniuslink match on more than just the product ID to ensure every click gets to the best possible destination. So instead of sending your users to blank search results, we guarantee the best possible user experience.
+
+In addition, connecting your Geniuslink account to the Amazon Link Engine, gives you access to comprehensive reporting on clicks and commissions that no other plugin can offer. These reports allow you to review your link’s performance across many metrics including product type, referrer, browser, device, operating system, destination storefront, and geography.
+
 
 = Key Features: =
 
-* *NEW!* Pick which Geniuslink group this plugin syncs to. Set up the plugin on multiple WordPress sites and track clicks separately, or set up a specific group just for your WordPress site traffic. Instructions can be found under “How do I change the default group?” in the [FAQ](https://wordpress.org/plugins/amazon-link-engine/faq/)
-* *NEW!* Already have Affiliated links on your site? The ALE will now honor these existing Associates IDs within your links. You can also choose to overwrite them with the ID within your Geniuslink account if you prefer. Learn more under “Will the ALE honor existing Associates IDs?” in the [FAQ](https://wordpress.org/plugins/amazon-link-engine/faq/)
+* Pick which Geniuslink group this plugin syncs to. Setup the plugin on multiple WordPress sites and track clicks separately, or set up a specific group just for your WordPress site traffic. Instructions can be found under “How do I change the default group?” in the [FAQ](https://wordpress.org/plugins/amazon-link-engine/faq/)
+* Already have Affiliated links on your site? The ALE will now honor these existing Associates IDs within your links. You can also choose to overwrite them with the ID within your Geniuslink account if you prefer. Learn more under “Will the ALE honor existing Associates IDs?” in the [FAQ](https://wordpress.org/plugins/amazon-link-engine/faq/)
 * Automatic localization and translation of all Amazon product links based off a visitor’s location.
 * Maximize revenue by earning commissions from all of the Amazon Associates programs.
 * Simple, easy to use interface.
@@ -62,13 +62,15 @@ There are three easy steps to get the most value from the Amazon Link Engine.
 = To install the plugin: =
 1. Install the Amazon Link Engine plugin using the WordPress Plugin Installer above.
 1. Activate the plugin through the "Plugins" menu in your WordPress Dashboard.
-1. Once activated, your Amazon links will automatically be localized from then on.
+1. That’s it! Once activated, your Amazon links will automatically be localized for your international audience.
 
 = To connect your Geniuslink account: =
 1. If you don’t have an account already, [create a Geniuslink account](http://social.geni.us/ALESignup).
 1. After signing in, navigate to the Account tab and create a new API token.
 1. Access the Amazon Link Engine Settings through the “Settings” tab within your WordPress dashboard.
 1. Copy the API Key and API Secret into your Amazon Link Engine plugin.
+
+*Note:* You are not required to have a Geniuslink account, to use this plugin. However, if you would like to earn international commissions, you must sign up for a Geniuslink Account. [Try it out for free](http://social.geni.us/ALESignup) and check out pricing for the Geniuslink service on [our website](https://www.geni.us/pricing). 
 
 = To earn international commissions: =
 1.  If you have already added your Associates IDs to your Geniuslink account, you’re good to go.
@@ -77,18 +79,15 @@ There are three easy steps to get the most value from the Amazon Link Engine.
 
 Once saved into the dashboard your links will start using the appropriate Associates IDs with each click.
 
-*Note:* You are not required to have a Geniuslink account, to use this plugin. However, if you would like to earn international commissions, you must sign up for a Geniuslink Account. Try it out for [free for 30 days](http://social.geni.us/ALESignup).
-
 == Frequently Asked Questions ==
 
 = What is Geniuslink =
 
-Geniuslink is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content within the Amazon ecosystem, Geniuslink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. In addition, with a Geniuslink account, you can enter your Associates IDs to earn international commissions from all of your clicks. 
+Geniuslink is the secret sauce behind the Amazon Link Engine that allows you to build the world’s most intelligent links. Improve user experience, and maximize your affiliate earnings and marketing efforts through Geniuslink’s service. For marketers promoting content within the Amazon ecosystem, Geniuslink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. Geniuslink also allows you to enter your Associates IDs to earn international commissions from all of your clicks. 
 
 = Do I need a Geniuslink Account to use this plugin? =
 
-No, you do NOT need a Geniuslink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your international Associates IDs, you must have a Geniuslink account. By default, Geniuslink’s Associates IDs will be used until you have connected your account, and added your own via the Geniuslink Dashboard. 
-
+No, you do NOT need a Geniuslink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your Associates IDs, you must have a Geniuslink account. By default, Geniuslink’s Associates IDs will be used until you have connected your account, and added your own via the Geniuslink Dashboard.
 
 = How do I get my API keys? =
 
@@ -106,13 +105,9 @@ To get your Geniuslink API Keys, follow these simple steps:
 
 If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free. 
 
-However, if you would like access to advanced reporting features and be able to add your international Associates IDs, you will need to sign up for a Geniuslink account.  Try it out for [free for 30 days](http://social.geni.us/ALESignup). Learn more about our [fair and transparent pricing](http://social.geni.us/ALEPricing).
+However, if you would like access to advanced reporting features and be able to add your international Associates IDs, you will need to sign up for a Geniuslink account.  [Try it out for free](http://social.geni.us/ALESignup). Learn more about our [fair and transparent pricing](http://social.geni.us/ALEPricing).
 
 Please note: By default, Geniuslink's Associates IDs will be used until you have added your own via the Geniuslink dashboard.  Please [contact Geniuslink](mailto:hi@geni.us) if you have any questions.
-
-
-= Do I need to update the JavaScript myself? =
-No, the A.L.E. plugin is instantly pulled from a remote server each time your page loads, which means that the snippet is always up to date.  If we update the code from our end, it will instantly be updated on your website upon page load.
 
 
 = How do I earn International Commissions? =
@@ -121,7 +116,6 @@ First, connect the plugin to your Geniuslink account (see "How do I get my API k
 
 1. Add your Amazon Associates IDs to your Geniuslink dashboard. Instructions on how to do this can be found [here](http://help.geni.us/support/solutions/articles/3000028199-amazon-associates-program-guide).
 *Note:* If you’ve already done this within your existing Geniuslink account, you do not need to add your IDs again.
-
 1. You’re all set! You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.
 
 **Please Note:** You must [sign up for a Geniuslink account](http://social.geni.us/ALESignup) and add your Associates IDs to the dashboard to earn international affiliate commissions.  Once you have done this, and connected your account using the API keys, each of your links will be automatically affiliated.
@@ -137,6 +131,9 @@ Yes. To honor existing Associates IDs, simply select the “Honor Existing Assoc
 * **Please note:** By default the plugin will overwrite any IDs within your site with the ones you’ve added in your GeoRiot account. You must select the “Honor Existing Associate IDs” checkbox in order to honor existing IDs.
 
 = Is the Amazon Link Engine compatible with other affiliate tools? =
+
+* **iTunes Link Engine:**
+The Amazon Link Engine is fully compatible with the iTunes Link Engine plugin.
 
 * **Skimlinks:**
 The Amazon Link Engine plugin works perfectly with Skimlinks.
@@ -206,3 +203,6 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 
 = 1.1.8 =
 * Updated JS comments and syntax so it doesn't break things on hosts that remove line breaks in the HTML.
+
+= 1.1.9 =
+* Tested up to 4.5.  Updated unclear descriptions.

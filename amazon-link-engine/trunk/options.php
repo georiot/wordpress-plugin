@@ -666,11 +666,11 @@
     <h3>Frequently asked questions</h3>
 
     <h4 id="faq-whatisgeoriot">What is Geniuslink</h4>
-    <p>Geniuslink is an intelligent link management platform that allows you to build the world’s most intelligent links to improve user experience, and maximize your marketing efforts. For marketers promoting content within the Amazon ecosystem, Geniuslink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. In addition, with a Geniuslink account, you can enter your affiliate parameters to earn international commissions from all of your clicks.
+    <p>Geniuslink is the secret sauce behind the Amazon Link Engine that allows you to build the world’s most intelligent links. Improve user experience, and maximize your affiliate earnings and marketing efforts through Geniuslink’s service. For marketers promoting content within the Amazon ecosystem, Geniuslink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. Geniuslink also allows you to enter your Associates IDs to earn international commissions from all of your clicks.
     </p>
 
     <h4 id="faq-account-optional">Do I need a Geniuslink Account to use this plugin?</h4>
-    <p><strong>No,</strong> you do NOT need a Geniuslink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your affiliate parameters, you will need a Geniuslink account.
+    <p><strong>No,</strong> you do NOT need a Geniuslink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your Associates IDs, you must have a Geniuslink account. By default, Geniuslink’s Associates IDs will be used until you have connected your account, and added your own via the Geniuslink Dashboard.
     </p>
 
     <h4 id="faq-apikeys">How do I get my API keys?</h4>
@@ -682,6 +682,8 @@
       <li>Log into your Geniuslink Dashboard, and navigate to the to the Account Tab.</li>
 
       <li>Click the “plus” sign to get your API keys.</li>
+
+      <li>Navigate to the Amazon Link Engine Settings under “Settings” in your WordPress dashboard.</li>
 
       <li>Next, simply copy and paste the “Key” and “Secret” codes into the “Enable Reporting and Commissions” area of the plugin.<br>
         <strong>Please note:</strong> It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.</li>
@@ -706,7 +708,7 @@
     <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
     </p>
     <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to
-      <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a Geniuslink account</a>.
+      <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a Geniuslink account</a>. Learn more about our [fair and transparent pricing](http://social.geni.us/ALEPricing).
     </p>
     <p><strong>Please note: By default, Geniuslink's affiliate parameters will be used until
         you have added your own via the Geniuslink dashboard.</strong>
