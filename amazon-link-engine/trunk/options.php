@@ -280,6 +280,9 @@
   #georiot_domain_select {
     min-width: 150px;
   }
+  #georiot_api_key, #georiot_api_secret {
+    font-family: "Courier New", monospace;
+  }
 
 
 </style>
@@ -323,7 +326,6 @@
 
     /*Detect paste into the api key or secret fields. */
     $('#georiot_api_key, #georiot_api_secret').on('paste', function () {
-      var element = this;
       setTimeout(function () {
         submitApiKeys();
       }, 500);
@@ -342,6 +344,13 @@
     });
 
     function submitApiKeys() {
+      /*Trim any whitespace in keys*/
+      key = $('#georiot_api_key').val().trim();
+      secret = $('#georiot_api_secret').val().trim();
+
+      $('#georiot_api_key').val(key);
+      $('#georiot_api_secret').val(secret);
+
       /* Validate fields and then send request */
       /* If both api fields are correct, check the API */
       if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
@@ -671,11 +680,11 @@
 
           <br><br>
         API Key: <br>
-        <input maxlength="32" size="33" type="text" placeholder="Paste your api key" id="georiot_api_key" name="georiot_api_key" value="<?php echo get_option('georiot_api_key'); ?>" /></td>
+        <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="georiot_api_key" name="georiot_api_key" value="<?php echo get_option('georiot_api_key'); ?>" /></td>
 
         <br><br>
         API Secret:<br>
-        <input maxlength="32" size="33" type="text" placeholder="Paste your api secret" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
+        <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
 
         <div class="gr-tsid-spinner">
           <div class="css-only-spinner">
