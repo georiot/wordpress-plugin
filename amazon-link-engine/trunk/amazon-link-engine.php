@@ -21,6 +21,7 @@ if (!defined('WP_PLUGIN_DIR'))
 // OPTIONS
 
 function activate_georiot_autolinker() {
+  add_option('georiot_domain', '');
   add_option('georiot_tsid', '');
   add_option('georiot_api_key', '');
   add_option('georiot_api_secret', '');
@@ -29,6 +30,7 @@ function activate_georiot_autolinker() {
 }
 
 function deactivate_georiot_autolinker() {
+  delete_option('georiot_domain');
   delete_option('georiot_tsid');
   delete_option('georiot_api_key');
   delete_option('georiot_api_secret');
@@ -37,6 +39,7 @@ function deactivate_georiot_autolinker() {
 }
 
 function admin_init_georiot_autolinker() {
+  register_setting('amazon-link-engine', 'georiot_domain');
   register_setting('amazon-link-engine', 'georiot_tsid');
   register_setting('amazon-link-engine', 'georiot_api_key');
   register_setting('amazon-link-engine', 'georiot_api_secret');
