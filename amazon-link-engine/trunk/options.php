@@ -493,10 +493,13 @@
           .done(function( data ) {
             grDomains = data.Domains;
             grNumDomains = grDomains.length;
+            var gr_default_domain = 'geni.us';
             existingDomain = $('#georiot_domain').val(); /* This is the previous selected domain in the <select> */
+            if (existingDomain == '') {
+              existingDomain = gr_default_domain;
+            }
             sameAccount = false;
 
-            var gr_default_domain = 'geni.us';
 
             /*  Sort the domains list data by name, ascending */
             prop = 'Name'; /* Sort by this key in Groups  */
@@ -524,7 +527,6 @@
             /* Mark the default domain as selected, only if they don't already have a valid group chosen */
 
             if ( !sameAccount ) {
-              console.log('yep');
               /*  User entered keys for a different account, so let's auto select the default domain for them */
               $("#georiot_domain_select option[value='"+gr_default_domain+"']").attr('selected', 'selected');
 
@@ -539,8 +541,8 @@
 
             } else {
               /* Preserve the previously selected domain */
-              existingDomain = $('#georiot_tsid').val();
-              $("#georiot_domain_select option[value="+existingDomain+"]").attr('selected', 'selected');
+              existingDomain = $('#georiot_domain').val();
+              $("#georiot_domain_select option[value='"+existingDomain+"']").attr('selected', 'selected');
             }
 
             /* Show completion in UI */
@@ -675,7 +677,8 @@
       </div>
       <div class="gr-step-info">
           <strong>Optional: Connect to your Geniuslink Account</strong> <br>
-        <a target="_blank" href="http://social.geni.us/ALEGenius">Create a Geniuslink account</a> and enter your API keys here to enjoy in-depth reporting on clicks and sales.
+        <a target="_blank" href="http://social.geni.us/ALEGenius">Create a Geniuslink account</a> and enter your API
+        keys here to enjoy click reporting and custom domains.
           <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
@@ -701,10 +704,10 @@
           </span>
           <br><br>
           Use Link Group:<br>
-          <select name="georiot_tsid_select" id="georiot_tsid_select"><option>--Error: No groups found--</option></select>
+          <select name="georiot_tsid_select" id="georiot_tsid_select"><option>--Error getting groups--</option></select>
           <br><br>
           Use Domain:<br>
-          <select name="georiot_domain_select" id="georiot_domain_select"><option>--Error: No domains found--</option></select>
+          <select name="georiot_domain_select" id="georiot_domain_select"><option>--Error getting domains--</option></select>
           <br><br>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
