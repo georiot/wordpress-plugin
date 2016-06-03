@@ -291,13 +291,13 @@
     color: #666;
   }
 
-  #georiot_tsid_select {
+  #genius_ale_tsid_select {
     min-width: 125px;
   }
-  #georiot_domain_select {
+  #genius_ale_domain_select {
     min-width: 150px;
   }
-  #georiot_api_key, #georiot_api_secret {
+  #genius_ale_api_key, #genius_ale_api_secret {
     font-family: "Courier New", monospace;
   }
 
@@ -308,7 +308,7 @@
   jQuery(document).ready(function($) {
 
     /* Update the affiliates section and load groups on page load, if the API keys are filled  */
-    if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
+    if ( $('#genius_ale_api_key').val().length == 32 && $('#genius_ale_api_secret').val().length == 32 ) {
       getGeoriotAffiliates();
       connectGeoriotApi(true);
     }
@@ -320,10 +320,10 @@
 
 
     /*Auto highlight the API fields on focus  */
-    $('#georiot_api_key').click( function() {
+    $('#genius_ale_api_key').click( function() {
       $(this).select();
     });
-    $('#georiot_api_secret').click( function() {
+    $('#genius_ale_api_secret').click( function() {
       $(this).select();
     });
 
@@ -336,10 +336,10 @@
       var grConfirmDisconnect = confirm("Are you sure you want to disconnect your Geniuslink account?");
 
       if (grConfirmDisconnect == true) {
-        $('#georiot_api_key').val('');
-        $('#georiot_api_secret').val('');
-        $('#georiot_tsid').val('');
-        $('#georiot_domain').val('');
+        $('#genius_ale_api_key').val('');
+        $('#genius_ale_api_secret').val('');
+        $('#genius_ale_tsid').val('');
+        $('#genius_ale_domain').val('');
         $('#gr-step-2').removeClass('gr-step-complete');
         $('#connect-gr-api-form').removeClass('gr-status-loaded-tsid');
         $('#gr-step-3').removeClass('gr-step-complete');
@@ -351,7 +351,7 @@
     }
 
     /*Detect paste into the api key or secret fields. */
-    $('#georiot_api_key, #georiot_api_secret').on('paste', function () {
+    $('#genius_ale_api_key, #genius_ale_api_secret').on('paste', function () {
       setTimeout(function () {
         submitApiKeys();
       }, 500);
@@ -371,20 +371,20 @@
 
     function submitApiKeys() {
       /*Trim any whitespace in keys*/
-      key = $('#georiot_api_key').val().trim();
-      secret = $('#georiot_api_secret').val().trim();
+      key = $('#genius_ale_api_key').val().trim();
+      secret = $('#genius_ale_api_secret').val().trim();
 
-      $('#georiot_api_key').val(key);
-      $('#georiot_api_secret').val(secret);
+      $('#genius_ale_api_key').val(key);
+      $('#genius_ale_api_secret').val(secret);
 
       /* Validate fields and then send request */
       /* If both api fields are correct, check the API */
-      if ( $('#georiot_api_key').val().length == 32 && $('#georiot_api_secret').val().length == 32 ) {
+      if ( $('#genius_ale_api_key').val().length == 32 && $('#genius_ale_api_secret').val().length == 32 ) {
         connectGeoriotApi();
-      } else if( $('#georiot_api_key').val().length > 0 && $('#georiot_api_secret').val().length > 0 ) {
+      } else if( $('#genius_ale_api_key').val().length > 0 && $('#genius_ale_api_secret').val().length > 0 ) {
         /* if both fields have values, but are not the right length, tell the user */
-        if($('#georiot_api_key').val().length != 32) alert('The API Key field appears to be invalid. Please copy and paste it again');
-        if($('#georiot_api_secret').val().length != 32) alert('The API Secret field appears to be invalid. Please copy and paste it again');
+        if($('#genius_ale_api_key').val().length != 32) alert('The API Key field appears to be invalid. Please copy and paste it again');
+        if($('#genius_ale_api_secret').val().length != 32) alert('The API Secret field appears to be invalid. Please copy and paste it again');
       }
     }
 
@@ -412,8 +412,8 @@
 
     function getGeoriotGroups(pageLoadup) {
 
-      var georiotApiKey = $('#georiot_api_key').val();
-      var georiotApiSecret = $('#georiot_api_secret').val();
+      var georiotApiKey = $('#genius_ale_api_key').val();
+      var georiotApiSecret = $('#genius_ale_api_secret').val();
       var georiotApiUrlGroups = "https://api.geni.us/v1/groups/get-all-with-details?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
       var requestGeniuslinkGroups = $.ajax({
@@ -424,7 +424,7 @@
           .done(function( data ) {
             grGroups = data.Groups;
             grNumGroups = grGroups.length;
-            existingTsid = $('#georiot_tsid').val(); /* This is the previous selected tsid in the <select> */
+            existingTsid = $('#genius_ale_tsid').val(); /* This is the previous selected tsid in the <select> */
             sameAccount = false;
 
             /*  We want to know the group ID with the lowest value use it, by default */
@@ -442,11 +442,11 @@
 
             /* Iterate over each group to find the "default" (lowest ID), and populate the select option */
             /*  First, clear out the select field first in case it already has options */
-            $('#georiot_tsid_select').html('');
+            $('#genius_ale_tsid_select').html('');
 
             $.each(grGroups, function( key, value ) {
               /* Append this group to the select field */
-              $('#georiot_tsid_select').append('<option value="'+value.Id+'">'+value.Name+'</option>');
+              $('#genius_ale_tsid_select').append('<option value="'+value.Id+'">'+value.Name+'</option>');
 
               if(value.Id == existingTsid) {
                 sameAccount = true;
@@ -464,7 +464,7 @@
             });
 
             /*  Add a default field */
-            /* $('#georiot_tsid_select').prepend('<option value="'+gr_low_tsid+'">(No preference)</option>'); */
+            /* $('#genius_ale_tsid_select').prepend('<option value="'+gr_low_tsid+'">(No preference)</option>'); */
 
 
             /* Select default group */
@@ -473,9 +473,9 @@
             if ( !sameAccount ) {
               /*  User entered keys for a different account, so let's auto select the default group for them */
               /* Mark group as selected in the select field */
-              $("#georiot_tsid_select option[value='"+gr_low_tsid+"']").attr('selected', 'selected');
+              $("#genius_ale_tsid_select option[value='"+gr_low_tsid+"']").attr('selected', 'selected');
               /* Set the group to be used by the plugin */
-              $('#georiot_tsid').val( gr_low_tsid );
+              $('#genius_ale_tsid').val( gr_low_tsid );
 
               if(pageLoadup) {
                 /*  User just loaded or refreshed the plugin page, and the TSID stored in WP is not included in their Genius account */
@@ -485,8 +485,8 @@
 
             } else {
               /* Preserve the previously selected group */
-              existingTsid = $('#georiot_tsid').val();
-              $("#georiot_tsid_select option[value="+existingTsid+"]").attr('selected', 'selected');
+              existingTsid = $('#genius_ale_tsid').val();
+              $("#genius_ale_tsid_select option[value="+existingTsid+"]").attr('selected', 'selected');
             }
 
             /* Show completion in UI */
@@ -507,8 +507,8 @@
 
     function getGeoriotDomains(pageLoadup) {
 
-      var georiotApiKey = $('#georiot_api_key').val();
-      var georiotApiSecret = $('#georiot_api_secret').val();
+      var georiotApiKey = $('#genius_ale_api_key').val();
+      var georiotApiSecret = $('#genius_ale_api_secret').val();
       var georiotApiUrlDomains = "https://api.geni.us/v1/custom-domains/domains?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
       var requestGeniuslinkDomains = $.ajax({
@@ -520,9 +520,10 @@
             grDomains = data.Domains;
             grNumDomains = grDomains.length;
             var gr_default_domain = 'geni.us';
-            existingDomain = $('#georiot_domain').val(); /* This is the previous selected domain in the <select> */
+            existingDomain = $('#genius_ale_domain').val(); /* This is the previous selected domain in the <select> */
             if (existingDomain == '') {
               existingDomain = gr_default_domain;
+              $('#genius_ile_domain').val(existingDomain);
             }
             sameAccount = false;
 
@@ -535,11 +536,11 @@
             });
 
             /*  First, clear out the select field first in case it already has options */
-            $('#georiot_domain_select').html('');
+            $('#genius_ale_domain_select').html('');
 
             $.each(grDomains, function( key, value ) {
               /* Append this group to the select field */
-              $('#georiot_domain_select').append('<option value="'+value.Name+'">'+value.Name+'</option>');
+              $('#genius_ale_domain_select').append('<option value="'+value.Name+'">'+value.Name+'</option>');
 
               if(value.Name == existingDomain) {
                 sameAccount = true;
@@ -554,10 +555,10 @@
 
             if ( !sameAccount ) {
               /*  User entered keys for a different account, so let's auto select the default domain for them */
-              $("#georiot_domain_select option[value='"+gr_default_domain+"']").attr('selected', 'selected');
+              $("#genius_ale_domain_select option[value='"+gr_default_domain+"']").attr('selected', 'selected');
 
               /* Set the group to be used by the plugin */
-              $('#georiot_domain').val( gr_default_domain );
+              $('#genius_ale_domain').val( gr_default_domain );
 
               if(pageLoadup) {
                 /*  User just loaded or refreshed the plugin page, and the domain stored in WP is not included in their Genius account */
@@ -567,7 +568,7 @@
 
             } else {
               /* Preserve the previously selected domain */
-              $("#georiot_domain_select option[value='"+existingDomain+"']").attr('selected', 'selected');
+              $("#genius_ale_domain_select option[value='"+existingDomain+"']").attr('selected', 'selected');
             }
 
             /* Show completion in UI */
@@ -593,8 +594,8 @@
       $('#connect-gr-api-form').removeClass('gr-status-error-affiliates');
 
 
-      var georiotApiKey = $('#georiot_api_key').val();
-      var georiotApiSecret = $('#georiot_api_secret').val();
+      var georiotApiKey = $('#genius_ale_api_key').val();
+      var georiotApiSecret = $('#genius_ale_api_secret').val();
       var georiotApiUrlAffiliates = "https://api.geni.us/v1/affiliate/stats?apiKey="+georiotApiKey+"&apiSecret="+georiotApiSecret;
 
 
@@ -639,15 +640,15 @@
 
 
     /* Group Selection */
-    $( "#georiot_tsid_select" ).change(function() {
+    $( "#genius_ale_tsid_select" ).change(function() {
       newgroup = $(this).val();
-      $('#georiot_tsid').val(newgroup);
+      $('#genius_ale_tsid').val(newgroup);
     });
 
     /* Domain Selection */
-    $( "#georiot_domain_select" ).change(function() {
+    $( "#genius_ale_domain_select" ).change(function() {
       newgroup = $(this).val();
-      $('#georiot_domain').val(newgroup);
+      $('#genius_ale_domain').val(newgroup);
     });
 
   });
@@ -657,7 +658,7 @@
 
 <div class="wrap">
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
-    <a href="http://geni.us" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>georiot_logo.png" width="66" height="16" /></a></h2>
+    <a href="http://geni.us" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>genius_ale_logo.png" width="66" height="16" /></a></h2>
   <p class="gr-intro">This plugin has added JavaScript that converts all Amazon product
     URLs on your site to global-friendly Geniuslink links. <a href="#faq-whatisgeoriot">Learn more...</a>
   </p>
@@ -688,7 +689,7 @@
   </div>
 
 
-  <form method="post" action="options.php" id="connect-gr-api-form" class="<?php if (get_option('georiot_tsid') != '') print 'gr-status-loaded-tsid'; ?>">
+  <form method="post" action="options.php" id="connect-gr-api-form" class="<?php if (get_option('genius_ale_tsid') != '') print 'gr-status-loaded-tsid'; ?>">
     <?php settings_fields('amazon-link-engine'); ?>
 
     <div id="gr-step-1" class="gr-step-area gr-step-complete">
@@ -702,7 +703,7 @@
       </div>
     </div>
 
-    <div id="gr-step-2" class="gr-step-area <?php if (get_option('georiot_tsid') != '') print 'gr-step-complete'; ?>">
+    <div id="gr-step-2" class="gr-step-area <?php if (get_option('genius_ale_tsid') != '') print 'gr-step-complete'; ?>">
       <div class="gr-step-number">
         <span class="gr-checkmark"></span>
         2
@@ -714,11 +715,11 @@
 
           <br><br>
         API Key: <br>
-        <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="georiot_api_key" name="georiot_api_key" value="<?php echo get_option('georiot_api_key'); ?>" /></td>
+        <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ale_api_key" name="genius_ale_api_key" value="<?php echo get_option('genius_ale_api_key'); ?>" /></td>
 
         <br><br>
         API Secret:<br>
-        <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="georiot_api_secret" name="georiot_api_secret" value="<?php echo get_option('georiot_api_secret'); ?>" />
+        <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ale_api_secret" name="genius_ale_api_secret" value="<?php echo get_option('genius_ale_api_secret'); ?>" />
 
         <div class="gr-tsid-spinner">
           <div class="css-only-spinner">
@@ -735,10 +736,10 @@
           </span>
           <br><br>
           Use Link Group:<br>
-          <select name="georiot_tsid_select" id="georiot_tsid_select"><option>--Error getting groups--</option></select>
+          <select name="genius_ale_tsid_select" id="genius_ale_tsid_select"><option>--Error getting groups--</option></select>
           <br><br>
           Use Domain:<br>
-          <select name="georiot_domain_select" id="georiot_domain_select"><option>--Error getting domains--</option></select>
+          <select name="genius_ale_domain_select" id="genius_ale_domain_select"><option>--Error getting domains--</option></select>
           <br><br>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
@@ -782,11 +783,11 @@
           Loading your groups...
         </div>
         <br>
-        <input type="checkbox" name="georiot_preserve_tracking" value="yes"
-            <?php if (get_option('georiot_preserve_tracking') == 'yes') print "checked" ?> />Honor existing Associate IDs
+        <input type="checkbox" name="genius_ale_preserve_tracking" value="yes"
+            <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />Honor existing Associate IDs
         <a href="#faq-honor-tracking">(?)</a>
         <br><br>
-        <input type="checkbox" name="georiot_api_remind" value="yes" <?php if (get_option('georiot_api_remind') == 'yes') print "checked" ?> />
+        <input type="checkbox" name="genius_ale_api_remind" value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
         Show Wordpress alert on dashboard if commissions are not enabled
         <br><br>
       </div>
@@ -794,8 +795,8 @@
 
 
     <br><br>
-    <input size="10" type="hidden" name="georiot_tsid" id="georiot_tsid" value="<?php echo get_option('georiot_tsid'); ?>" />
-    <input size="100" type="hidden" name="georiot_domain" id="georiot_domain" value="<?php echo get_option('georiot_domain'); ?>" />
+    <input size="10" type="hidden" name="genius_ale_tsid" id="genius_ale_tsid" value="<?php echo get_option('genius_ale_tsid'); ?>" />
+    <input size="100" type="hidden" name="genius_ale_domain" id="genius_ale_domain" value="<?php echo get_option('genius_ale_domain'); ?>" />
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
   </form>
   <style>
