@@ -222,6 +222,11 @@
     font-weight: normal;
   }
 
+  h4 {
+    padding-top: 45px;
+    margin-top: 0;
+  }
+
   .gr-intro {
     max-width: 500px;
   }
@@ -315,6 +320,7 @@
       $('#georiot_api_key').val('');
       $('#georiot_api_secret').val('');
       $('#georiot_tsid').val('');
+      $('#georiot_domain').val('');
       $('#gr-step-2').removeClass('gr-step-complete');
       $('#connect-gr-api-form').removeClass('gr-status-loaded-tsid');
       $('#gr-step-3').removeClass('gr-step-complete');
@@ -541,7 +547,6 @@
 
             } else {
               /* Preserve the previously selected domain */
-              existingDomain = $('#georiot_domain').val();
               $("#georiot_domain_select option[value='"+existingDomain+"']").attr('selected', 'selected');
             }
 
@@ -619,6 +624,12 @@
       $('#georiot_tsid').val(newgroup);
     });
 
+    /* Domain Selection */
+    $( "#georiot_domain_select" ).change(function() {
+      newgroup = $(this).val();
+      $('#georiot_domain').val(newgroup);
+    });
+
   });
 
 </script>
@@ -666,7 +677,8 @@
         1
       </div>
       <div class="gr-step-info">
-        <strong>Improve sales and user experience:</strong> Your readers will now get to the right stores and products for their regions.
+        <strong>Improve sales and user experience</strong> <br>
+        Your readers will now get to the right stores and products for their regions.
       </div>
     </div>
 
@@ -676,10 +688,9 @@
         2
       </div>
       <div class="gr-step-info">
-          <strong>Optional: Connect to your Geniuslink Account</strong> <br>
-        <a target="_blank" href="http://social.geni.us/ALEGenius">Create a Geniuslink account</a> and enter your API
-        keys here to enjoy click reporting and custom domains.
-          <a href="#faq-apikeys">Learn how...</a>
+        <strong>Enhance with your Geniuslink Account</strong> (Optional) <br>
+        Enjoy click reporting and custom domains by connecting a Geniuslink account.
+        <a href="#faq-apikeys">Learn how...</a>
 
           <br><br>
         API Key: <br>
@@ -722,7 +733,8 @@
         3
       </div>
       <div class="gr-step-info">
-        <strong>Optional: Monetize your traffic:</strong> Earn commissions for every sale by <a target="_blank" href="http://my.geni.us/Affiliate">connecting affiliate programs</a>.
+        <strong>Monetize your traffic </strong>(Optional)
+        <br>Earn commissions for every sale by <a target="_blank" href="http://my.geni.us/Affiliate">connecting your PHG affiliate program</a>.
         <br>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>

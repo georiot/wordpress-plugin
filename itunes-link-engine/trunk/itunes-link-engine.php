@@ -71,19 +71,26 @@ function georiot_ile_admin_notice(){
 
 // BEGIN FUNCTION TO SHOW GEORIOT JS
 
-function georiot_ile() {
+function georiot_ile()
+{
   if (get_option('georiot_tsid') == '') {
     $gr_use_tsid = 6218;
   } else {
     $gr_use_tsid = get_option('georiot_tsid');
   }
+
+  if (get_option('georiot_domain') != 'geni.us') {
+    $gr_use_domain = ", 'http://" . get_option("georiot_domain") . "'";
+  } else {
+    $gr_use_domain = '';
+  }
 ?>
+
 
   <script src="//cdn.georiot.com/snippet.js"></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
-      var tsid = <?php echo $gr_use_tsid ?>;
-      Georiot.itunes.convertToGeoRiotLinks(tsid);
+      Georiot.itunes.convertToGeoRiotLinks(<?php echo $gr_use_tsid . ', false' .  $gr_use_domain ?>);
     });
   </script>
 <?php

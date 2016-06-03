@@ -81,6 +81,12 @@ function georiot_autolinker() {
     $gr_use_tsid = get_option('georiot_tsid');
   }
 
+  if (get_option('georiot_domain') != 'geni.us') {
+    $gr_use_domain = ", 'http://" . get_option("georiot_domain")."'" ;
+  } else {
+    $gr_use_domain = '';
+  }
+
   $preserve_tracking = 'false';
 
   if (get_option('georiot_preserve_tracking') == 'yes') {
@@ -92,8 +98,7 @@ function georiot_autolinker() {
   <script src="//cdn.georiot.com/snippet.js"></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
-      var tsid = <?php echo $gr_use_tsid ?>;
-      Georiot.amazon.convertToGeoRiotLinks(tsid, <?php print($preserve_tracking)?>);
+      Georiot.amazon.convertToGeoRiotLinks(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking)?><?php print($gr_use_domain) ?>);
     });
   </script>
 <?php

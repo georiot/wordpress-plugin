@@ -494,7 +494,6 @@
             var gr_default_domain = 'geni.us';
             existingDomain = $('#georiot_domain').val(); /* This is the previous selected domain in the <select> */
             if (existingDomain === '') {
-              console.log('twas empty');
               existingDomain = gr_default_domain;
             }
             sameAccount = false;
