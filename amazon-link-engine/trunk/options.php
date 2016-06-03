@@ -278,6 +278,18 @@
     margin: 0;
   }
 
+  #gr-disconnect-api {
+    font-size: 12px;
+    background: transparent;
+    border: none;
+    outline: none;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #bbb;
+  }
+  #gr-disconnect-api:hover,#gr-disconnect-api:active  {
+    color: #666;
+  }
 
   #georiot_tsid_select {
     min-width: 125px;
@@ -317,18 +329,26 @@
 
     /*Clear API fields and TSID if user clicks disconnect button */
     $('#gr-disconnect-api').click( function() {
-      $('#georiot_api_key').val('');
-      $('#georiot_api_secret').val('');
-      $('#georiot_tsid').val('');
-      $('#georiot_domain').val('');
-      $('#gr-step-2').removeClass('gr-step-complete');
-      $('#connect-gr-api-form').removeClass('gr-status-loaded-tsid');
-      $('#gr-step-3').removeClass('gr-step-complete');
-      $('#connect-gr-api-form').removeClass('gr-status-loaded-affiliates');
-
-      alert('Your API values have been cleared. To finish, remember to click "Save Changes".');
-
+      grDisconnect();
     });
+
+    function grDisconnect() {
+      var grConfirmDisconnect = confirm("Are you sure you want to disconnect your Geniuslink account?");
+
+      if (grConfirmDisconnect == true) {
+        $('#georiot_api_key').val('');
+        $('#georiot_api_secret').val('');
+        $('#georiot_tsid').val('');
+        $('#georiot_domain').val('');
+        $('#gr-step-2').removeClass('gr-step-complete');
+        $('#connect-gr-api-form').removeClass('gr-status-loaded-tsid');
+        $('#gr-step-3').removeClass('gr-step-complete');
+        $('#connect-gr-api-form').removeClass('gr-status-loaded-affiliates');
+        $('#connect-gr-api-form').submit();
+      } else {
+        return;
+      }
+    }
 
     /*Detect paste into the api key or secret fields. */
     $('#georiot_api_key, #georiot_api_secret').on('paste', function () {
@@ -710,16 +730,15 @@
         </div>
         <div class="gr-tsid-loaded">
           <span class="gr-connected-success">Connected!</span>
+          <span class="gr-disconnect">
+            <button type='button' id="gr-disconnect-api">Disconnect my account</button>
+          </span>
           <br><br>
           Use Link Group:<br>
           <select name="georiot_tsid_select" id="georiot_tsid_select"><option>--Error getting groups--</option></select>
           <br><br>
           Use Domain:<br>
           <select name="georiot_domain_select" id="georiot_domain_select"><option>--Error getting domains--</option></select>
-          <br><br>
-          <span class="gr-disconnect">
-            <button type='button' id="gr-disconnect-api">Disconnect my account</button>
-          </span>
           <br><br>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
