@@ -718,8 +718,9 @@
           <select name="georiot_domain_select" id="georiot_domain_select"><option>--Error getting domains--</option></select>
           <br><br>
           <span class="gr-disconnect">
-            <button id="gr-disconnect-api">Disconnect my account</button>
+            <button type='button' id="gr-disconnect-api">Disconnect my account</button>
           </span>
+          <br><br>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
           <button class="gr-resubmit">Re-submit</button>
