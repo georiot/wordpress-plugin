@@ -28,7 +28,7 @@
   .gr-status-loading-tsid .gr-tsid-spinner {
     display: block;
   }
-  .gr-status-loaded-tsid .gr-tsid-loaded {
+  .gr-status-loaded-tsid.gr-status-loaded-domain .gr-tsid-loaded {
     display: block;
   }
   .gr-tsid-loaded {
@@ -678,7 +678,7 @@
       </div>
       <div class="gr-step-info">
         <strong>Improve sales and user experience</strong> <br>
-        Your readers will now get to the right stores and products for their regions.
+        Done! Your readers will now get to the right stores and products for their regions.
       </div>
     </div>
 
@@ -709,10 +709,7 @@
           Connecting...
         </div>
         <div class="gr-tsid-loaded">
-          <span class="gr-connected-success">Connected!</span> &nbsp;
-          <span class="gr-disconnect gr-tiny">
-            &nbsp; <a href="#" id="gr-disconnect-api">Disconnect</a>
-          </span>
+          <span class="gr-connected-success">Connected!</span>
           <br><br>
           Use Link Group:<br>
           <select name="georiot_tsid_select" id="georiot_tsid_select"><option>--Error getting groups--</option></select>
@@ -720,10 +717,14 @@
           Use Domain:<br>
           <select name="georiot_domain_select" id="georiot_domain_select"><option>--Error getting domains--</option></select>
           <br><br>
+          <span class="gr-disconnect">
+            <button id="gr-disconnect-api">Disconnect my account</button>
+          </span>
         </div>
         <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
           <button class="gr-resubmit">Re-submit</button>
         </div>
+
       </div>
     </div>
 
