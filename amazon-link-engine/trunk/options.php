@@ -756,7 +756,7 @@
       </div>
       <div class="gr-step-info">
         <strong>Monetize your traffic </strong>(Optional)
-        <br>Earn commissions for every sale by <a target="_blank" href="http://my.geni.us/Affiliate">connecting your PHG affiliate program</a>.
+        <br>Earn commissions for every sale by <a target="_blank" href="http://my.geni.us/Affiliate">connecting your Amazon Associates program</a>.
         <br>
 
         <span id="gr-affiliates-loaded"><span id="gr-aff-enrolled">0</span> of <span id="gr-aff-available">0</span>

@@ -79,7 +79,7 @@ function genius_ile()
     $gr_use_tsid = get_option('genius_ile_tsid');
   }
 
-  if (get_option('genius_ile_domain') != 'geni.us' && get_option('genius_ale_domain') != '') {
+  if (get_option('genius_ile_domain') != 'geni.us' && get_option('genius_ile_domain') != '') {
     $gr_use_domain = ", 'http://" . get_option("genius_ile_domain") . "'";
   } else {
     $gr_use_domain = '';
