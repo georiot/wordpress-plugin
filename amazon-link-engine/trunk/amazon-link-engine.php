@@ -10,7 +10,7 @@ Author URI: http://geni.us
 
 //Change this if you need to run a migration (eg change setting names, dbm etc). See genius_update_db_check()
 global $genius_ale_db_version;
-$genius_ale_db_version = 1.1;
+$genius_ale_db_version = '1.1';
 
 if (!defined('WP_CONTENT_URL'))
       define('WP_CONTENT_URL', get_option('siteurl').'/wp-content');
@@ -25,6 +25,8 @@ if (!defined('WP_PLUGIN_DIR'))
 // OPTIONS
 // Will set to old values if the new genius ones don't already exist in the db, and old georiot ones are available
 function activate_genius_autolinker() {
+  global $genius_ale_db_version;
+
   add_option('genius_ale_domain', '');
   add_option('genius_ale_tsid', '');
   add_option('genius_ale_api_key', '');
@@ -57,11 +59,14 @@ function admin_init_genius_autolinker() {
 
 //Backwards compatibility: Migrate old vals to new ones
 function genius_migrate_1() {
+  global $genius_ale_db_version;
+
   update_option('genius_ale_tsid', get_option('georiot_tsid'));
   update_option('genius_ale_api_key', get_option('georiot_api_key'));
   update_option('genius_ale_api_secret', get_option('georiot_api_secret'));
   update_option('genius_ale_api_remind', get_option('georiot_api_remind'));
   update_option('genius_ale_preserve_tracking', get_option('georiot_preserve_tracking'));
+  update_option('genius_ale_db_version', $genius_ale_db_version);
 
   //Delete the obsolete values
   delete_option('georiot_tsid');
@@ -146,13 +151,18 @@ if (!is_admin()) {
 //Update the plugin if needed
 function genius_update_db_check() {
   global $genius_ale_db_version;
-  if ( get_site_option( 'genius_ale_db_version' ) != $genius_ale_db_version ) {
+  $current_ale_db_version = get_option('genius_ale_db_version');
+
+  if ( $current_ale_db_version != $genius_ale_db_version ) {
+
     //Check if they are on the oldest version of the genius plugin db
-    if( !get_site_option( 'genius_ale_db_version' )) {
+    if( !$current_ale_db_version ) {
       genius_migrate_1();
     }
   }
 }
+
+
 add_action( 'plugins_loaded', 'genius_update_db_check' );
 
 
