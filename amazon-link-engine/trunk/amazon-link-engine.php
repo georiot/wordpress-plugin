@@ -3,10 +3,11 @@
 Plugin Name: Amazon Link Engine
 Plugin URI:
 Description: Automatically optimizes Amazon product links for your global audience and allows you to earn commissions on sales.
-Version: 1.2.0
+Version: 1.2.1
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
+$genius_db_version = 1.1;
 
 if (!defined('WP_CONTENT_URL'))
       define('WP_CONTENT_URL', get_option('siteurl').'/wp-content');
@@ -19,7 +20,7 @@ if (!defined('WP_PLUGIN_DIR'))
 
 
 // OPTIONS
-
+// Will set to old values if the new genius ones don't already exist in the db, and old georiot ones are available
 function activate_genius_autolinker() {
   add_option('genius_ale_domain', '');
   add_option('genius_ale_tsid', '');
@@ -27,7 +28,28 @@ function activate_genius_autolinker() {
   add_option('genius_ale_api_secret', '');
   add_option('genius_ale_api_remind', 'yes');
   add_option('genius_ale_preserve_tracking', 'no');
+  add_option('genius_db_version', 'no');
 }
+
+
+//Backwards compatibility: Migrate old vals to new ones
+
+function genius_migrate_1() {
+  update_option('genius_ale_tsid', get_option('georiot_tsid'));
+  update_option('genius_ale_api_key', get_option('georiot_api_key'));
+  update_option('genius_ale_api_secret', get_option('georiot_api_secret'));
+  update_option('genius_ale_api_remind', get_option('georiot_api_remind'));
+  update_option('genius_ale_preserve_tracking', get_option('georiot_preserve_tracking'));
+
+  //Delete the obsolete values
+  delete_option('georiot_tsid');
+  delete_option('georiot_api_key');
+  delete_option('georiot_api_secret');
+  delete_option('georiot_api_remind');
+  delete_option('georiot_preserve_tracking');
+}
+
+
 
 function deactivate_genius_autolinker() {
   delete_option('genius_ale_domain');
@@ -117,6 +139,19 @@ if (is_admin()) {
 if (!is_admin()) {
   add_action('wp_head', 'genius_autolinker');
 }
+
+
+//Update the plugin if needed
+function genius_update_db_check() {
+  global $genius_db_version;
+  if ( get_site_option( 'genius_db_version' ) != $genius_db_version ) {
+    //Check if they are on the oldest version of the genius plugin db
+    if( !get_site_option( 'genius_db_version' )) {
+      genius_migrate_1();
+    }
+  }
+}
+add_action( 'plugins_loaded', 'genius_update_db_check' );
 
 
 // SHOW SETTINGS OPTION IN THE PLUGIN PAGE
