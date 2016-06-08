@@ -764,6 +764,7 @@
     <br><br>
     <input size="10" type="hidden" name="genius_ile_tsid" id="genius_ile_tsid" value="<?php echo get_option('genius_ile_tsid'); ?>" />
     <input size="100" type="hidden" name="genius_ile_domain" id="genius_ile_domain" value="<?php echo get_option('genius_ile_domain'); ?>" />
+    <input size="10" type="hidden" name="genius_ile_db_version" id="genius_ile_db_version" value="<?php echo get_option('genius_ile_db_version'); ?>" />
     <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
   </form>
 

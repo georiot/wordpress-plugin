@@ -3,12 +3,12 @@
 Plugin Name: Amazon Link Engine
 Plugin URI:
 Description: Automatically optimizes Amazon product links for your global audience and allows you to earn commissions on sales.
-Version: 1.2.1
+Version: 1.2.2
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
 
-//Change this if you need to run a migration (eg change setting names, dbm etc). See genius_update_db_check()
+//Change this if you need to run a migration (eg change setting names, dbm etc). See genius_ale_update_db_check()
 global $genius_ale_db_version;
 $genius_ale_db_version = '1.1';
 
@@ -58,7 +58,7 @@ function admin_init_genius_autolinker() {
 
 
 //Backwards compatibility: Migrate old vals to new ones
-function genius_migrate_1() {
+function genius_ale_migrate_1() {
   global $genius_ale_db_version;
 
   update_option('genius_ale_tsid', get_option('georiot_tsid'));
@@ -68,8 +68,8 @@ function genius_migrate_1() {
   update_option('genius_ale_preserve_tracking', get_option('georiot_preserve_tracking'));
   update_option('genius_ale_db_version', $genius_ale_db_version);
 
-  //Delete the obsolete values, only if the iTunes plugin isn't installed
-  if( !function_exists( 'genius_ile' ) ) {
+  //Delete the obsolete values, only if the old iTunes plugin isn't installed
+  if( !function_exists( 'georiot_ile' ) ) {
     delete_option('georiot_tsid');
     delete_option('georiot_api_key');
     delete_option('georiot_api_secret');
@@ -104,7 +104,7 @@ function genius_admin_notice(){
 
 // BEGIN FUNCTION TO SHOW GENIUS JS
 
-function genius_autolinker() {
+function genius_ale() {
 
   if (get_option('genius_ale_tsid') == '') {
     $gr_use_tsid = 4632;
@@ -146,12 +146,12 @@ if (is_admin()) {
 }
 
 if (!is_admin()) {
-  add_action('wp_head', 'genius_autolinker');
+  add_action('wp_head', 'genius_ale');
 }
 
 
 //Update the plugin if needed
-function genius_update_db_check() {
+function genius_ale_update_db_check() {
   global $genius_ale_db_version;
   $current_ale_db_version = get_option('genius_ale_db_version');
 
@@ -159,13 +159,13 @@ function genius_update_db_check() {
 
     //Check if they are on the oldest version of the genius plugin db
     if( !$current_ale_db_version ) {
-      genius_migrate_1();
+      genius_ale_migrate_1();
     }
   }
 }
 
 
-add_action( 'plugins_loaded', 'genius_update_db_check' );
+add_action( 'plugins_loaded', 'genius_ale_update_db_check' );
 
 
 // SHOW SETTINGS OPTION IN THE PLUGIN PAGE

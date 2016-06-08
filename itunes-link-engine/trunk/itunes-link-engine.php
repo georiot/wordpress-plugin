@@ -3,10 +3,14 @@
 Plugin Name: iTunes Link Engine
 Plugin URI:
 Description: Automatically optimizes iTunes product links for your global audience and allows you to earn commissions on sales.
-Version: 1.2.1
+Version: 1.2.2
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
+//Change this if you need to run a migration (eg change setting names, dbm etc). See genius_ile_update_db_check()
+global $genius_ile_db_version;
+$genius_ile_db_version = '1.1';
+
 
 if (!defined('WP_CONTENT_URL'))
       define('WP_CONTENT_URL', get_option('siteurl').'/wp-content');
@@ -21,28 +25,53 @@ if (!defined('WP_PLUGIN_DIR'))
 // OPTIONS
 
 function activate_genius_ile() {
-  add_option('georiot_domain', '');
-  add_option('georiot_tsid', '');
-  add_option('georiot_api_key', '');
-  add_option('georiot_api_secret', '');
-  add_option('georiot_api_remind', 'yes');
+  global $genius_ile_db_version;
+
+  add_option('genius_ile_domain', '');
+  add_option('genius_ile_tsid', '');
+  add_option('genius_ile_api_key', '');
+  add_option('genius_ile_api_secret', '');
+  add_option('genius_ile_api_remind', 'yes');
+  add_option('genius_ile_db_version', $genius_ile_db_version);
 }
 
 function deactivate_genius_ile() {
-  delete_option('georiot_domain');
-  delete_option('georiot_tsid');
-  delete_option('georiot_domain');
-  delete_option('georiot_api_key');
-  delete_option('georiot_api_secret');
-  delete_option('georiot_api_remind');
+  delete_option('genius_ile_domain');
+  delete_option('genius_ile_tsid');
+  delete_option('genius_ile_api_key');
+  delete_option('genius_ile_api_secret');
+  delete_option('genius_ile_api_remind');
+  delete_option('genius_ile_db_version');
 }
 
 function admin_init_genius_ile() {
-  register_setting('itunes-link-engine', 'georiot_domain');
-  register_setting('itunes-link-engine', 'georiot_tsid');
-  register_setting('itunes-link-engine', 'georiot_api_key');
-  register_setting('itunes-link-engine', 'georiot_api_secret');
-  register_setting('itunes-link-engine', 'georiot_api_remind');
+  register_setting('itunes-link-engine', 'genius_ile_domain');
+  register_setting('itunes-link-engine', 'genius_ile_tsid');
+  register_setting('itunes-link-engine', 'genius_ile_api_key');
+  register_setting('itunes-link-engine', 'genius_ile_api_secret');
+  register_setting('itunes-link-engine', 'genius_ile_api_remind');
+  register_setting('itunes-link-engine', 'genius_ile_db_version');
+}
+
+
+//Backwards compatibility: Migrate old vals to new ones
+function genius_ile_migrate_1() {
+  global $genius_ile_db_version;
+
+  update_option('genius_ile_tsid', get_option('georiot_tsid'));
+  update_option('genius_ile_api_key', get_option('georiot_api_key'));
+  update_option('genius_ile_api_secret', get_option('georiot_api_secret'));
+  update_option('genius_ile_api_remind', get_option('georiot_api_remind'));
+  update_option('genius_ile_db_version', $genius_ile_db_version);
+
+  //Delete the obsolete values, only if the old Amazon plugin isn't installed
+  if( !function_exists( 'georiot_autolinker' ) ) {
+    delete_option('georiot_tsid');
+    delete_option('georiot_api_key');
+    delete_option('georiot_api_secret');
+    delete_option('georiot_api_remind');
+    delete_option('georiot_preserve_tracking');
+  }
 }
 
 
@@ -59,7 +88,7 @@ function options_page_genius_ile() {
 // Show notice in dashboard home page and plugin page if API isn't connected
 function genius_ile_admin_notice(){
   if (strpos($_SERVER['PHP_SELF'],'wp-admin/index.php') !== false  || strpos($_SERVER['PHP_SELF'],'wp-admin/plugins.php') !== false ) {
-    if (get_option('georiot_api_remind') == 'yes' && get_option('georiot_tsid') == '') {
+    if (get_option('genius_ile_api_remind') == 'yes' && get_option('genius_ile_tsid') == '') {
       ?>
       <div class="update-nag">
         <p><?php _e('<strong>Your iTunes Link Engine plugin is installed and working.</strong> <br>To use reporting and commissions, <a href="'.admin_url().'options-general.php?page=itunes-link-engine">enter your GeniusLink API values.</a>. Or, you can <a href="'.admin_url().'options-general.php?page=itunes-link-engine">disable this reminder.</a>'); ?></p>
@@ -73,14 +102,14 @@ function genius_ile_admin_notice(){
 
 function genius_ile()
 {
-  if (get_option('georiot_tsid') == '') {
+  if (get_option('genius_ile_tsid') == '') {
     $gr_use_tsid = 6218;
   } else {
-    $gr_use_tsid = get_option('georiot_tsid');
+    $gr_use_tsid = get_option('genius_ile_tsid');
   }
 
-  if (get_option('georiot_domain') != 'geni.us' && get_option('georiot_domain') != '') {
-    $gr_use_domain = ", 'http://" . get_option("georiot_domain") . "'";
+  if (get_option('genius_ile_domain') != 'geni.us' && get_option('genius_ile_domain') != '') {
+    $gr_use_domain = ", 'http://" . get_option("genius_ile_domain") . "'";
   } else {
     $gr_use_domain = '';
   }
@@ -109,6 +138,23 @@ if (is_admin()) {
 if (!is_admin()) {
   add_action('wp_head', 'genius_ile');
 }
+
+
+//Update the plugin if needed
+function genius_ile_update_db_check() {
+  global $genius_ile_db_version;
+  $current_ile_db_version = get_option('genius_ile_db_version');
+
+  if ( $current_ile_db_version != $genius_ile_db_version ) {
+
+    //Check if they are on the oldest version of the genius plugin db
+    if( !$current_ile_db_version ) {
+      genius_ile_migrate_1();
+    }
+  }
+}
+
+add_action( 'plugins_loaded', 'genius_ile_update_db_check' );
 
 
 // SHOW SETTINGS OPTION IN THE PLUGIN PAGE
