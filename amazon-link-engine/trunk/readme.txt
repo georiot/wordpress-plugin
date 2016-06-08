@@ -209,7 +209,7 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 = 1.1.9 =
 * Tested up to 4.5.  Updated unclear descriptions.
 
-= 1.2.0 =
+= 1.2.1 =
 * Support custom domains
 * Allow this plugin to have separate settings form iTunes Link Engine if it is also installed.
 * Other minor improvements to UI.
