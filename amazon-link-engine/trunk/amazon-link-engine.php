@@ -68,12 +68,14 @@ function genius_migrate_1() {
   update_option('genius_ale_preserve_tracking', get_option('georiot_preserve_tracking'));
   update_option('genius_ale_db_version', $genius_ale_db_version);
 
-  //Delete the obsolete values
-  delete_option('georiot_tsid');
-  delete_option('georiot_api_key');
-  delete_option('georiot_api_secret');
-  delete_option('georiot_api_remind');
-  delete_option('georiot_preserve_tracking');
+  //Delete the obsolete values, only if the iTunes plugin isn't installed
+  if( !function_exists( 'genius_ile' ) ) {
+    delete_option('georiot_tsid');
+    delete_option('georiot_api_key');
+    delete_option('georiot_api_secret');
+    delete_option('georiot_api_remind');
+    delete_option('georiot_preserve_tracking');
+  }
 }
 
 

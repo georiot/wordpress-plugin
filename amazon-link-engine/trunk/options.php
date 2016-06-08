@@ -662,7 +662,6 @@
   <p class="gr-intro">This plugin has added JavaScript that converts all Amazon product
     URLs on your site to global-friendly Geniuslink links. <a href="#faq-whatisgeoriot">Learn more...</a>
   </p>
-  Db version: <?php print( get_option('genius_ale_db_version') ); ?>
 
   <h3>Get the most from this plugin</h3>
 
