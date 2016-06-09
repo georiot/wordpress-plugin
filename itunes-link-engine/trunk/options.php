@@ -438,6 +438,15 @@
             /* Initial default value: */
             var gr_low_tsid = 999999999;
 
+
+            /*  Sort the JSON data by Id, ascending */
+            prop = 'Name'; /* Sort by this key in Groups  */
+            grGroups = grGroups.sort(function(a, b) {
+              return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+              /* Descending: return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0); */
+            });
+
+
             /* Iterate over each group to find the "default" (lowest ID), and populate the select option
              First, clear out the select field first in case it already has options
              */
