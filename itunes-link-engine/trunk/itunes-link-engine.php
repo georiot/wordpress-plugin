@@ -116,7 +116,7 @@ function genius_ile()
 ?>
 
 
-  <script src="//cdn.georiot.com/snippet.js"></script>
+  <script src="//cdn.georiot.com/snippet.js" defer></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
       Georiot.itunes.convertToGeoRiotLinks(<?php echo $gr_use_tsid . ', false' .  $gr_use_domain ?>);
