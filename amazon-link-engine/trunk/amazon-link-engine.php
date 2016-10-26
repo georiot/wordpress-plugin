@@ -32,7 +32,7 @@ function activate_genius_autolinker() {
   add_option('genius_ale_api_key', '');
   add_option('genius_ale_api_secret', '');
   add_option('genius_ale_api_remind', 'yes');
-  add_option('genius_ale_preserve_tracking', 'no');
+  add_option('genius_ale_preserve_tracking', 'yes');
   add_option('genius_ale_db_version', $genius_ale_db_version);
 }
 
