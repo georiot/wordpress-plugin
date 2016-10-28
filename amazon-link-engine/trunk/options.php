@@ -823,7 +823,7 @@
     </p>
 
     <h4 id="faq-account-optional">Do I need a Geniuslink Account to use this plugin?</h4>
-    <p><strong>No,</strong> you do NOT need a Geniuslink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to add your Associates IDs, you must have a Geniuslink account. By default, Geniuslink’s Associates IDs will be used until you have connected your account, and added your own via the Geniuslink Dashboard.
+    <p><strong>No,</strong> you do NOT need a Geniuslink account to use the Amazon Link Engine plugin.  As soon as you install and activate the free plugin, all of your links will be automatically localized, and your customers will be routed to the product in their local storefront.  However, if you want to earn international affiliate commissions, you must have a Geniuslink account. By default, Geniuslink’s Associates IDs will be used until you have connected your account, and added your own via the Geniuslink Dashboard.
     </p>
 
     <h4 id="faq-apikeys">How do I get my API keys?</h4>
@@ -851,7 +851,7 @@
     <ol>
       <li>Add your Amazon Affiliate parameters to your Geniuslink dashboard.  Instructions on how to do this can be found
         <a target="_blank" href="http://help.geni.us/support/solutions/articles/3000034942">here</a>.
-      <br><strong>Note:</strong> If you’ve already done this within your existing Geniuslink account, you do not need to add your parameters again.
+        <br><strong>Note:</strong> If you’ve already done this within your existing Geniuslink account, you do not need to add your parameters again.
       </li>
       <li> You’re all set!  You’ll start earning international commissions from anything purchased in Amazon’s international storefronts.</li>
     </ol>
@@ -860,10 +860,10 @@
     <h4 id="faq-pay">Do I have to pay for Geniuslink?</h4>
     <p>If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
     </p>
-    <p>However, if you would like access to advanced reporting features and be able to affiliate all of your links, you will need to
+    <p>However, if you would like access to advanced reporting features and be able to earn international affiliate commissions, you will need to
       <a target="_blank" href="http://social.geni.us/ALEGenius">sign up for a Geniuslink account</a>. Learn more about our [fair and transparent pricing](http://social.geni.us/ALEPricing).
     </p>
-    <p><strong>Please note: By default, Geniuslink's affiliate parameters will be used until
+    <p><strong>Please note: By default, Geniuslink's international affiliate parameters will be used until
         you have added your own via the Geniuslink dashboard.</strong>
       Please <a href="mailto:hi@geni.us">contact Geniuslink</a> if you have any questions.
     </p>
@@ -876,17 +876,16 @@
     </p>
 
     <h4 id="faq-honor-tracking">Will the ALE honor existing Associate IDs?</h4>
-    <p>Yes. To honor existing Associates IDs, simply select the “Honor Existing Associate IDs”
-      checkbox in Amazon Link Engine settings  under "Advanced Settings".
+    <p>Yes. By default, the ALE will honor any existing Associates IDs that are already added to the link.
     </p>
-    <p>This is great for blogs that have multiple editors with multiple Amazon Associates
+    <p>This will ensure that you still earn the affiliate commissions you deserve on your existing affiliate links within your site.
+      In addition, this is great for blogs that have multiple editors with multiple Amazon Associates
       IDs to keep track of clicks, commissions, etc. per editor. By selecting this option the ALE
       will honor any existing Associates IDs already within links on the site, ensuring those
       editors continue to get the credit they deserve for helping you earn those affiliate commissions.
     </p>
-    <p>Please note: By default the plugin will overwrite any IDs within your site with the
-      ones you’ve added in your GeoRiot account. You must select the “Honor Existing Associate
-      IDs” checkbox in order to honor existing IDs.
+    <p>If you would like to toggle this on or off, simply uncheck the “Honor Existing Associate IDs”
+      checkbox in the Amazon Link Engine settings under "Advanced Settings".
     </p>
   </div>
 </div>
