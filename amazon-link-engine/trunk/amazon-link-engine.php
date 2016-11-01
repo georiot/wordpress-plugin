@@ -3,7 +3,7 @@
 Plugin Name: Amazon Link Engine
 Plugin URI:
 Description: Automatically optimizes Amazon product links for your global audience and allows you to earn commissions on sales.
-Version: 1.2.3
+Version: 1.2.4
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
@@ -95,7 +95,8 @@ function genius_admin_notice(){
     if (get_option('genius_ale_api_remind') == 'yes' && get_option('genius_ale_tsid') == '') {
       ?>
       <div class="update-nag">
-        <p><?php _e('<strong>Your Amazon Link Engine plugin is installed and working.</strong> <br>To use reporting and commissions, <a href="'.admin_url().'options-general.php?page=amazon-link-engine">enter your GeniusLink API values.</a>. Or, you can <a href="'.admin_url().'options-general.php?page=amazon-link-engine">disable this reminder.</a>'); ?></p>
+        <p><?php _e('<strong>Amazon Link Engine is installed. Want to earn commissions and use reporting? </strong>
+        <br> Please <a href="'.admin_url().'options-general.php?page=amazon-link-engine">enter your GeniusLink API values</a>. Or, you can <a href="'.admin_url().'options-general.php?page=amazon-link-engine">disable this reminder</a>'); ?>.</p>
       </div>
     <?php
     }

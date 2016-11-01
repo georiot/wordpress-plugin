@@ -3,7 +3,7 @@
 Plugin Name: iTunes Link Engine
 Plugin URI:
 Description: Automatically optimizes iTunes product links for your global audience and allows you to earn commissions on sales.
-Version: 1.2.3
+Version: 1.2.4
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
@@ -91,7 +91,8 @@ function genius_ile_admin_notice(){
     if (get_option('genius_ile_api_remind') == 'yes' && get_option('genius_ile_tsid') == '') {
       ?>
       <div class="update-nag">
-        <p><?php _e('<strong>Your iTunes Link Engine plugin is installed and working.</strong> <br>To use reporting and commissions, <a href="'.admin_url().'options-general.php?page=itunes-link-engine">enter your GeniusLink API values.</a>. Or, you can <a href="'.admin_url().'options-general.php?page=itunes-link-engine">disable this reminder.</a>'); ?></p>
+        <p><?php _e('<strong>iTunes Link Engine is installed. Want to earn commissions and use reporting? </strong>
+        <br> Please <a href="'.admin_url().'options-general.php?page=itunes-link-engine">enter your GeniusLink API values</a>. Or, you can <a href="'.admin_url().'options-general.php?page=itunes-link-engine">disable this reminder</a>'); ?>.</p>
       </div>
     <?php
     }

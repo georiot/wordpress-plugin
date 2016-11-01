@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, geniuslink, ale, javascript 
 Requires at least: 2.7
 Tested up to: 4.7
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -219,3 +219,6 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 * Defer loading of snippet to improve page speed
 * Default to "Honor existing" to preserve links with existing affiliate tracking info
 * Tested up to 4.7
+
+= 1.2.4 =
+* Update top notice to be clearer about the need for API keys for commissions
