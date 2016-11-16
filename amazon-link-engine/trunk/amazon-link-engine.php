@@ -130,7 +130,9 @@ function genius_ale() {
   <script src="//cdn.georiot.com/snippet.js" defer></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
-      Georiot.amazon.convertToGeoRiotLinks(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking)?><?php print($gr_use_domain) ?>);
+      if (typeof Georiot !== 'undefined') {
+        Georiot.amazon.convertToGeoRiotLinks(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking)?><?php print($gr_use_domain) ?>);
+      };
     });
   </script>
 <?php
@@ -147,7 +149,7 @@ if (is_admin()) {
 }
 
 if (!is_admin()) {
-  add_action('wp_head', 'genius_ale');
+  add_action('wp_head', 'genius_ale', 9999);
 }
 
 
