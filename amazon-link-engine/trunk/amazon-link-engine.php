@@ -34,6 +34,8 @@ function activate_genius_autolinker() {
   add_option('genius_ale_api_remind', 'yes');
   add_option('genius_ale_preserve_tracking', 'yes');
   add_option('genius_ale_db_version', $genius_ale_db_version);
+  add_option('genius_ale_liking', '');
+  add_option('genius_ale_dismiss_feedback', '');
 }
 
 function deactivate_genius_autolinker() {
@@ -44,6 +46,8 @@ function deactivate_genius_autolinker() {
   delete_option('genius_ale_api_remind');
   delete_option('genius_ale_preserve_tracking');
   delete_option('genius_ale_db_version');
+  delete_option('genius_ale_liking');
+  delete_option('genius_ale_dismiss_feedback');
 }
 
 function admin_init_genius_autolinker() {
@@ -54,6 +58,8 @@ function admin_init_genius_autolinker() {
   register_setting('amazon-link-engine', 'genius_ale_api_remind');
   register_setting('amazon-link-engine', 'genius_ale_preserve_tracking');
   register_setting('amazon-link-engine', 'genius_ale_db_version');
+  register_setting('amazon-link-engine', 'genius_ale_liking');
+  register_setting('amazon-link-engine', 'genius_ale_dismiss_feedback');
 }
 
 
@@ -100,6 +106,93 @@ function genius_admin_notice(){
       </div>
     <?php
     }
+    else if (get_option("genius_ale_dismiss_feedback") !== 'yes') { //
+    ?>
+      <script>
+        jQuery(document).ready(function($) {
+
+          $( "#ale-feedback-like").click(function() {
+            console.log('asdasd');
+            $("#genius_ale_liking").val('yes');
+            $( "#ale-feedback-form" ).submit();
+          });
+          $("#ale-feedback-dislike").click(function() {
+            $("#genius_ale_liking").val('no');
+            $("#ale-feedback-form").submit();
+          });
+          $("#ale-feedback-dismiss").click(function() {
+            $("#genius_ale_dismiss_feedback").val('yes');
+            $("#ale-feedback-form").submit();
+          });
+
+        });
+      </script>
+
+
+      <div class="update-nag">
+        <?php
+        if (get_option("genius_ale_liking") == 'yes') {
+          ?>
+          Great to hear! Would you mind leaving a rating so other users can learn about this plugin?
+          <button type="button" id="ale-feedback-dismiss">Dismiss</button>
+          <?php
+        } else if (get_option("genius_ale_liking") == 'no'){
+          ?>
+          Sorry to hear that! We would love to hear form you and learn how we can do better.
+          <button type="button" id="ale-feedback-dismiss">Dismiss</button>
+          <?php
+        } else {
+        ?>
+          <p>
+            <strong>Thanks for using the Amazon Link Engine plugin. Are you happy with it?</strong>
+            <br>
+          </p>
+          <?php
+        } //End if they have neither liked nor disliked
+        ?>
+
+        <form id="ale-feedback-form" method="post" action="options.php">
+          <input type="hidden" name="option_page" value="amazon-link-engine"/>
+          <input type="hidden" name="action" value="update"/>
+          <input type="hidden" id="_wpnonce" name="_wpnonce" value="5c77377e61"/>
+          <input type="hidden" name="_wp_http_referer" value="/wp-admin/"/>
+
+          <?php // Kludge? Send all existing values, otherwise they revert to defaults ?>
+          <span style="display: none">
+          <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ale_api_key"
+                 name="genius_ale_api_key" value="<?php echo get_option('genius_ale_api_key'); ?>"/></td>
+            <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ale_api_secret"
+                   name="genius_ale_api_secret" value="<?php echo get_option('genius_ale_api_secret'); ?>"/>
+          <input type="checkbox" name="genius_ale_preserve_tracking"
+                 value="yes" <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />
+          <input type="checkbox" name="genius_ale_api_remind"
+                 value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
+          </span>
+          <input size="10" type="hidden" name="genius_ale_tsid" id="genius_ale_tsid"
+                 value="<?php echo get_option("genius_ale_tsid"); ?>"/>
+          <input size="100" type="hidden" name="genius_ale_domain" id="genius_ale_domain"
+                 value="<?php echo get_option("genius_ale_domain"); ?>"/>
+          <input size="10" type="hidden" name="genius_ale_db_version" id="genius_ale_db_version"
+                 value="<?php echo get_option("genius_ale_db_version"); ?>"/>
+          <?php // End Kludge ?>
+
+          <!-- Feedback values-->
+          <input size="10" type="" name="genius_ale_liking" id="genius_ale_liking"
+                 value="<?php echo get_option("genius_ale_liking"); ?>"/>
+          <input size="10" type="" name="genius_ale_dismiss_feedback" id="genius_ale_dismiss_feedback"
+                 value="<?php echo get_option("genius_ale_dismiss_feedback"); ?>"/>
+
+          <button type="button" id="ale-feedback-like">Good</button>
+          <button type="button" id="ale-feedback-dislike">Bad</button>
+          <button type="button" id="ale-feedback-dismiss">Dismiss</button>
+          <button>.</button>
+        </form>
+
+
+      </div>
+
+      <?php
+    } //End if they haven't dismissed the feedback prompt
   }
 }
 

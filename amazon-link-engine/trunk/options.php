@@ -793,6 +793,9 @@
       </div>
     </div>
 
+    <!-- Feedback values-->
+    <input size="10" type="hidden" name="genius_ale_liking" id="genius_ale_liking" value="<?php echo get_option("genius_ale_liking"); ?>" />
+    <input size="10" type="hidden" name="genius_ale_dismiss_feedback" id="genius_ale_dismiss_feedback" value="<?php echo get_option("genius_ale_dismiss_feedback"); ?>" />
 
     <br><br>
     <input size="10" type="hidden" name="genius_ale_tsid" id="genius_ale_tsid" value="<?php echo get_option('genius_ale_tsid'); ?>" />
