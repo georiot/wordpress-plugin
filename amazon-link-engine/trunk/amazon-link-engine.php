@@ -153,35 +153,23 @@ function genius_admin_notice(){
         ?>
 
         <form id="ale-feedback-form" method="post" action="options.php">
-          <input type="hidden" name="option_page" value="amazon-link-engine"/>
-          <input type="hidden" name="action" value="update"/>
-          <input type="hidden" id="_wpnonce" name="_wpnonce" value="5c77377e61"/>
-          <input type="hidden" name="_wp_http_referer" value="/wp-admin/"/>
+          <?php settings_fields('amazon-link-engine'); ?>
 
           <?php // Kludge? Send all existing values, otherwise they revert to defaults ?>
           <span style="display: none">
-          <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ale_api_key"
-                 name="genius_ale_api_key" value="<?php echo get_option('genius_ale_api_key'); ?>"/></td>
-            <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ale_api_secret"
-                   name="genius_ale_api_secret" value="<?php echo get_option('genius_ale_api_secret'); ?>"/>
-          <input type="checkbox" name="genius_ale_preserve_tracking"
-                 value="yes" <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />
-          <input type="checkbox" name="genius_ale_api_remind"
-                 value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
+          <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ale_api_key" name="genius_ale_api_key" value="<?php echo get_option('genius_ale_api_key'); ?>"/></td
+          <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ale_api_secret" name="genius_ale_api_secret" value="<?php echo get_option('genius_ale_api_secret'); ?>"/>
+          <input type="checkbox" name="genius_ale_preserve_tracking" value="yes" <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />
+          <input type="checkbox" name="genius_ale_api_remind" value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
           </span>
-          <input size="10" type="hidden" name="genius_ale_tsid" id="genius_ale_tsid"
-                 value="<?php echo get_option("genius_ale_tsid"); ?>"/>
-          <input size="100" type="hidden" name="genius_ale_domain" id="genius_ale_domain"
-                 value="<?php echo get_option("genius_ale_domain"); ?>"/>
-          <input size="10" type="hidden" name="genius_ale_db_version" id="genius_ale_db_version"
-                 value="<?php echo get_option("genius_ale_db_version"); ?>"/>
+          <input size="10" type="hidden" name="genius_ale_tsid" id="genius_ale_tsid" value="<?php echo get_option("genius_ale_tsid"); ?>"/>
+          <input size="100" type="hidden" name="genius_ale_domain" id="genius_ale_domain" value="<?php echo get_option("genius_ale_domain"); ?>"/>
+          <input size="10" type="hidden" name="genius_ale_db_version" id="genius_ale_db_version" value="<?php echo get_option("genius_ale_db_version"); ?>"/>
           <?php // End Kludge ?>
 
           <!-- Feedback values-->
-          <input size="10" type="" name="genius_ale_liking" id="genius_ale_liking"
-                 value="<?php echo get_option("genius_ale_liking"); ?>"/>
-          <input size="10" type="" name="genius_ale_dismiss_feedback" id="genius_ale_dismiss_feedback"
-                 value="<?php echo get_option("genius_ale_dismiss_feedback"); ?>"/>
+          <input size="10" type="" name="genius_ale_liking" id="genius_ale_liking" value="<?php echo get_option("genius_ale_liking"); ?>"/>
+          <input size="10" type="" name="genius_ale_dismiss_feedback" id="genius_ale_dismiss_feedback" value="<?php echo get_option("genius_ale_dismiss_feedback"); ?>"/>
 
           <button type="button" id="ale-feedback-like">Good</button>
           <button type="button" id="ale-feedback-dislike">Bad</button>
@@ -189,8 +177,7 @@ function genius_admin_notice(){
           <button>.</button>
           <br> <?php echo get_option('genius_ale_install_date') ?>
         </form>
-
-
+        
       </div>
 
       <?php
