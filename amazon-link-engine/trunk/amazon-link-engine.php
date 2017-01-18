@@ -153,6 +153,7 @@ function genius_admin_notice(){
       <style>
         .genius-feedback {
           position: relative;
+          max-width: 500px;
         }
 
         .genius-feedback.liking .ale-feedback-dismiss , .genius-feedback.disliking .ale-feedback-dismiss {
@@ -180,8 +181,6 @@ function genius_admin_notice(){
           bottom: 10px;
           right: 10px;
         }
-
-
       </style>
 
 
@@ -199,7 +198,7 @@ function genius_admin_notice(){
         } else if (get_option("genius_ale_liking") == 'no'){
           ?>
           <strong>Sorry to hear that!</strong>
-          <p>Sorry to hear that! Please let us know if there is anything we can help with or if you have any suggestions on how to improve Amazon Link Engine.</p>
+          <p>Please let us know if there is anything we can help with or if you have any suggestions on how to improve Amazon Link Engine.</p>
           <p style="text-align: center">
             <a target="_blank" href="mailto:help@geni.us">Write to help@geni.us</a> &nbsp; &nbsp;
             <a href="#" class="ale-feedback-dismiss">Not now</>
@@ -224,10 +223,11 @@ function genius_admin_notice(){
 
           <?php // Kludge? Send all existing values, otherwise they revert to defaults ?>
           <span style="display: none">
-          <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ale_api_key" name="genius_ale_api_key" value="<?php echo get_option('genius_ale_api_key'); ?>"/>
-          <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ale_api_secret" name="genius_ale_api_secret" value="<?php echo get_option('genius_ale_api_secret'); ?>"/>
-          <input type="checkbox" name="genius_ale_preserve_tracking" value="yes" <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />
-          <input type="checkbox" name="genius_ale_api_remind" value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
+            <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ale_api_key" name="genius_ale_api_key" value="<?php echo get_option('genius_ale_api_key'); ?>"/>
+            <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ale_api_secret" name="genius_ale_api_secret" value="<?php echo get_option('genius_ale_api_secret'); ?>"/>
+            <input type="checkbox" name="genius_ale_preserve_tracking" value="yes" <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />
+            <input type="checkbox" name="genius_ale_api_remind" value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
+            <p>Signup timestamp: <?php echo get_option('genius_ale_install_date') ?></p>
           </span>
           <input size="10" type="hidden" name="genius_ale_tsid" id="genius_ale_tsid" value="<?php echo get_option("genius_ale_tsid"); ?>"/>
           <input size="100" type="hidden" name="genius_ale_domain" id="genius_ale_domain" value="<?php echo get_option("genius_ale_domain"); ?>"/>

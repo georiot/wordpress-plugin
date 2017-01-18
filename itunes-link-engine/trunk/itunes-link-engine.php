@@ -150,6 +150,7 @@ function genius_ile_admin_notice(){
       <style>
         .genius-feedback {
           position: relative;
+          max-width: 500px;
         }
 
         .genius-feedback.liking .ile-feedback-dismiss , .genius-feedback.disliking .ile-feedback-dismiss {
@@ -196,7 +197,7 @@ function genius_ile_admin_notice(){
         } else if (get_option("genius_ile_liking") == 'no'){
           ?>
           <strong>Sorry to hear that!</strong>
-          <p>Sorry to hear that! Please let us know if there is anything we can help with or if you have any suggestions on how to improve Amazon Link Engine.</p>
+          <p>Please let us know if there is anything we can help with or if you have any suggestions on how to improve Amazon Link Engine.</p>
           <p style="text-align: center">
             <a target="_blank" href="mailto:help@geni.us">Write to help@geni.us</a> &nbsp; &nbsp;
             <a href="#" class="ile-feedback-dismiss">Not now</>
@@ -221,9 +222,10 @@ function genius_ile_admin_notice(){
 
           <?php // Kludge? Send all existing values, otherwise they revert to defaults ?>
           <span style="display: none">
-          <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ile_api_key" name="genius_ile_api_key" value="<?php echo get_option('genius_ile_api_key'); ?>"/>
-          <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ile_api_secret" name="genius_ile_api_secret" value="<?php echo get_option('genius_ile_api_secret'); ?>"/>
-          <input type="checkbox" name="genius_ile_api_remind" value="yes" <?php if (get_option('genius_ile_api_remind') == 'yes') print "checked" ?> />
+            <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ile_api_key" name="genius_ile_api_key" value="<?php echo get_option('genius_ile_api_key'); ?>"/>
+            <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ile_api_secret" name="genius_ile_api_secret" value="<?php echo get_option('genius_ile_api_secret'); ?>"/>
+            <input type="checkbox" name="genius_ile_api_remind" value="yes" <?php if (get_option('genius_ile_api_remind') == 'yes') print "checked" ?> />
+            <p>Signup timestamp: <?php echo get_option('genius_ile_install_date') ?></p>
           </span>
           <input size="10" type="hidden" name="genius_ile_tsid" id="genius_ile_tsid" value="<?php echo get_option("genius_ile_tsid"); ?>"/>
           <input size="100" type="hidden" name="genius_ile_domain" id="genius_ile_domain" value="<?php echo get_option("genius_ile_domain"); ?>"/>
