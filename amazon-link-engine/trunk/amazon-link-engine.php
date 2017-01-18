@@ -36,6 +36,7 @@ function activate_genius_autolinker() {
   add_option('genius_ale_db_version', $genius_ale_db_version);
   add_option('genius_ale_liking', '');
   add_option('genius_ale_dismiss_feedback', '');
+  add_option('genius_ale_install_date', time());
 }
 
 function deactivate_genius_autolinker() {
@@ -186,6 +187,7 @@ function genius_admin_notice(){
           <button type="button" id="ale-feedback-dislike">Bad</button>
           <button type="button" id="ale-feedback-dismiss">Dismiss</button>
           <button>.</button>
+          <br> <?php echo get_option('genius_ale_install_date') ?>
         </form>
 
 
