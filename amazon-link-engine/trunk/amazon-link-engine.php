@@ -103,6 +103,7 @@ function genius_admin_notice(){
   $date_diff = $now - get_option('genius_ale_install_date');
   $age_in_days = floor($date_diff / (60 * 60 * 24));
   $age_to_show_prompt = 0;
+  $gr_image_path = plugins_url().'/amazon-link-engine/img/';
 
   $form_class = '';
   if(get_option("genius_ale_liking") == 'yes') {
@@ -129,9 +130,8 @@ function genius_admin_notice(){
         jQuery(document).ready(function($) {
 
           $( ".ale-feedback-like").click(function() {
-            console.log('asdasd');
             $("#genius_ale_liking").val('yes');
-            $( "#ale-feedback-form" ).submit();
+            $("#ale-feedback-form" ).submit();
           });
           $(".ale-feedback-dislike").click(function() {
             $("#genius_ale_liking").val('no');
@@ -150,26 +150,68 @@ function genius_admin_notice(){
         });
       </script>
 
+      <style>
+        .genius-feedback {
+          position: relative;
+        }
 
-      <div class="update-nag <?php echo $form_class ?>">
+        .genius-feedback.liking .ale-feedback-dismiss , .genius-feedback.disliking .ale-feedback-dismiss {
+          position: static;
+        }
+
+        .genius-feedback button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+        }
+        .genius-feedback button:focus {
+          outline: none;
+        }
+
+        .ale-feedback-button {
+          width: 48px;
+          height: 48px;
+          margin-top: 15px;
+        }
+
+        .ale-feedback-dismiss {
+          display: inline-block;
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+        }
+
+
+      </style>
+
+
+      <div class="update-nag genius-feedback <?php echo $form_class ?>">
         <?php
         if (get_option("genius_ale_liking") == 'yes') {
           ?>
-          Great to hear! Would you mind leaving a rating so other users can learn about this plugin?
-          <button type="button" class="ale-feedback-dismiss">Dismiss</button>
+          <strong>Great to hear you like Amazon Link Engine!</strong>
+          <p>Would you mind helping us out by leaving a rating at Wordpress.org? Each review makes a huge difference.</p>
+          <p style="text-align: center">
+            <a target="_blank" href="https://wordpress.org/support/plugin/amazon-link-engine/reviews/">Sure, take me there!</a> &nbsp; &nbsp;
+            <a href="#" class="ale-feedback-dismiss">Not now</>
+          </p>
           <?php
         } else if (get_option("genius_ale_liking") == 'no'){
           ?>
-          Sorry to hear that! We would love to hear form you and learn how we can do better.
-          <button type="button" class="ale-feedback-dismiss">Dismiss</button>
+          <strong>Sorry to hear that!</strong>
+          <p>We would love to hear from you and learn how we can improve Amazon Link Engine.</p>
+          <p style="text-align: center">
+            <a target="_blank" href="mailto:help@geni.us">Write to help@geni.us</a> &nbsp; &nbsp;
+            <a href="#" class="ale-feedback-dismiss">Not now</>
+          </p>
           <?php
         } else {
         ?>
-          <p>
-            <strong>Thanks for using the Amazon Link Engine plugin. Are you happy with it?</strong>
+          <p style="text-align: center">
+            <strong>Thank you for using Amazon Link Engine.</strong> Would you recommend it?
             <br>
-            <button type="button" class="ale-feedback-like">Good</button>
-            <button type="button" class="ale-feedback-dislike">Bad</button>
+            <button type="button" class="ale-feedback-like ale-feedback-button"><img src="<?php print $gr_image_path ?>thumbup.png" /></button>
+            <button type="button" class="ale-feedback-dislike ale-feedback-button"><img src="<?php print $gr_image_path ?>thumbdown.png" /></button>
             <button type="button" class="ale-feedback-dismiss">Dismiss</button>
           </p>
           <?php
@@ -199,7 +241,7 @@ function genius_admin_notice(){
         </form>
 
       </div>
-      <a href="#" class="ale-feedback-reset">reset</a>
+      <a style="opacity: 0" href="#" class="ale-feedback-reset">reset</a>
 
       <?php
     } //End if they haven't dismissed the feedback prompt
