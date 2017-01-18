@@ -196,7 +196,7 @@ function genius_ile_admin_notice(){
         } else if (get_option("genius_ile_liking") == 'no'){
           ?>
           <strong>Sorry to hear that!</strong>
-          <p>We would love to hear from you and learn how we can improve iTunes Link Engine.</p>
+          <p>Sorry to hear that! Please let us know if there is anything we can help with or if you have any suggestions on how to improve Amazon Link Engine.</p>
           <p style="text-align: center">
             <a target="_blank" href="mailto:help@geni.us">Write to help@geni.us</a> &nbsp; &nbsp;
             <a href="#" class="ile-feedback-dismiss">Not now</>
@@ -205,9 +205,10 @@ function genius_ile_admin_notice(){
         } else {
         ?>
          <p style="text-align: center">
-            <strong>Thank you for using iTunes Link Engine.</strong> Would you recommend it?
+            <strong>Thank you for using iTunes Link Engine.</strong> How has your experience been so far?
             <br>
             <button type="button" class="ile-feedback-like ile-feedback-button"><img src="<?php print $gr_image_path ?>thumbup.png" /></button>
+            &nbsp;
             <button type="button" class="ile-feedback-dislike ile-feedback-button"><img src="<?php print $gr_image_path ?>thumbdown.png" /></button>
             <button type="button" class="ile-feedback-dismiss">Dismiss</button>
           </p>

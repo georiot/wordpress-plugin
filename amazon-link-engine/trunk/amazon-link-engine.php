@@ -199,7 +199,7 @@ function genius_admin_notice(){
         } else if (get_option("genius_ale_liking") == 'no'){
           ?>
           <strong>Sorry to hear that!</strong>
-          <p>We would love to hear from you and learn how we can improve Amazon Link Engine.</p>
+          <p>Sorry to hear that! Please let us know if there is anything we can help with or if you have any suggestions on how to improve Amazon Link Engine.</p>
           <p style="text-align: center">
             <a target="_blank" href="mailto:help@geni.us">Write to help@geni.us</a> &nbsp; &nbsp;
             <a href="#" class="ale-feedback-dismiss">Not now</>
@@ -208,9 +208,10 @@ function genius_admin_notice(){
         } else {
         ?>
           <p style="text-align: center">
-            <strong>Thank you for using Amazon Link Engine.</strong> Would you recommend it?
+            <strong>Thank you for using Amazon Link Engine.</strong> How has your experience been so far?
             <br>
             <button type="button" class="ale-feedback-like ale-feedback-button"><img src="<?php print $gr_image_path ?>thumbup.png" /></button>
+            &nbsp;
             <button type="button" class="ale-feedback-dislike ale-feedback-button"><img src="<?php print $gr_image_path ?>thumbdown.png" /></button>
             <button type="button" class="ale-feedback-dismiss">Dismiss</button>
           </p>
