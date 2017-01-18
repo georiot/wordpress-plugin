@@ -98,6 +98,20 @@ function options_page_genius_autolinker() {
 
 // Show notice in dashboard home page and plugin page if API isn't connected
 function genius_admin_notice(){
+
+  $now = time();
+  $date_diff = $now - get_option('genius_ale_install_date');
+  $age_in_days = floor($date_diff / (60 * 60 * 24));
+  $age_to_show_prompt = 0;
+
+  $form_class = '';
+  if(get_option("genius_ale_liking") == 'yes') {
+    $form_class = 'liking';
+  } else if (get_option("genius_ale_liking") == 'no') {
+    $form_class = 'disliking';
+  }
+
+
   if (strpos($_SERVER['PHP_SELF'],'wp-admin/index.php') !== false  || strpos($_SERVER['PHP_SELF'],'wp-admin/plugins.php') !== false ) {
     if (get_option('genius_ale_api_remind') == 'yes' && get_option('genius_ale_tsid') == '') {
       ?>
@@ -107,22 +121,29 @@ function genius_admin_notice(){
       </div>
     <?php
     }
-    else if (get_option("genius_ale_dismiss_feedback") !== 'yes') { //
+
+    //Show Feedback form if it's been X days since signup and they haven't already dismissed it
+    else if (get_option("genius_ale_dismiss_feedback") !== 'yes' && $age_in_days >= $age_to_show_prompt ) { //
     ?>
       <script>
         jQuery(document).ready(function($) {
 
-          $( "#ale-feedback-like").click(function() {
+          $( ".ale-feedback-like").click(function() {
             console.log('asdasd');
             $("#genius_ale_liking").val('yes');
             $( "#ale-feedback-form" ).submit();
           });
-          $("#ale-feedback-dislike").click(function() {
+          $(".ale-feedback-dislike").click(function() {
             $("#genius_ale_liking").val('no');
             $("#ale-feedback-form").submit();
           });
-          $("#ale-feedback-dismiss").click(function() {
+          $(".ale-feedback-dismiss").click(function() {
             $("#genius_ale_dismiss_feedback").val('yes');
+            $("#ale-feedback-form").submit();
+          });
+          $(".ale-feedback-reset").click(function() {
+            $("#genius_ale_liking").val('');
+            $("#genius_ale_dismiss_feedback").val('');
             $("#ale-feedback-form").submit();
           });
 
@@ -130,29 +151,32 @@ function genius_admin_notice(){
       </script>
 
 
-      <div class="update-nag">
+      <div class="update-nag <?php echo $form_class ?>">
         <?php
         if (get_option("genius_ale_liking") == 'yes') {
           ?>
           Great to hear! Would you mind leaving a rating so other users can learn about this plugin?
-          <button type="button" id="ale-feedback-dismiss">Dismiss</button>
+          <button type="button" class="ale-feedback-dismiss">Dismiss</button>
           <?php
         } else if (get_option("genius_ale_liking") == 'no'){
           ?>
           Sorry to hear that! We would love to hear form you and learn how we can do better.
-          <button type="button" id="ale-feedback-dismiss">Dismiss</button>
+          <button type="button" class="ale-feedback-dismiss">Dismiss</button>
           <?php
         } else {
         ?>
           <p>
             <strong>Thanks for using the Amazon Link Engine plugin. Are you happy with it?</strong>
             <br>
+            <button type="button" class="ale-feedback-like">Good</button>
+            <button type="button" class="ale-feedback-dislike">Bad</button>
+            <button type="button" class="ale-feedback-dismiss">Dismiss</button>
           </p>
           <?php
         } //End if they have neither liked nor disliked
         ?>
 
-        <form id="ale-feedback-form" method="post" action="options.php">
+        <form id="ale-feedback-form" method="post" action="options.php" class="">
           <?php settings_fields('amazon-link-engine'); ?>
 
           <?php // Kludge? Send all existing values, otherwise they revert to defaults ?>
@@ -168,17 +192,14 @@ function genius_admin_notice(){
           <?php // End Kludge ?>
 
           <!-- Feedback values-->
-          <input size="10" type="" name="genius_ale_liking" id="genius_ale_liking" value="<?php echo get_option("genius_ale_liking"); ?>"/>
-          <input size="10" type="" name="genius_ale_dismiss_feedback" id="genius_ale_dismiss_feedback" value="<?php echo get_option("genius_ale_dismiss_feedback"); ?>"/>
+          <input size="10" type="hidden" name="genius_ale_liking" id="genius_ale_liking" value="<?php echo get_option("genius_ale_liking"); ?>"/>
+          <input size="10" type="hidden" name="genius_ale_dismiss_feedback" id="genius_ale_dismiss_feedback" value="<?php echo get_option("genius_ale_dismiss_feedback"); ?>"/>
 
-          <button type="button" id="ale-feedback-like">Good</button>
-          <button type="button" id="ale-feedback-dislike">Bad</button>
-          <button type="button" id="ale-feedback-dismiss">Dismiss</button>
-          <button>.</button>
-          <br> <?php echo get_option('genius_ale_install_date') ?>
+          <!--<button>.</button>-->
         </form>
-        
+
       </div>
+      <a href="#" class="ale-feedback-reset">reset</a>
 
       <?php
     } //End if they haven't dismissed the feedback prompt
