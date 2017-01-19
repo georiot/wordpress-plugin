@@ -98,7 +98,7 @@ function genius_ile_admin_notice(){
   $now = time();
   $date_diff = $now - get_option('genius_ile_install_date');
   $age_in_days = floor($date_diff / (60 * 60 * 24));
-  $age_to_show_prompt = 0;
+  $age_to_show_prompt = 14;
   $gr_image_path = plugins_url().'/itunes-link-engine/img/';
 
   $form_class = '';
