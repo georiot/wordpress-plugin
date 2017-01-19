@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, geniuslink, ale, javascript 
 Requires at least: 2.7
 Tested up to: 4.7
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,7 @@ To earn international affiliate commissions, you must [create a Geniuslink accou
 
 Once signed up, add and manage your Associates IDs for each of the Amazon affiliate programs you’ve signed up for within the Geniuslink Dashboard. Once your IDs are added, the Amazon Link Engine will automatically add the correct Associates ID per country for each click.
 
-* *Note:* The Amazon Link Engine WordPress plugin is completely free to use and will always globalize your links for you. However, in order to earn international affiliate commissions and take advantage of the in-depth reporting, **you must have a Geniuslink account**. By default, Geniuslink’s Associates IDs will be used until you have connected your account and added your own via the Geniuslink Dashboard.
+* *Note:* The Amazon Link Engine WordPress plugin is free to use and will always localize your links without a paid account. However, in order to earn international affiliate commissions and take advantage of the in-depth reporting, **you must have a Geniuslink account**. By default, Geniuslink’s Associates IDs will be used until you have connected your account and added your own via the Geniuslink Dashboard.
 
 = How is Geniuslink different? =
 
@@ -104,7 +104,7 @@ To get your Geniuslink API Keys, follow these simple steps:
 
 = Do I have to pay for Geniuslink? =
 
-If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the Amazon Link Engine is completely free.
+If you’re only interested in giving your international audience a better experience and improving sales by redirecting them to their local storefront, the Amazon Link Engine is free.
 
 However, if you would like access to advanced reporting features, a custom domain, or the ability to add your international Associates IDs, you will need to sign up for a Geniuslink account.  [Try it out for free](http://social.geni.us/ALESignup). Learn more about our [fair and transparent pricing](http://social.geni.us/ALEPricing).
 
@@ -225,3 +225,6 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 
 = 1.2.5 =
 * Change priority of plugin so it is included lower in HEAD
+
+= 1.2.6 =
+* Added feedback prompt

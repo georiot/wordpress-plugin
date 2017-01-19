@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, Geniuslink, ile, javascript
 Requires at least: 2.7
 Tested up to: 4.7
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,7 @@ To earn affiliate commissions, you first need to [create a Geniuslink account](h
 
 Once signed up, add your PHG affiliate token to your Geniuslink Dashboard. Once your token has been added, the iTunes Link Engine will automatically add it to each link within your WordPress site. 
 
-* *Note:* The iTunes Link Engine WordPress plugin is completely free to use. However, in order to earn affiliate commissions and take advantage of the in-depth reporting, **you must have a Geniuslink account**. By default, Geniuslink’s affiliate token will be used until you have connected your account, and added your own via the Geniuslink Dashboard.  
+* *Note:* The iTunes Link Engine WordPress plugin is free to use. However, in order to earn affiliate commissions and take advantage of the in-depth reporting, **you must have a Geniuslink account**. By default, Geniuslink’s affiliate token will be used until you have connected your account, and added your own via the Geniuslink Dashboard.
 
 = How is Geniuslink different? =
 
@@ -99,7 +99,7 @@ To get your Geniuslink API Keys, follow these simple steps:
 
 = Do I have to pay for Geniuslink? =
 
-If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the iTunes Link Engine is completely free. 
+If you’re only interested in giving your international audience a better experience and improving sales by redirecting them to their local storefront, the iTunes Link Engine is free.
 
 However, if you would like access to advanced reporting features, a custom domain, or the ability to affiliate all of your links, you will need to sign up for a Geniuslink account. [Try it out for free](http://social.geni.us/iLESignup). Learn more about our [fair and transparent pricing](http://social.geni.us/iLEPricing).
 
@@ -194,3 +194,6 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 
 = 1.2.5 =
 * Change priority of plugin so it is included lower in HEAD
+
+= 1.2.6 =
+* Added feedback prompt
