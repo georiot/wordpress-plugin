@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, geniuslink, ale, javascript 
 Requires at least: 2.7
 Tested up to: 4.8
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,3 +231,6 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 
 = 1.2.7 =
 * New links to geni.us pricing and join  pages
+
+= 1.2.8 =
+* Use new, compressed js snippet to make speed tests happier
