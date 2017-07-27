@@ -2,8 +2,8 @@
 Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, Geniuslink, ile, javascript
 Requires at least: 2.7
-Tested up to: 4.7
-Stable tag: 1.2.5
+Tested up to: 4.8
+Stable tag: 1.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,7 +13,7 @@ Download the iTunes Link Engine to automatically localize and affiliate iTunes p
 
 Turn every iTunes link across your site into an opportunity for worldwide sales by instantly converting all your links to the iTunes, App Store, iBooks, and Mac App Store, into intelligent globalized links. Whether you are promoting music, TV, movies, books or apps, within the iTunes ecosystem, the iLE is the easiest way to localize every link on your Wordpress site, so that it works across every iTunes Storefront.  This means that all clicks from your international audience are sent to the appropriate item in their own local storefront, improving conversions.
 
-*Note:* You are not required to have a Geniuslink account to use this plugin. However, if you would like to earn affiliate commissions, you must sign up for a Geniuslink Account. [Try it out for free](http://social.geni.us/iLESignup) and check out pricing for the Geniuslink service on [our website](https://www.geni.us/pricing). 
+*Note:* You are not required to have a Geniuslink account to use this plugin. However, if you would like to earn affiliate commissions, you must sign up for a Geniuslink Account. [Try it out for free](http://social.geni.us/iLESignup) and check out pricing for the Geniuslink service on [our website](http://social.geni.us/PFCclG).
 
 = How does the iTunes Link Engine plugin work? =
 
@@ -25,7 +25,7 @@ To earn affiliate commissions, you first need to [create a Geniuslink account](h
 
 Once signed up, add your PHG affiliate token to your Geniuslink Dashboard. Once your token has been added, the iTunes Link Engine will automatically add it to each link within your WordPress site. 
 
-* *Note:* The iTunes Link Engine WordPress plugin is completely free to use. However, in order to earn affiliate commissions and take advantage of the in-depth reporting, **you must have a Geniuslink account**. By default, Geniuslink’s affiliate token will be used until you have connected your account, and added your own via the Geniuslink Dashboard.  
+* *Note:* The iTunes Link Engine WordPress plugin is free to use. However, in order to earn affiliate commissions and take advantage of the in-depth reporting, **you must have a Geniuslink account**. By default, Geniuslink’s affiliate token will be used until you have connected your account, and added your own via the Geniuslink Dashboard.
 
 = How is Geniuslink different? =
 
@@ -36,7 +36,7 @@ In addition, connecting your Geniuslink account to the iTunes Link Engine gives 
 
 = Key Features: =
 
-* **NEW!** Brand your globalized links with your own custom domain! (Note: this requires a paid [Geniuslink Account](https://www.geni.us/pricing))
+* **NEW!** Brand your globalized links with your own custom domain! (Note: this requires a paid [Geniuslink Account](http://social.geni.us/PFCclG))
 * Pick which Geniuslink group this plugin syncs to. Set up the plugin on multiple WordPress sites and track clicks separately, or set up a specific group just for your WordPress site traffic. Instructions can be found under “How do I change the default group?” in the [FAQ](https://wordpress.org/plugins/itunes-link-engine/faq/)
 * Automatic localization and translation of all iTunes links based off a visitor’s location.
 * Simple, easy to use interface.
@@ -67,7 +67,7 @@ There are three easy steps to get the most value from the iTunes Link Engine.
 1. Access the iTunes Link Engine Settings through the “Settings” tab within your WordPress dashboard. 
 1. Copy the API Key and API Secret into your iTunes Link Engine plugin.
 
-*Note:* You are not required to have a Geniuslink account, to use this plugin. However, if you would like to earn affiliate commissions, you must sign up for a Geniuslink Account. [Try it out for free](http://social.geni.us/iLESignup) and check out pricing for the Geniuslink service on [our website](https://www.geni.us/pricing). 
+*Note:* You are not required to have a Geniuslink account, to use this plugin. However, if you would like to earn affiliate commissions, you must sign up for a Geniuslink Account. [Try it out for free](http://social.geni.us/iLESignup) and check out pricing for the Geniuslink service on [our website](http://social.geni.us/PFCclG).
 
 = To affiliate your links: =
 1. If you have already added your affiliate token to your Geniuslink account, you’re good to go.
@@ -99,7 +99,7 @@ To get your Geniuslink API Keys, follow these simple steps:
 
 = Do I have to pay for Geniuslink? =
 
-If you’re only interested in giving your international audience a better experience by redirecting them to their local storefront, the iTunes Link Engine is completely free. 
+If you’re only interested in giving your international audience a better experience and improving sales by redirecting them to their local storefront, the iTunes Link Engine is free.
 
 However, if you would like access to advanced reporting features, a custom domain, or the ability to affiliate all of your links, you will need to sign up for a Geniuslink account. [Try it out for free](http://social.geni.us/iLESignup). Learn more about our [fair and transparent pricing](http://social.geni.us/iLEPricing).
 
@@ -194,3 +194,12 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 
 = 1.2.5 =
 * Change priority of plugin so it is included lower in HEAD
+
+= 1.2.6 =
+* Added feedback prompt
+
+= 1.2.7 =
+* New links to geni.us pricing and join  pages
+
+= 1.2.8 =
+* Use new, compressed js snippet to make speed tests happier

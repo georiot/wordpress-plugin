@@ -3,7 +3,7 @@
 Plugin Name: Amazon Link Engine
 Plugin URI:
 Description: Automatically optimizes Amazon product links for your global audience and allows you to earn commissions on sales.
-Version: 1.2.5
+Version: 1.2.8
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
@@ -34,6 +34,9 @@ function activate_genius_autolinker() {
   add_option('genius_ale_api_remind', 'yes');
   add_option('genius_ale_preserve_tracking', 'yes');
   add_option('genius_ale_db_version', $genius_ale_db_version);
+  add_option('genius_ale_liking', '');
+  add_option('genius_ale_dismiss_feedback', '');
+  add_option('genius_ale_install_date', time());
 }
 
 function deactivate_genius_autolinker() {
@@ -44,6 +47,8 @@ function deactivate_genius_autolinker() {
   delete_option('genius_ale_api_remind');
   delete_option('genius_ale_preserve_tracking');
   delete_option('genius_ale_db_version');
+  delete_option('genius_ale_liking');
+  delete_option('genius_ale_dismiss_feedback');
 }
 
 function admin_init_genius_autolinker() {
@@ -54,6 +59,8 @@ function admin_init_genius_autolinker() {
   register_setting('amazon-link-engine', 'genius_ale_api_remind');
   register_setting('amazon-link-engine', 'genius_ale_preserve_tracking');
   register_setting('amazon-link-engine', 'genius_ale_db_version');
+  register_setting('amazon-link-engine', 'genius_ale_liking');
+  register_setting('amazon-link-engine', 'genius_ale_dismiss_feedback');
 }
 
 
@@ -91,6 +98,21 @@ function options_page_genius_autolinker() {
 
 // Show notice in dashboard home page and plugin page if API isn't connected
 function genius_admin_notice(){
+
+  $now = time();
+  $date_diff = $now - get_option('genius_ale_install_date');
+  $age_in_days = floor($date_diff / (60 * 60 * 24));
+  $age_to_show_prompt = 14;
+  $gr_image_path = plugins_url().'/amazon-link-engine/img/';
+
+  $form_class = '';
+  if(get_option("genius_ale_liking") == 'yes') {
+    $form_class = 'liking';
+  } else if (get_option("genius_ale_liking") == 'no') {
+    $form_class = 'disliking';
+  }
+
+
   if (strpos($_SERVER['PHP_SELF'],'wp-admin/index.php') !== false  || strpos($_SERVER['PHP_SELF'],'wp-admin/plugins.php') !== false ) {
     if (get_option('genius_ale_api_remind') == 'yes' && get_option('genius_ale_tsid') == '') {
       ?>
@@ -100,6 +122,130 @@ function genius_admin_notice(){
       </div>
     <?php
     }
+
+    //Show Feedback form if it's been X days since signup and they haven't already dismissed it
+    else if (get_option("genius_ale_dismiss_feedback") !== 'yes' && $age_in_days >= $age_to_show_prompt ) { //
+    ?>
+      <script>
+        jQuery(document).ready(function($) {
+
+          $( ".ale-feedback-like").click(function() {
+            $("#genius_ale_liking").val('yes');
+            $("#ale-feedback-form" ).submit();
+          });
+          $(".ale-feedback-dislike").click(function() {
+            $("#genius_ale_liking").val('no');
+            $("#ale-feedback-form").submit();
+          });
+          $(".ale-feedback-dismiss").click(function() {
+            $("#genius_ale_dismiss_feedback").val('yes');
+            $("#ale-feedback-form").submit();
+          });
+          $(".ale-feedback-reset").click(function() {
+            $("#genius_ale_liking").val('');
+            $("#genius_ale_dismiss_feedback").val('');
+            $("#ale-feedback-form").submit();
+          });
+
+        });
+      </script>
+
+      <style>
+        .genius-feedback {
+          position: relative;
+          max-width: 500px;
+        }
+
+        .genius-feedback.liking .ale-feedback-dismiss , .genius-feedback.disliking .ale-feedback-dismiss {
+          position: static;
+        }
+
+        .genius-feedback button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+        }
+        .genius-feedback button:focus {
+          outline: none;
+        }
+
+        .ale-feedback-button {
+          width: 48px;
+          height: 48px;
+          margin-top: 15px;
+        }
+
+        .ale-feedback-dismiss {
+          display: inline-block;
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+        }
+      </style>
+
+
+      <div class="update-nag genius-feedback <?php echo $form_class ?>">
+        <?php
+        if (get_option("genius_ale_liking") == 'yes') {
+          ?>
+          <strong>Great to hear you like Amazon Link Engine!</strong>
+          <p>Would you mind helping us out by leaving a rating at Wordpress.org? Each review makes a huge difference.</p>
+          <p style="text-align: center">
+            <a target="_blank" href="https://wordpress.org/support/plugin/amazon-link-engine/reviews/">Sure, take me there!</a> &nbsp; &nbsp;
+            <a href="#" class="ale-feedback-dismiss">Not now</>
+          </p>
+          <?php
+        } else if (get_option("genius_ale_liking") == 'no'){
+          ?>
+          <strong>Sorry to hear that!</strong>
+          <p>Please let us know if there is anything we can help with or if you have any suggestions on how to improve Amazon Link Engine.</p>
+          <p style="text-align: center">
+            <a target="_blank" href="mailto:help@geni.us">Write to help@geni.us</a> &nbsp; &nbsp;
+            <a href="#" class="ale-feedback-dismiss">Not now</>
+          </p>
+          <?php
+        } else {
+        ?>
+          <p style="text-align: center">
+            <strong>Thank you for using Amazon Link Engine.</strong> How has your experience been so far?
+            <br>
+            <button type="button" class="ale-feedback-like ale-feedback-button"><img src="<?php print $gr_image_path ?>thumbup.png" /></button>
+            &nbsp;
+            <button type="button" class="ale-feedback-dislike ale-feedback-button"><img src="<?php print $gr_image_path ?>thumbdown.png" /></button>
+            <button type="button" class="ale-feedback-dismiss">Dismiss</button>
+          </p>
+          <?php
+        } //End if they have neither liked nor disliked
+        ?>
+
+        <form id="ale-feedback-form" method="post" action="options.php" class="">
+          <?php settings_fields('amazon-link-engine'); ?>
+
+          <?php // Kludge? Send all existing values, otherwise they revert to defaults ?>
+          <span style="display: none">
+            <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ale_api_key" name="genius_ale_api_key" value="<?php echo get_option('genius_ale_api_key'); ?>"/>
+            <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ale_api_secret" name="genius_ale_api_secret" value="<?php echo get_option('genius_ale_api_secret'); ?>"/>
+            <input type="checkbox" name="genius_ale_preserve_tracking" value="yes" <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />
+            <input type="checkbox" name="genius_ale_api_remind" value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
+            <p>Signup timestamp: <?php echo get_option('genius_ale_install_date') ?></p>
+          </span>
+          <input size="10" type="hidden" name="genius_ale_tsid" id="genius_ale_tsid" value="<?php echo get_option("genius_ale_tsid"); ?>"/>
+          <input size="100" type="hidden" name="genius_ale_domain" id="genius_ale_domain" value="<?php echo get_option("genius_ale_domain"); ?>"/>
+          <input size="10" type="hidden" name="genius_ale_db_version" id="genius_ale_db_version" value="<?php echo get_option("genius_ale_db_version"); ?>"/>
+          <?php // End Kludge ?>
+
+          <!-- Feedback values-->
+          <input size="10" type="hidden" name="genius_ale_liking" id="genius_ale_liking" value="<?php echo get_option("genius_ale_liking"); ?>"/>
+          <input size="10" type="hidden" name="genius_ale_dismiss_feedback" id="genius_ale_dismiss_feedback" value="<?php echo get_option("genius_ale_dismiss_feedback"); ?>"/>
+
+          <!--<button>.</button>-->
+        </form>
+
+      </div>
+      <a style="opacity: 0" href="#" class="ale-feedback-reset">reset</a>
+
+      <?php
+    } //End if they haven't dismissed the feedback prompt
   }
 }
 
@@ -127,7 +273,7 @@ function genius_ale() {
 
 ?>
 
-  <script src="//cdn.georiot.com/snippet.js" defer></script>
+  <script src="//cdn.georiot.com/snippet.min.js" defer></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
       if (typeof Georiot !== 'undefined') {

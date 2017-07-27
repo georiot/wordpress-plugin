@@ -770,6 +770,11 @@
     &nbsp;<input type="checkbox" name="genius_ile_api_remind" value="yes" <?php if (get_option('genius_ile_api_remind') == 'yes') print "checked" ?> />
     Show Wordpress alert on dashboard if commissions are not enabled
 
+    <!-- Feedback values-->
+    <input size="10" type="hidden" name="genius_ile_liking" id="genius_ile_liking" value="<?php echo get_option("genius_ile_liking"); ?>" />
+    <input size="10" type="hidden" name="genius_ile_dismiss_feedback" id="genius_ile_dismiss_feedback" value="<?php echo get_option("genius_ile_dismiss_feedback"); ?>" />
+
+
     <br><br>
     <input size="10" type="hidden" name="genius_ile_tsid" id="genius_ile_tsid" value="<?php echo get_option('genius_ile_tsid'); ?>" />
     <input size="100" type="hidden" name="genius_ile_domain" id="genius_ile_domain" value="<?php echo get_option('genius_ile_domain'); ?>" />
