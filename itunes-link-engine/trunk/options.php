@@ -765,10 +765,36 @@
         </div>
       </div>
     </div>
+	<div id="gr-advanced-options" class="gr-step-area">
+      <h5>
+        <em class="gr-expand">+</em>
+        <em class="gr-collapse">--</em>
+        Advanced Options<span class="hidden-expanded">...</span>
+      </h5>
+      <div class="gr-advanced-options-fields">
+        <br>
+        <div class="gr-tsid-spinner">
+          <div class="css-only-spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+          </div>
+          Loading your groups...
+        </div>
+        <br>
+		<input type="checkbox" name="genius_ile_urls_on_click" value="yes"
+            <?php if (get_option('genius_ile_urls_on_click') == 'yes') print "checked" ?> />Preserve URLs until click time
+        <a href="#ile-faq-on-click">(?)</a>
+		<br><br>
+		<input type="checkbox" name="genius_ile_api_remind" value="yes"
+			<?php if (get_option('genius_ile_api_remind') == 'yes') print "checked" ?> />
+		Show Wordpress alert on dashboard if commissions are not enabled
+        <br><br>
+      </div>
+    </div>
 
     <br>
-    &nbsp;<input type="checkbox" name="genius_ile_api_remind" value="yes" <?php if (get_option('genius_ile_api_remind') == 'yes') print "checked" ?> />
-    Show Wordpress alert on dashboard if commissions are not enabled
+    
 
     <!-- Feedback values-->
     <input size="10" type="hidden" name="genius_ile_liking" id="genius_ile_liking" value="<?php echo get_option("genius_ile_liking"); ?>" />
@@ -862,5 +888,8 @@
         you have added your own via the Geniuslink dashboard.</strong>
       Please <a href="mailto:hi@geni.us">contact Geniuslink</a> if you have any questions.
     </p>
+
+	<h4 id="ile-faq-on-click">How does the on-click feature work?</h4>
+	<p>A description of the on-click feature</p>
   </div>
 </div>

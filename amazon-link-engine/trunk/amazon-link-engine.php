@@ -33,6 +33,7 @@ function activate_genius_autolinker() {
   add_option('genius_ale_api_secret', '');
   add_option('genius_ale_api_remind', 'yes');
   add_option('genius_ale_preserve_tracking', 'yes');
+  add_option('genius_ale_urls_on_click', 'no');
   add_option('genius_ale_db_version', $genius_ale_db_version);
   add_option('genius_ale_liking', '');
   add_option('genius_ale_dismiss_feedback', '');
@@ -46,9 +47,11 @@ function deactivate_genius_autolinker() {
   delete_option('genius_ale_api_secret');
   delete_option('genius_ale_api_remind');
   delete_option('genius_ale_preserve_tracking');
+  delete_option('genius_ale_urls_on_click');
   delete_option('genius_ale_db_version');
   delete_option('genius_ale_liking');
   delete_option('genius_ale_dismiss_feedback');
+  delete_option('Test Option');
 }
 
 function admin_init_genius_autolinker() {
@@ -58,9 +61,11 @@ function admin_init_genius_autolinker() {
   register_setting('amazon-link-engine', 'genius_ale_api_secret');
   register_setting('amazon-link-engine', 'genius_ale_api_remind');
   register_setting('amazon-link-engine', 'genius_ale_preserve_tracking');
+  register_setting('amazon-link-engine', 'genius_ale_urls_on_click');
   register_setting('amazon-link-engine', 'genius_ale_db_version');
   register_setting('amazon-link-engine', 'genius_ale_liking');
   register_setting('amazon-link-engine', 'genius_ale_dismiss_feedback');
+  register_setting('amazon-link-engine', 'Test Option');
 }
 
 
@@ -226,6 +231,7 @@ function genius_admin_notice(){
             <input maxlength="34" size="34" type="text" placeholder="Paste your api key" id="genius_ale_api_key" name="genius_ale_api_key" value="<?php echo get_option('genius_ale_api_key'); ?>"/>
             <input maxlength="34" size="34" type="text" placeholder="Paste your api secret" id="genius_ale_api_secret" name="genius_ale_api_secret" value="<?php echo get_option('genius_ale_api_secret'); ?>"/>
             <input type="checkbox" name="genius_ale_preserve_tracking" value="yes" <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />
+			<input type="checkbox" name="genius_ale_urls_on_click" value="yes" <?php if (get_option('genius_ale_urls_on_click') == 'yes') print "checked" ?> />
             <input type="checkbox" name="genius_ale_api_remind" value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
             <p>Signup timestamp: <?php echo get_option('genius_ale_install_date') ?></p>
           </span>
@@ -249,6 +255,17 @@ function genius_admin_notice(){
   }
 }
 
+//Gets the state of the checkbox for onClick functionality of link conversion
+
+function ale_get_on_click_checkbox_state() {
+	$ale_on_click_checkbox_state = get_option('genius_ale_urls_on_click');
+
+	if ($ale_on_click_checkbox_state == 'yes') return true;
+	else {
+		return false;
+	}
+}
+
 // BEGIN FUNCTION TO SHOW GENIUS JS
 
 function genius_ale() {
@@ -264,9 +281,9 @@ function genius_ale() {
   } else {
     $gr_use_domain = '';
   }
-
+ 
+	// come back to this
   $preserve_tracking = 'false';
-
   if (get_option('genius_ale_preserve_tracking') == 'yes') {
     $preserve_tracking = 'true';
   }
@@ -276,9 +293,16 @@ function genius_ale() {
   <script src="//cdn.georiot.com/snippet.min.js" defer></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
-      if (typeof Georiot !== 'undefined') {
-        Georiot.amazon.convertToGeoRiotLinks(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking)?><?php print($gr_use_domain) ?>);
-      };
+	  var ale_on_click_checkbox_is_checked="<?php echo ale_get_on_click_checkbox_state();?>";
+
+	  if (typeof Georiot !== 'undefined') {
+		if(ale_on_click_checkbox_is_checked) {
+			Georiot.amazon.addOnClickRedirect(<?php echo $gr_use_tsid ?>);
+		}
+		else {
+			Georiot.amazon.convertToGeoRiotLinks(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking)?><?php print($gr_use_domain) ?>);
+		}
+	  };
     });
   </script>
 <?php
@@ -324,6 +348,5 @@ function genius_add_settings_link($actions) {
   return $actions;
 }
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'genius_add_settings_link');
-
 
 ?>

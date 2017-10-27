@@ -243,7 +243,7 @@
   }
 
   .expanded .gr-advanced-options-fields {
-    height: 120px;
+    height: 150px;
     transition: height .3s;
   }
 
@@ -783,11 +783,17 @@
           Loading your groups...
         </div>
         <br>
+		<input type="checkbox" name="genius_ale_urls_on_click" value="yes"
+			<?php if (get_option('genius_ale_urls_on_click') == 'yes') print "checked" ?>
+		/>Preserve URLs until click time
+        <a href="#ale-faq-on-click">(?)</a>
+		<br><br>
         <input type="checkbox" name="genius_ale_preserve_tracking" value="yes"
             <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />Honor existing Associate IDs
         <a href="#faq-honor-tracking">(?)</a>
         <br><br>
-        <input type="checkbox" name="genius_ale_api_remind" value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
+        <input type="checkbox" name="genius_ale_api_remind" value="yes" 
+			<?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
         Show Wordpress alert on dashboard if commissions are not enabled
         <br><br>
       </div>
@@ -890,5 +896,8 @@
     <p>If you would like to toggle this on or off, simply uncheck the “Honor Existing Associate IDs”
       checkbox in the Amazon Link Engine settings under "Advanced Settings".
     </p>
+
+	<h4 id="ale-faq-on-click">How does the on-click feature work?</h4>
+	<p>A description of the on-click feature</p>
   </div>
 </div>

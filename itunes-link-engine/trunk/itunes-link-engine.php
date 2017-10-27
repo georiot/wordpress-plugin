@@ -36,6 +36,7 @@ function activate_genius_ile() {
   add_option('genius_ile_liking', '');
   add_option('genius_ile_dismiss_feedback', '');
   add_option('genius_ile_install_date', time());
+  add_option('genius_ile_urls_on_click', 'no');
 }
 
 function deactivate_genius_ile() {
@@ -47,6 +48,7 @@ function deactivate_genius_ile() {
   delete_option('genius_ile_db_version');
   delete_option('genius_ile_liking');
   delete_option('genius_ile_dismiss_feedback');
+  delete_option('genius_ile_urls_on_click');
 }
 
 function admin_init_genius_ile() {
@@ -58,6 +60,7 @@ function admin_init_genius_ile() {
   register_setting('itunes-link-engine', 'genius_ile_db_version');
   register_setting('itunes-link-engine', 'genius_ile_liking');
   register_setting('itunes-link-engine', 'genius_ile_dismiss_feedback');
+  register_setting('itunes-link-engine', 'genius_ile_urls_on_click');
 }
 
 
@@ -248,6 +251,16 @@ function genius_ile_admin_notice(){
   }
 }
 
+//gets the state of the checkbox for onClick functionality of the link conversion
+
+function ile_get_on_click_checkbox_state() {
+	$ile_on_click_checkbox_state = get_option('genius_ile_urls_on_click');
+	if ($ile_on_click_checkbox_state == 'yes') return true;
+	else {
+		return false;
+	}
+}
+
 // BEGIN FUNCTION TO SHOW GENIUSLINK JS
 
 function genius_ile()
@@ -266,12 +279,20 @@ function genius_ile()
 ?>
 
 
+
   <script src="//cdn.georiot.com/snippet.min.js" defer></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
-      if (typeof Georiot !== 'undefined') {
-        Georiot.itunes.convertToGeoRiotLinks(<?php echo $gr_use_tsid . ', false' . $gr_use_domain ?>);
-      }
+	  var ile_on_click_checkbox_is_checked="<?php echo ile_get_on_click_checkbox_state();?>";
+
+	  if (typeof Georiot !== 'undefined') {
+		if(ile_on_click_checkbox_is_checked) {
+			Georiot.itunes.addOnClickRedirect(<?php echo $gr_use_tsid ?>);
+		}
+		else {
+			Georiot.itunes.convertToGeoRiotLinks(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking)?><?php print($gr_use_domain) ?>);
+		}
+	  };
     });
   </script>
 <?php
