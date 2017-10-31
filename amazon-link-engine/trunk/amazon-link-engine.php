@@ -51,7 +51,6 @@ function deactivate_genius_autolinker() {
   delete_option('genius_ale_db_version');
   delete_option('genius_ale_liking');
   delete_option('genius_ale_dismiss_feedback');
-  delete_option('Test Option');
 }
 
 function admin_init_genius_autolinker() {
@@ -258,12 +257,7 @@ function genius_admin_notice(){
 //Gets the state of the checkbox for onClick functionality of link conversion
 
 function ale_get_on_click_checkbox_state() {
-	$ale_on_click_checkbox_state = get_option('genius_ale_urls_on_click');
-
-	if ($ale_on_click_checkbox_state == 'yes') return true;
-	else {
-		return false;
-	}
+	return get_option(genius_ale_urls_on_click) === 'yes';
 }
 
 // BEGIN FUNCTION TO SHOW GENIUS JS
@@ -294,15 +288,12 @@ function genius_ale() {
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
 	  var ale_on_click_checkbox_is_checked="<?php echo ale_get_on_click_checkbox_state();?>";
-
-	  if (typeof Georiot !== 'undefined') {
 		if(ale_on_click_checkbox_is_checked) {
-			Georiot.amazon.addOnClickRedirect(<?php echo $gr_use_tsid ?>);
+			Georiot.amazon.addOnClickRedirect(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking)?><?php print($gr_use_domain) ?>);
 		}
 		else {
 			Georiot.amazon.convertToGeoRiotLinks(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking)?><?php print($gr_use_domain) ?>);
-		}
-	  };
+		};
     });
   </script>
 <?php

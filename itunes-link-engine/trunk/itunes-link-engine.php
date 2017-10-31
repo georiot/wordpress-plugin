@@ -252,13 +252,8 @@ function genius_ile_admin_notice(){
 }
 
 //gets the state of the checkbox for onClick functionality of the link conversion
-
 function ile_get_on_click_checkbox_state() {
-	$ile_on_click_checkbox_state = get_option('genius_ile_urls_on_click');
-	if ($ile_on_click_checkbox_state == 'yes') return true;
-	else {
-		return false;
-	}
+	return get_option(genius_ile_urls_on_click) === 'yes';
 }
 
 // BEGIN FUNCTION TO SHOW GENIUSLINK JS
@@ -278,22 +273,18 @@ function genius_ile()
   }
 ?>
 
-
-
   <script src="//cdn.georiot.com/snippet.min.js" defer></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
-	  var ile_on_click_checkbox_is_checked="<?php echo ile_get_on_click_checkbox_state();?>";
+		var ile_on_click_checkbox_is_checked="<?php echo ile_get_on_click_checkbox_state();?>";
 
-	  if (typeof Georiot !== 'undefined') {
 		if(ile_on_click_checkbox_is_checked) {
-			Georiot.itunes.addOnClickRedirect(<?php echo $gr_use_tsid ?>);
+			Georiot.itunes.addOnClickRedirect(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking) ?><?php print($gr_use_domain) ?>);
 		}
 		else {
-			Georiot.itunes.convertToGeoRiotLinks(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking)?><?php print($gr_use_domain) ?>);
-		}
-	  };
-    });
+			Georiot.itunes.convertToGeoRiotLinks(<?php echo $gr_use_tsid ?>, <?php print($preserve_tracking) ?><?php print($gr_use_domain) ?>);
+		};
+		});
   </script>
 <?php
 }
