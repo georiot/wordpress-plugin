@@ -894,7 +894,7 @@
     </p>
 
 	<h4 id="ile-faq-on-click">How does the on-click feature work?</h4>
-	<p>The “preserve until click time”  option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they 
+	<p>The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they 
 		will see the raw Itunes URL instead of the Geniuslink one. 
 	</p>
 	<ul class="faq-list">

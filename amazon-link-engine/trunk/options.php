@@ -903,7 +903,7 @@
 
 	<h4 id="ale-faq-on-click">How does the on-click feature work?</h4>
 	<p>
-		The “preserve until click time”  option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they 
+		The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they 
 		will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and 
 		by using this option, you are not actually shortening your links. Please note:
 	</p>
