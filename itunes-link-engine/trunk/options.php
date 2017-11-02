@@ -895,13 +895,12 @@
 
 	<h4 id="ile-faq-on-click">How does the on-click feature work?</h4>
 	<p>The “preserve until click time”  option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they 
-		will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and 
-		by using this option, you are not actually shortening your links. Please note:
+		will see the raw Itunes URL instead of the Geniuslink one. 
 	</p>
 	<ul class="faq-list">
 		<li>
-				With this option enabled, it takes a little more effort to test whether your links are redirecting through Geniuslink successfully, since the raw Amazon URL is always shown. 
-				We recommend using a link tester browser extension such as this one, and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Amazon links.			
+				With this option enabled, it takes a little more effort to test whether your links are redirecting through Geniuslink successfully, since the raw Itunes URL is always shown. 
+				We recommend using a link tester browser extension such as this one, and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Itunes links.			
 			
 		</li>
 		<li>
