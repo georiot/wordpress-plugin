@@ -821,6 +821,10 @@
       margin: 30px 5px 0 0;
       font-size: 16px;
     }
+
+	.faq-list > li {
+		list-style-type: disc;
+	}
   </style>
 
   <div class="faq">
@@ -890,6 +894,21 @@
     </p>
 
 	<h4 id="ile-faq-on-click">How does the on-click feature work?</h4>
-	<p>A description of the on-click feature</p>
+	<p>The “preserve until click time”  option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they 
+		will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and 
+		by using this option, you are not actually shortening your links. Please note:
+	</p>
+	<ul class="faq-list">
+		<li>
+				With this option enabled, it takes a little more effort to test whether your links are redirecting through Geniuslink successfully, since the raw Amazon URL is always shown. 
+				We recommend using a link tester browser extension such as this one, and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Amazon links.			
+			
+		</li>
+		<li>
+			<p>
+				If you use another WordPress plugin that manipulates links, this option could conflict with it. Be sure to test.
+			</p>
+		</li>
+	</ul>
   </div>
 </div>
