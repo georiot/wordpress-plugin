@@ -12,10 +12,9 @@ Automatically localize and affiliate Amazon product links to improve user experi
 
 == Description ==
 
-The Amazon Link Engine plugin is the easiest way to convert all Amazon links on your
-WordPress site into globalized links that work across all [Amazon storefronts](https://affiliate-program.amazon.com/gp/associates/help/t22/a13). This means that all clicks from your international audience are sent to the appropriate item in their own local storefront, improving conversions. 
+Boost sales and affiliate commissions by converting all your Amazon links into localized links that bring each shopper to the best Amazon store and product for their region in the world. Amazon Link Engine is trusted by thousands of Amazon associates who have been using it to maximize their revenue for years.
 
-The Amazon Link Engine is a tool by Geniuslink. By signing up for Geniuslink and syncing the Amazon Link Engine to your Geniuslink account, you can also get access to advanced reporting metrics and attach your Associates IDs to ensure that you earn the international affiliate commissions that you deserve.
+The Amazon Link Engine is a tool by Geniuslink. By signing up for Geniuslink and syncing the Amazon Link Engine to your Geniuslink account, you can also attach your Associates IDs to earn international affiliate commissions from your traffic.
 
 *Note:* You are not required to have a Geniuslink account, to use this plugin. However, if you would like to earn international affiliate commissions, you must sign up for a Geniuslink Account. [Try it out for free](http://social.geni.us/ALESignup) and check out pricing for the Geniuslink service on [our website](http://social.geni.us/lZlZ8AY).
 
@@ -36,6 +35,18 @@ Once signed up, add and manage your Associates IDs for each of the Amazon affili
 Most link "localization" plugins only translate a link for an international click when the same product ID exists in both storefronts. However, oftentimes the same item in different storefronts has a completely different product ID, and even if the ID is the same, the product may be an overpriced "import" item or may never be in stock. The Amazon Link Engine and Geniuslink match on more than just the product ID to ensure every click gets to the best possible destination. So instead of sending your users to blank search results, we guarantee the best possible user experience.
 
 In addition, connecting your Geniuslink account to the Amazon Link Engine, gives you access to comprehensive reporting on clicks and commissions that no other plugin can offer. These reports allow you to review your link’s performance across many metrics including product type, referrer, browser, device, operating system, destination storefront, and geography.
+
+
+= Is it safe to use this plugin and Geniuslink with the Amazon Associates program? =
+Yes!
+
+Geniuslink is safe to use with the Amazon Associate program, and has been trusted by thousands of Amazon associates for years.
+
+Just be sure to follow the [program guidelines](https://affiliate-program.amazon.com/help/operating/policies#Associates%20Program%20Participation%20Requirements) and do not use your links to deceive your visitors.
+
+Note that you can also enable our "on-click" method in the plugin advanced settings, which preserves your raw Amazon links until the moment they are clicked.  Some users prefer this method because the Amazon Associates Program has additional guidelines for using "short links", and by using this option your links are shown in their original form.
+
+
 
 
 = Key Features: =
@@ -81,6 +92,22 @@ There are three easy steps to get the most value from the Amazon Link Engine.
 Once saved into the dashboard your links will start using the appropriate Associates IDs with each click.
 
 == Frequently Asked Questions ==
+
+
+
+
+= Is it safe to use this plugin and Geniuslink with the Amazon Associates program? =
+Yes!
+
+Geniuslink is safe to use with the Amazon Associate program, and has been trusted by thousands of Amazon associates for years.
+
+Just be sure to follow the [program guidelines](https://affiliate-program.amazon.com/help/operating/policies#Associates%20Program%20Participation%20Requirements) and do not use your links to deceive your visitors.
+
+Note that you can also enable our "on-click" method in the plugin advanced settings, which preserves your raw Amazon links until the moment they are clicked.  Some users prefer this method because the Amazon Associates Program has additional guidelines for using "short links", and by using this option your links remain in their original form.
+
+
+[Learn more in our knowledge base...](https://help.geni.us/support/solutions/articles/3000064302-does-genius-link-follow-amazon-s-operating-agreement-)
+
 
 = What is Geniuslink =
 

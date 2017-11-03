@@ -823,9 +823,10 @@
       margin: 30px 5px 0 0;
       font-size: 16px;
     }
-	.faq-list > li {
-		list-style-type: disc;
-	}
+    .faq-list > li {
+      list-style-type: disc;
+      margin-left: 30px;
+    }
   </style>
 
   <div class="faq">
@@ -901,23 +902,39 @@
       checkbox in the Amazon Link Engine settings under "Advanced Settings".
     </p>
 
-	<h4 id="ale-faq-on-click">How does the on-click feature work?</h4>
-	<p>
-		The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they 
-		will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and 
-		by using this option, you are not actually shortening your links. Please note:
-	</p>
-	<ul class="faq-list">
-		<li>
-				With this option enabled, it takes a little more effort to test whether your links are redirecting through Geniuslink successfully, since the raw Amazon URL is always shown. 
-				We recommend using a link tester browser extension such as this one, and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Amazon links.			
-			
-		</li>
-		<li>
-			<p>
-				If you use another WordPress plugin that manipulates links, this option could conflict with it. Be sure to test.
-			</p>
-		</li>
-	</ul>
+    <h4 id="ale-faq-on-click">How does the on-click feature work?</h4>
+    <p>
+      The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they
+      will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and
+      by using this option, you are not actually shortening your links.
+    </p>
+    <p> Please note:</p>
+    <ul class="faq-list">
+      <li>
+          With this option enabled, it takes a little more effort to test whether your links are redirecting through Geniuslink successfully, since the raw Amazon URL is always shown.
+        We recommend using a link tester browser extension such as <a href="https://chrome.google.com/webstore/detail/link-redirect-trace/nnpljppamoaalgkieeciijbcccohlpoh?hl=en">this one</a>, and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Amazon links.
+
+      </li>
+      <li>
+        <p>
+          If you use another WordPress plugin that manipulates links, this option could conflict with it. Be sure to test.
+        </p>
+      </li>
+    </ul>
+
+    <h4 id="faq-amazontos">Is it safe to use this plugin and Geniuslink with the Amazon Associates program? </h4>
+    <p><strong>Yes!</strong></p>
+    <p>
+    <p>Geniuslink is safe to use with the Amazon Associate program, and has been trusted by thousands of Amazon associates for years.
+      Just be sure to follow the <a target="_blank" href="https://affiliate-program.amazon.com/help/operating/policies#Associates Program Participation Requirements">program guidelines</a>
+      and do not use your links to deceive your visitors.
+      <a href="https://help.geni.us/support/solutions/articles/3000064302-does-genius-link-follow-amazon-s-operating-agreement-">Learn more in our knowledge base...</a></p>
+    </p>
+
+    <p>Note that you can also enable our "on-click" method in the plugin advanced settings, which preserves your raw Amazon links until the moment they are clicked.
+      Some users prefer this method because the Amazon Associates Program has additional guidelines for using "short links", and by using this option your links
+      are shown in their original form.</p>
+
+
   </div>
 </div>
