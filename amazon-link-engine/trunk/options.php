@@ -234,6 +234,7 @@
   #gr-advanced-options {
     position: relative;
     min-height: 0;
+	overflow: visible;
   }
 
   .gr-advanced-options-fields {
@@ -243,7 +244,7 @@
   }
 
   .expanded .gr-advanced-options-fields {
-    height: 120px;
+    height: 150px;
     transition: height .3s;
   }
 
@@ -755,7 +756,7 @@
         3
       </div>
       <div class="gr-step-info">
-        <strong>Monetize your traffic </strong>(Optional)
+        <strong>Monetize your traffic</strong>(Optional)
         <br>Earn commissions for every sale by <a target="_blank" href="http://my.geni.us/Affiliate">connecting your Amazon Associates program</a>.
         <br>
 
@@ -783,11 +784,17 @@
           Loading your groups...
         </div>
         <br>
+		<input type="checkbox" name="genius_ale_urls_on_click" value="yes"
+			<?php if (get_option('genius_ale_urls_on_click') == 'yes') print "checked" ?>
+		/>Preserve URLs until click time
+        <a href="#ale-faq-on-click">(?)</a>
+		<br><br>
         <input type="checkbox" name="genius_ale_preserve_tracking" value="yes"
             <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />Honor existing Associate IDs
         <a href="#faq-honor-tracking">(?)</a>
         <br><br>
-        <input type="checkbox" name="genius_ale_api_remind" value="yes" <?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
+        <input type="checkbox" name="genius_ale_api_remind" value="yes" 
+			<?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
         Show Wordpress alert on dashboard if commissions are not enabled
         <br><br>
       </div>
@@ -816,6 +823,9 @@
       margin: 30px 5px 0 0;
       font-size: 16px;
     }
+	.faq-list > li {
+		list-style-type: disc;
+	}
   </style>
 
   <div class="faq">
@@ -890,5 +900,24 @@
     <p>If you would like to toggle this on or off, simply uncheck the “Honor Existing Associate IDs”
       checkbox in the Amazon Link Engine settings under "Advanced Settings".
     </p>
+
+	<h4 id="ale-faq-on-click">How does the on-click feature work?</h4>
+	<p>
+		The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they 
+		will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and 
+		by using this option, you are not actually shortening your links. Please note:
+	</p>
+	<ul class="faq-list">
+		<li>
+				With this option enabled, it takes a little more effort to test whether your links are redirecting through Geniuslink successfully, since the raw Amazon URL is always shown. 
+				We recommend using a link tester browser extension such as this one, and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Amazon links.			
+			
+		</li>
+		<li>
+			<p>
+				If you use another WordPress plugin that manipulates links, this option could conflict with it. Be sure to test.
+			</p>
+		</li>
+	</ul>
   </div>
 </div>
