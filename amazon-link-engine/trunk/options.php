@@ -933,7 +933,7 @@
 
     <p>Note that you can also enable our "on-click" method in the plugin advanced settings, which preserves your raw Amazon links until the moment they are clicked.
       Some users prefer this method because the Amazon Associates Program has additional guidelines for using "short links", and by using this option your links
-      remain in their original form.</p>
+      are shown in their original form.</p>
 
 
   </div>
