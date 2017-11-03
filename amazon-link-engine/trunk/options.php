@@ -823,10 +823,10 @@
       margin: 30px 5px 0 0;
       font-size: 16px;
     }
-	.faq-list > li {
-		list-style-type: disc;
-    margin-left: 30px;
-	}
+    .faq-list > li {
+      list-style-type: disc;
+      margin-left: 30px;
+    }
   </style>
 
   <div class="faq">
