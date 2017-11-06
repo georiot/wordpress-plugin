@@ -824,6 +824,7 @@
 
 	.faq-list > li {
 		list-style-type: disc;
+		margin-left: 30px;
 	}
   </style>
 
