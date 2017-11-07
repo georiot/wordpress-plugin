@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, geniuslink, ale, javascript 
 Requires at least: 2.7
 Tested up to: 4.8
-Stable tag: 1.2.9
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -263,4 +263,7 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 * Use new, compressed js snippet to make speed tests happier
 
 = 1.2.9 =
-* Added optional feature to convert links only at click-time.
+* Added optional feature to convert links only at click-time
+
+= 1.3.0 =
+* Updated plugin description and FAQ

@@ -824,6 +824,7 @@
 
 	.faq-list > li {
 		list-style-type: disc;
+		margin-left: 30px;
 	}
   </style>
 
@@ -900,7 +901,7 @@
 	<ul class="faq-list">
 		<li>
 				With this option enabled, it takes a little more effort to test whether your links are redirecting through Geniuslink successfully, since the raw Itunes URL is always shown. 
-				We recommend using a link tester browser extension such as this one, and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Itunes links.			
+				We recommend using a link tester browser extension such as <a href="https://chrome.google.com/webstore/detail/link-redirect-trace/nnpljppamoaalgkieeciijbcccohlpoh?hl=en">this one</a>, and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Itunes links.			
 			
 		</li>
 		<li>
