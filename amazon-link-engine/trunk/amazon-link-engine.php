@@ -257,7 +257,7 @@ function genius_admin_notice(){
 //Gets the state of the checkbox for onClick functionality of link conversion
 
 function ale_get_on_click_checkbox_state() {
-	return get_option(genius_ale_urls_on_click) === 'yes';
+	return get_option('genius_ale_urls_on_click') === 'yes';
 }
 
 // BEGIN FUNCTION TO SHOW GENIUS JS
