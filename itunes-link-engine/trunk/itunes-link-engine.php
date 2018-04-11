@@ -273,7 +273,7 @@ function genius_ile()
   }
 ?>
 
-  <script src="//cdn.georiot.com/snippet.min.js" defer></script>
+  <script src="//cdn.geni.us/snippet.min.js" defer></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
 		var ile_on_click_checkbox_is_checked="<?php echo ile_get_on_click_checkbox_state();?>";
