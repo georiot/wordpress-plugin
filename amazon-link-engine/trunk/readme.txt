@@ -122,7 +122,7 @@ No, you do NOT need a Geniuslink account to use the Amazon Link Engine plugin.  
 To get your Geniuslink API Keys, follow these simple steps:
 
 1.     If you do not have a Geniuslink account, [create an account](http://social.geni.us/ALESignup).
-1.     Log into your Geniuslink Dashboard, and navigate to the to the Tools Tab(https://my.geni.us/tools#api-section).
+1.     Log into your Geniuslink Dashboard, and navigate to the to the [Tools Tab](https://my.geni.us/tools#api-section).
 1.     Click the 'Add an API key' button to create a an API key and secret code
 1.     Navigate to the Amazon Link Engine Settings under “Settings” in your WordPress dashboard.
 1.     Next, simply copy and paste the "Key" and "Secret" codes into the "Enable Reporting and Commissions" area of the plugin. **Please note:** It may take up to 3 minutes for new keys to become available for use after adding them to your dashboard.
