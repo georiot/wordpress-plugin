@@ -3,7 +3,7 @@
 Plugin Name: iTunes Link Engine
 Plugin URI:
 Description: Automatically optimizes iTunes product links for your global audience and allows you to earn commissions on siles.
-Version: 1.3.2
+Version: 1.3.3
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
@@ -273,7 +273,7 @@ function genius_ile()
   }
 ?>
 
-  <script src="//cdn.georiot.com/snippet.min.js" defer></script>
+  <script src="//cdn.geni.us/snippet.min.js" defer></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
 		var ile_on_click_checkbox_is_checked="<?php echo ile_get_on_click_checkbox_state();?>";
