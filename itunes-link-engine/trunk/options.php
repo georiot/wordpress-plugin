@@ -845,9 +845,9 @@
     <ol>
       <li>If you do not have a Geniuslink account, <a target="_blank" href="http://social.geni.us/iLESignup">create an account</a>.</li>
 
-      <li>Log into your Geniuslink Dashboard, and navigate to the to the Account Tab.</li>
+      <li>Log into your Geniuslink Dashboard, and navigate to the to the <a target="_blank" href="https://my.geni.us/tools#api-section">Tools Tab</a>.</li>
 
-      <li>Click the “plus” sign to get your API keys.</li>
+      <li>Click the 'Add an API key' button to create a an API key and secret code.</li>
 
       <li>Navigate to the iTunes Link Engine settings under “Settings” in your WordPress dashboard.</li>
 
