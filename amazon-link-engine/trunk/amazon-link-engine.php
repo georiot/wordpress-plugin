@@ -3,7 +3,7 @@
 Plugin Name: Amazon Link Engine
 Plugin URI:
 Description: Automatically optimizes Amazon product links for your global audience and allows you to earn commissions on sales.
-Version: 1.3.4
+Version: 1.3.6
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
