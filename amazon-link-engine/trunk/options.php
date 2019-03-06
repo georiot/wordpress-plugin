@@ -743,8 +743,9 @@
           <select name="genius_ale_domain_select" id="genius_ale_domain_select"><option>--Error getting domains--</option></select>
           <br><br>
         </div>
-        <div id="gr-tsid-error"><strong>Oops.</strong> Please double-check your API key and secret.
-          <button class="gr-resubmit">Re-submit</button>
+        <div id="gr-tsid-error"><strong>Oops.</strong>  Please double-check your API key and secret. Disabling ad blockers may also help.
+
+          <br><button class="gr-resubmit">Re-submit</button>
         </div>
 
       </div>
