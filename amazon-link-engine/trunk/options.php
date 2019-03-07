@@ -661,7 +661,7 @@
   <h2>Amazon Link Engine <span class="gr-bygr">by </span>
     <a href="http://geni.us" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>genius_ale_logo.png" width="66" height="16" /></a></h2>
   <p class="gr-intro">This plugin has added JavaScript that converts all Amazon product
-    URLs on your site to global-friendly Geniuslink links. <a href="#faq-whatisgeoriot">Learn more...</a>
+    URLs on your site to global-friendly <a href="#faq-whatisgeoriot">Geniuslink</a> links, the moment the link is clicked.  <a href="#faq-how-it-works">More...</a>
   </p>
 
   <h3>Get the most from this plugin</h3>
@@ -757,7 +757,7 @@
         3
       </div>
       <div class="gr-step-info">
-        <strong>Monetize your traffic</strong>(Optional)
+        <strong>Monetize your traffic</strong> (Optional)
         <br>Earn commissions for every sale by <a target="_blank" href="http://my.geni.us/Affiliate">connecting your Amazon Associates program</a>.
         <br>
 
@@ -832,6 +832,23 @@
 
   <div class="faq">
     <h3>Frequently asked questions</h3>
+
+    <h4 id="faq-how-it-works">How does this work?</h4>
+    <p>
+      With this plugin enabled, your Amazon links will route through <a href="#faq-whatisgeoriot">Geniuslink</a>,
+      helping you earn more commissions by driving visitors to matching products in their local storefronts, and letting you take advantage of the international Associates programs.
+    </p>
+    <p>
+      The original URL to Amazon will be preserved until the <a href="#ale-faq-on-click">moment the link is clicked</a>,
+      keeping your links compliant with the Associates program, with no additional work.
+      <em>(Note: You may change that behavior in the Advanced settings. If so, be sure to indicate to your shoppers
+        that each link goes to Amazon)</em>
+    </p>
+    <p>
+
+      See also:  <em><a href="#faq-testing">How to test that things are working</a></em>
+
+    </p>
 
     <h4 id="faq-whatisgeoriot">What is Geniuslink</h4>
     <p>Geniuslink is the secret sauce behind the Amazon Link Engine that allows you to build the world’s most intelligent links. Improve user experience, and maximize your affiliate earnings and marketing efforts through Geniuslink’s service. For marketers promoting content within the Amazon ecosystem, Geniuslink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. Geniuslink also allows you to enter your Associates IDs to earn international commissions from all of your clicks.
@@ -912,16 +929,25 @@
     <p> Please note:</p>
     <ul class="faq-list">
       <li>
-          With this option enabled, it takes a little more effort to test whether your links are redirecting through Geniuslink successfully, since the raw Amazon URL is always shown.
-        We recommend using a link tester browser extension such as <a href="https://chrome.google.com/webstore/detail/link-redirect-trace/nnpljppamoaalgkieeciijbcccohlpoh?hl=en">this one</a>, and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Amazon links.
-
-      </li>
-      <li>
         <p>
-          If you use another WordPress plugin that manipulates links, this option could conflict with it. Be sure to test.
+          Note: If you use another WordPress plugin that manipulates links, this option could conflict with it. Be sure to test.
         </p>
       </li>
     </ul>
+
+    <h4 id="faq-testing">
+      How to test that this plugin is working
+    </h4>
+    <p>
+      With the defaul "On click" option enabled, it takes a little more effort to test whether your links are
+      redirecting through Geniuslink successfully, since the raw Amazon URL is always shown.
+      We recommend using a link tester browser extension such as
+      <a target="_blank" href="https://chrome.google.com/webstore/detail/link-redirect-trace/nnpljppamoaalgkieeciijbcccohlpoh?hl=en">this one</a>,
+      and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Amazon links.
+
+      You may also disable "Preserve Amazon URLs" in the Advanced Settings temporarily, to see that your Amazon links are converting into geni.us links.
+
+    </p>
 
     <h4 id="faq-amazontos">Is it safe to use this plugin and Geniuslink with the Amazon Associates program? </h4>
     <p><strong>Yes!</strong></p>
