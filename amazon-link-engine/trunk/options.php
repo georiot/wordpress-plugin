@@ -170,7 +170,7 @@
     border-radius: 21px;
     border: 2px dashed #999999;
     color: #7a7a7a;
-    line-height: 42px;
+    line-height: 38px;
     text-align: center;
     font-size: 21px;
     font-weight: bold;
@@ -787,7 +787,7 @@
         <br>
 		<input type="checkbox" name="genius_ale_urls_on_click" value="yes"
 			<?php if (get_option('genius_ale_urls_on_click') == 'yes') print "checked" ?>
-		/>Preserve URLs until click time
+		/>Preserve Amazon URLs until click time (for easier compliance)
         <a href="#ale-faq-on-click">(?)</a>
 		<br><br>
         <input type="checkbox" name="genius_ale_preserve_tracking" value="yes"

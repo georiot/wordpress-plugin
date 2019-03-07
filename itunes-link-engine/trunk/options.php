@@ -178,7 +178,7 @@
     border-radius: 21px;
     border: 2px dashed #999999;
     color: #7a7a7a;
-    line-height: 42px;
+    line-height: 38px;
     text-align: center;
     font-size: 21px;
     font-weight: bold;
