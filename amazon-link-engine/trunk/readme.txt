@@ -187,54 +187,46 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 
 == Changelog ==
 
-= 1.0 =
-* Initial release
+= 1.3.6 =
+* Plugin defaults to "on click" method for easy Associates compliance
+* Tested up to WordPress 5.1
+* Help content updates
+* Enforces jquery dependency for WP installs that don't otherwise have jquery activated
 
-= 1.0.4 =
-* Readme and FAQ updates
+= 1.3.3 =
+* Update readme "tested up to" version
 
-= 1.0.5 =
-* Force JS over HTTP (HTTPS under development)
+= 1.3.2 =
+* Update snippet cdn and API instructions
 
-= 1.0.6 =
-* Reinstate HTTPS support
+= 1.3.1 =
+* Fixed issue with wordpress debug mode.
 
-= 1.0.7 =
-* API calls now get made over https
+= 1.3.0 =
+* Updated plugin description and FAQ
 
-= 1.0.8 =
-* Plugin compatibility with iTunes Link Engine
+= 1.2.9 =
+* Added optional feature to convert links only at click-time
 
-= 1.0.9 =
-* Switch to "//" to allow non-https delivery of JS
+= 1.2.8 =
+* Use new, compressed js snippet to make speed tests happier
 
-= 1.1.0 =
-* Geniuslink Pricing Changes included
+= 1.2.7 =
+* New links to geni.us pricing and join  pages
 
-= 1.1.1 = 
-* Added: “To connect your Geniuslink account” instructions
+= 1.2.6 =
+* Added feedback prompt
 
-= 1.1.2 = 
-* Tested to 4.3
+= 1.2.5 =
+* Change priority of plugin so it is included lower in HEAD
 
-= 1.1.3 = 
-* Added ability to choose a group & honor existing Associates IDs
+= 1.2.4 =
+* Update top notice to be clearer about the need for API keys for commissions
 
-= 1.1.4 =
-* Fix contributors in Readme
-
-= 1.1.5 =
-* Fixed issue where the group ID would persist after switching to a different Genius Link account
-* Switched to api.geni.us api URL
-
-= 1.1.6 =
-* Added error check to test if group ID's are successfully being saved to Wordpress DB after submitting settings.
-
-= 1.1.8 =
-* Updated JS comments and syntax so it doesn't break things on hosts that remove line breaks in the HTML.
-
-= 1.1.9 =
-* Tested up to 4.5.  Updated unclear descriptions.
+= 1.2.3 =
+* Defer loading of snippet to improve page speed
+* Default to "Honor existing" to preserve links with existing affiliate tracking info
+* Tested up to 4.7
 
 = 1.2.2 =
 * Support custom domains
@@ -242,40 +234,51 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 * Other minor improvements to UI.
 * Tested up to 4.6
 
-= 1.2.3 =
-* Defer loading of snippet to improve page speed
-* Default to "Honor existing" to preserve links with existing affiliate tracking info
-* Tested up to 4.7
+= 1.1.9 =
+* Tested up to 4.5.  Updated unclear descriptions.
 
-= 1.2.4 =
-* Update top notice to be clearer about the need for API keys for commissions
+= 1.1.8 =
+* Updated JS comments and syntax so it doesn't break things on hosts that remove line breaks in the HTML.
 
-= 1.2.5 =
-* Change priority of plugin so it is included lower in HEAD
+= 1.1.6 =
+* Added error check to test if group ID's are successfully being saved to Wordpress DB after submitting settings.
 
-= 1.2.6 =
-* Added feedback prompt
+= 1.1.5 =
+* Fixed issue where the group ID would persist after switching to a different Genius Link account
+* Switched to api.geni.us api URL
 
-= 1.2.7 =
-* New links to geni.us pricing and join  pages
+= 1.1.4 =
+* Fix contributors in Readme
 
-= 1.2.8 =
-* Use new, compressed js snippet to make speed tests happier
+= 1.1.3 =
+* Added ability to choose a group & honor existing Associates IDs
 
-= 1.2.9 =
-* Added optional feature to convert links only at click-time
+= 1.1.2 =
+* Tested to 4.3
 
-= 1.3.0 =
-* Updated plugin description and FAQ
+= 1.1.1 =
+* Added: “To connect your Geniuslink account” instructions
 
-= 1.3.1 =
-* Fixed issue with wordpress debug mode.
+= 1.1.0 =
+* Geniuslink Pricing Changes included
 
-= 1.3.2 =
-* Update snippet cdn and API instructions 
+= 1.0.9 =
+* Switch to "//" to allow non-https delivery of JS
 
-= 1.3.3 =
-* Update readme "tested up to" version
+= 1.0.8 =
+* Plugin compatibility with iTunes Link Engine
 
-= 1.3.6 =
-* Update readme "tested up to" version
+= 1.0.7 =
+* API calls now get made over https
+
+= 1.0.6 =
+* Reinstate HTTPS support
+
+= 1.0.5 =
+* Force JS over HTTP (HTTPS under development)
+
+= 1.0.4 =
+* Readme and FAQ updates
+
+= 1.0 =
+* Initial release

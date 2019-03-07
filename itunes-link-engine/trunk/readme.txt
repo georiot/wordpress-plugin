@@ -144,40 +144,46 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 
 == Changelog ==
 
-= 1.0 =
-* Initial release
+= 1.3.6 =
+* Plugin defaults to "on click" method for easy Associates compliance
+* Tested up to WordPress 5.1
+* Help content updates
+* Enforces jquery dependency for WP installs that don't otherwise have jquery activated
 
-= 1.0.1 =
-* Updated Readme
+= 1.3.4 =
+* Update readme tested up field
 
-= 1.0.2 =
-* Switch to "//" to allow non-https delivery of JS
+= 1.3.3 =
+* Update snippet cdn and API instructions
 
-= 1.0.3 = 
-* Geniuslink pricing changes and screenshots included
+= 1.3.2 =
+* Fixed wordpress debug mode issue.
 
-= 1.0.4 = 
-* Added: “To connect your Geniuslink account” instructions. Tested to 4.3
+= 1.3.1 =
+* Updated FAQ
 
-= 1.0.5 = 
-* Added ability to choose a group
+= 1.3.0 =
+* Updated FAQ
 
-= 1.0.6 =
-* Fix contributors in Readme
+= 1.2.9 =
+* Added optional feature to convert links only at click-time.
 
-= 1.0.7 =
-* Fixed "No programs connected" showing after PHG was connected.
-* Fixed issue where the group ID would persist after switching to a different Genius Link account
-* Switched to api.geni.us api URL
+= 1.2.8 =
+* Use new, compressed js snippet to make speed tests happier
 
-= 1.0.8 =
-* Added error check to test if group ID's are successfully being saved to Wordpress DB after submitting settings.
+= 1.2.7 =
+* New links to geni.us pricing and join  pages
 
-= 1.0.9 =
-* Updated JS comments so they don't break things on hosts that remove line breaks in the HTML.
+= 1.2.5 =
+* Change priority of plugin so it is included lower in HEAD
 
-= 1.1.0 =
-* Tested up to 4.5.  Updated unclear descriptions.
+
+= 1.2.4 =
+* Update top notice to be clearer about the need for API keys for commissions
+
+= 1.2.3 =
+* Defer loading of snippet to improve page speed
+* Tested up to 4.7
 
 = 1.2.2 =
 * Support custom domains
@@ -185,42 +191,37 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 * Other minor improvements to UI.
 * Tested up to 4.6
 
-= 1.2.3 =
-* Defer loading of snippet to improve page speed
-* Tested up to 4.7
+= 1.1.0 =
+* Tested up to 4.5.  Updated unclear descriptions.
 
-= 1.2.4 =
-* Update top notice to be clearer about the need for API keys for commissions
+= 1.0.9 =
+* Updated JS comments so they don't break things on hosts that remove line breaks in the HTML.
 
-= 1.2.5 =
-* Change priority of plugin so it is included lower in HEAD
+= 1.0.8 =
+* Added error check to test if group ID's are successfully being saved to Wordpress DB after submitting settings.
 
-= 1.2.6 =
-* Added feedback prompt
+= 1.0.7 =
+* Fixed "No programs connected" showing after PHG was connected.
+* Fixed issue where the group ID would persist after switching to a different Genius Link account
+* Switched to api.geni.us api URL
 
-= 1.2.7 =
-* New links to geni.us pricing and join  pages
+= 1.0.6 =
+* Fix contributors in Readme
 
-= 1.2.8 =
-* Use new, compressed js snippet to make speed tests happier
+= 1.0.5 =
+* Added ability to choose a group
 
-= 1.2.9 =
-* Added optional feature to convert links only at click-time.
+= 1.0.4 =
+* Added: “To connect your Geniuslink account” instructions. Tested to 4.3
 
-= 1.3.0 =
-* Updated FAQ
+= 1.0.3 =
+* Geniuslink pricing changes and screenshots included
 
-= 1.3.1 =
-* Updated FAQ
+= 1.0.2 =
+* Switch to "//" to allow non-https delivery of JS
 
-= 1.3.2 =
-* Fixed wordpress debug mode issue.
+= 1.0.1 =
+* Updated Readme
 
-= 1.3.3 =
-* Update snippet cdn and API instructions 
-
-= 1.3.4 =
-* Update readme tested up field
-
-= 1.3.6 =
-* Update readme "tested up to" version
+= 1.0 =
+* Initial release
