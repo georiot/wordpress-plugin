@@ -785,18 +785,24 @@
           Loading your groups...
         </div>
         <br>
-		<input type="checkbox" name="genius_ale_urls_on_click" value="yes"
+        <label>
+		    <input type="checkbox" name="genius_ale_urls_on_click" value="yes"
 			<?php if (get_option('genius_ale_urls_on_click') == 'yes') print "checked" ?>
 		/>Preserve Amazon URLs until click time (for easier compliance)
-        <a href="#ale-faq-on-click">(?)</a>
+        </label>
+        <a href="#faq-on-click">(?)</a>
 		<br><br>
+        <label>
         <input type="checkbox" name="genius_ale_preserve_tracking" value="yes"
             <?php if (get_option('genius_ale_preserve_tracking') == 'yes') print "checked" ?> />Honor existing Associate IDs
+        </label>
         <a href="#faq-honor-tracking">(?)</a>
         <br><br>
+        <label>
         <input type="checkbox" name="genius_ale_api_remind" value="yes" 
 			<?php if (get_option('genius_ale_api_remind') == 'yes') print "checked" ?> />
         Show Wordpress alert on dashboard if commissions are not enabled
+        </label>
         <br><br>
       </div>
     </div>
@@ -839,7 +845,7 @@
       helping you earn more commissions by driving visitors to matching products in their local storefronts, and letting you take advantage of the international Associates programs.
     </p>
     <p>
-      The original URL to Amazon will be preserved until the <a href="#ale-faq-on-click">moment the link is clicked</a>,
+      The original URL to Amazon will be preserved until the <a href="#faq-on-click">moment the link is clicked</a>,
       keeping your links compliant with the Associates program, with no additional work.
       <em>(Note: You may change that behavior in the Advanced settings. If so, be sure to indicate to your shoppers
         that each link goes to Amazon)</em>
@@ -920,7 +926,7 @@
       checkbox in the Amazon Link Engine settings under "Advanced Settings".
     </p>
 
-    <h4 id="ale-faq-on-click">How does the on-click feature work?</h4>
+    <h4 id="faq-on-click">How does the on-click feature work?</h4>
     <p>
       The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they
       will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and
@@ -939,13 +945,18 @@
       How to test that this plugin is working
     </h4>
     <p>
-      With the defaul "On click" option enabled, it takes a little more effort to test whether your links are
+      With the default "On click" option enabled, it takes a little more effort to test whether your links are
       redirecting through Geniuslink successfully, since the raw Amazon URL is always shown.
       We recommend using a link tester browser extension such as
       <a target="_blank" href="https://chrome.google.com/webstore/detail/link-redirect-trace/nnpljppamoaalgkieeciijbcccohlpoh?hl=en">this one</a>,
       and use it to verify that you see “buy.genius….” listed in the extension after you click one of your Amazon links.
 
-      You may also disable "Preserve Amazon URLs" in the Advanced Settings temporarily, to see that your Amazon links are converting into geni.us links.
+      You may also disable "Preserve Amazon URLs" in the Advanced Settings temporarily, and then hover over your links
+      to see that your Amazon links are converting into geni.us links.
+
+      For more, see <em><a target="_blank" href="https://intercom.geni.us/building-links/troubleshooting-the-amazon-link-engine-wordpress-plugin-javascript-snippet">
+          Troubleshooting the Amazon Link Engine WordPress Plugin (& JavaScript Snippet)
+        </a></em>
 
     </p>
 

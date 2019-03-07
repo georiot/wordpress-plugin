@@ -7,6 +7,12 @@ Version: 1.3.6
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
+
+
+// Jquery Dependency
+wp_enqueue_script( 'jquery');
+
+
 //Change this if you need to run a migration (eg change setting names, dbm etc). See genius_ile_update_db_check()
 global $genius_ile_db_version;
 $genius_ile_db_version = '1.1';

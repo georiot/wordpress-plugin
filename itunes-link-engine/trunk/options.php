@@ -599,7 +599,7 @@
             var griTunesAvailable =  0;
 
             /* Iterate over the enrolled programs and add up how many iTunes programs there are. */
-            /*  There is only one iTunes program now, but we'll use the same approach as with the Amazon Link Engine. */
+            /*  There is only one iTunes program now, but we'll use the same approach as with the ALE. */
             $.each(data.ProgramsEnrolled, function( key, value ) {
               if(value.indexOf("Performance Horizon Group") > -1) { griTunesEnrolled++; }
             });
@@ -650,8 +650,8 @@
 <div class="wrap">
   <h2>iTunes Link Engine <span class="gr-bygr">by </span>
     <a href="http://geni.us" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>genius_ile_logo.png" width="66" height="16" /></a></h2>
-  <p class="gr-intro">This plugin has added JavaScript that converts all iTunes
-    URLs on your site to global-friendly Geni.us links. <a href="#faq-whatisgeoriot">Learn more...</a>
+  <p class="gr-intro">This plugin has added JavaScript that converts all iTunes product
+    URLs on your site to global-friendly <a href="#faq-whatisgeoriot">Geniuslink</a> links, the moment the link is clicked.  <a href="#faq-how-it-works">More...</a>
   </p>
 
   <h3>Get the most from this plugin</h3>
@@ -782,13 +782,16 @@
           Loading your groups...
         </div>
         <br>
-		<input type="checkbox" name="genius_ile_urls_on_click" value="yes"
+        <label>
+		    <input type="checkbox" name="genius_ile_urls_on_click" value="yes"
             <?php if (get_option('genius_ile_urls_on_click') == 'yes') print "checked" ?> />Preserve URLs until click time
-        <a href="#ile-faq-on-click">(?)</a>
-		<br><br>
-		<input type="checkbox" name="genius_ile_api_remind" value="yes"
+        <a href="#ile-faq-on-click">(?)</a></label>
+        <br><br>
+        <label>
+        <input type="checkbox" name="genius_ile_api_remind" value="yes"
 			<?php if (get_option('genius_ile_api_remind') == 'yes') print "checked" ?> />
 		Show Wordpress alert on dashboard if commissions are not enabled
+        </label>
         <br><br>
       </div>
     </div>
@@ -829,7 +832,25 @@
   </style>
 
   <div class="faq">
+
     <h3>Frequently asked questions</h3>
+
+    <h4 id="faq-how-it-works">How does this work?</h4>
+    <p>
+      With this plugin enabled, your iTunes links will route through <a href="#faq-whatisgeoriot">Geniuslink</a>,
+      helping you earn more commissions by driving visitors to matching products in their local storefronts, and letting you take advantage of the international Associates programs.
+    </p>
+    <p>
+      The original URL to iTunes will be preserved until the <a href="#faq-on-click">moment the link is clicked</a>,
+      keeping your links compliant with the Associates program, with no additional work.
+      <em>(Note: You may change that behavior in the Advanced settings. If so, be sure to indicate to your shoppers
+        that each link goes to iTunes)</em>
+    </p>
+    <p>
+
+      See also:  <em><a href="#faq-testing">How to test that things are working</a></em>
+
+    </p>
 
     <h4 id="faq-whatisgeoriot">What is Geniuslink</h4>
     <p>Geniuslink is the secret sauce behind the iTunes Link Engine that allows you to build the world’s most intelligent links. Improve user experience, and maximize your affiliate earnings and marketing efforts through Geniuslink’s service. For marketers promoting content within the iTunes ecosystem, Geniuslink allows you to build intelligent links that automatically route customers to the correct product within their own local storefront. Geniuslink also allows you to enter your PHG Affiliate Token to earn commissions from all of your clicks.
@@ -875,6 +896,57 @@
       </p>
     </ol>
 
+
+    <h4 id="ile-faq-on-click">How does the on-click feature work?</h4>
+    <p>
+      The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they
+      will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and
+      by using this option, you are not actually shortening your links.
+    </p>
+    <p> Please note:</p>
+    <ul class="faq-list">
+      <li>
+        <p>
+          Note: If you use another WordPress plugin that manipulates links, this option could conflict with it. Be sure to test.
+        </p>
+      </li>
+    </ul>
+
+
+    <h4 id="faq-on-click">How does the on-click feature work?</h4>
+    <p>
+      The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they
+      will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and
+      by using this option, you are not actually shortening your links.
+    </p>
+    <p> Please note:</p>
+    <ul class="faq-list">
+      <li>
+        <p>
+          Note: If you use another WordPress plugin that manipulates links, this option could conflict with it. Be sure to test.
+        </p>
+      </li>
+    </ul>
+
+
+    <h4 id="faq-testing">
+      How to test that this plugin is working
+    </h4>
+    <p>
+      With the default "On click" option enabled, it takes a little more effort to test whether your links are
+      redirecting through Geniuslink successfully, since the raw iTunes URL is always shown.
+      We recommend using a link tester browser extension such as
+      <a target="_blank" href="https://chrome.google.com/webstore/detail/link-redirect-trace/nnpljppamoaalgkieeciijbcccohlpoh?hl=en">this one</a>,
+      and use it to verify that you see “buy.genius….” listed in the extension after you click one of your iTunes links.
+
+      You may also disable "Preserve iTunes URLs" in the Advanced Settings temporarily, and then hover over your links
+      to see that your iTunes links are converting into geni.us links.
+
+      For more, see <em><a target="_blank" href="https://intercom.geni.us/building-links/troubleshooting-the-amazon-link-engine-wordpress-plugin-javascript-snippet">
+          Troubleshooting the iTunes Link Engine WordPress Plugin (& JavaScript Snippet)
+        </a></em>
+
+    </p>
 
     <h4 id="faq-groups">How do I change the default group?</h4>
     <p>In order to change the group that the plugin syncs with, you must first connect your
