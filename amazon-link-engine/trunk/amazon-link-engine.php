@@ -33,7 +33,7 @@ function activate_genius_autolinker() {
   add_option('genius_ale_api_secret', '');
   add_option('genius_ale_api_remind', 'yes');
   add_option('genius_ale_preserve_tracking', 'yes');
-  add_option('genius_ale_urls_on_click', 'no');
+  add_option('genius_ale_urls_on_click', 'yes');
   add_option('genius_ale_db_version', $genius_ale_db_version);
   add_option('genius_ale_liking', '');
   add_option('genius_ale_dismiss_feedback', '');
