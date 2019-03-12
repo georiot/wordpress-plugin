@@ -51,12 +51,12 @@ Note that you can also enable our "on-click" method in the plugin advanced setti
 
 = Key Features: =
 
-* Brand your globalized links with your own custom domain! (Note: this requires a paid [Geniuslink Account](http://social.geni.us/lZlZ8AY))
 * Pick which Geniuslink group this plugin syncs to. Setup the plugin on multiple WordPress sites and track clicks separately, or set up a specific group just for your WordPress site traffic. Instructions can be found under “How do I change the default group?” in the [FAQ](https://wordpress.org/plugins/amazon-link-engine/faq/)
 * Already have Affiliated links on your site? The ALE will now honor these existing Associates IDs within your links. You can also choose to overwrite them with the ID within your Geniuslink account if you prefer. Learn more under “Will the ALE honor existing Associates IDs?” in the [FAQ](https://wordpress.org/plugins/amazon-link-engine/faq/)
 * Automatic localization and translation of all Amazon product links based off a visitor’s location.
 * Maximize revenue by earning commissions from all of the Amazon Associates programs.
-* Simple, easy to use interface.
+* Brand your globalized links with your own custom domain. (Note: this requires a paid [Geniuslink Account](http://social.geni.us/lZlZ8AY))
+* Simple, easy setup.
 * One time configuration. Simply install the plugin, set up your Geniuslink account, and connect the two with an API key.  We take care of the rest.
 * No need to sign up for an Amazon Developer account or apply for any of Amazon’s APIs or web tools.
 * Your workflow remains the same.  No need to learn a new linking syntax, or disrupt your current flow.

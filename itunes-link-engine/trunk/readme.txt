@@ -36,14 +36,14 @@ In addition, connecting your Geniuslink account to the iTunes Link Engine gives 
 
 = Key Features: =
 
-* **NEW!** Brand your globalized links with your own custom domain! (Note: this requires a paid [Geniuslink Account](http://social.geni.us/PFCclG))
 * Pick which Geniuslink group this plugin syncs to. Set up the plugin on multiple WordPress sites and track clicks separately, or set up a specific group just for your WordPress site traffic. Instructions can be found under “How do I change the default group?” in the [FAQ](https://wordpress.org/plugins/itunes-link-engine/faq/)
 * Automatic localization and translation of all iTunes links based off a visitor’s location.
-* Simple, easy to use interface.
+* Simple, easy setup.
 * One time configuration. Simply install the plugin, set up your Geniuslink account, and connect the two with an API key.  We take care of the rest.
 * No need to have access to the iTunes API or build links through the iTunes Link Builder in PHG. Just paste normal iTunes links anywhere on your site (even behind images).
 * Your workflow remains the same.  No need to learn a new linking syntax, or disrupt your current flow.
 * Automatically converts LinkShare, Tradedoubler, and DGM (Pro) formatted iTunes Affiliate links (from before the PHG rollout).
+* Brand your globalized links with your own custom domain (Note: this requires a paid [Geniuslink Account](http://social.geni.us/PFCclG))
 
 = What makes the iTunes Link Engine different from other Affiliate WP plugins? =
 * Other plugins do not offer support for the new PHG affiliate program.

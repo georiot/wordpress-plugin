@@ -651,7 +651,7 @@
   <h2>iTunes Link Engine <span class="gr-bygr">by </span>
     <a href="http://geni.us" target="_blank"><img class='gr-georiot-logo' src="<?php print $gr_image_path ?>genius_ile_logo.png" width="66" height="16" /></a></h2>
   <p class="gr-intro">This plugin has added JavaScript that converts all iTunes product
-    URLs on your site to global-friendly <a href="#faq-whatisgeoriot">Geniuslink</a> links, the moment the link is clicked.  <a href="#faq-how-it-works">More...</a>
+    URLs on your site to global-friendly <a href="#faq-whatisgeoriot">Geniuslink</a> links.  <a href="#faq-how-it-works">More...</a>
   </p>
 
   <h3>Get the most from this plugin</h3>
@@ -837,14 +837,8 @@
 
     <h4 id="faq-how-it-works">How does this work?</h4>
     <p>
-      With this plugin enabled, your iTunes links will route through <a href="#faq-whatisgeoriot">Geniuslink</a>,
+      With this plugin enabled, your iTunes links will be converted to geni.us links as each page loads and will route through <a href="#faq-whatisgeoriot">Geniuslink</a>
       helping you earn more commissions by driving visitors to matching products in their local storefronts, and letting you take advantage of the international Associates programs.
-    </p>
-    <p>
-      The original URL to iTunes will be preserved until the <a href="#faq-on-click">moment the link is clicked</a>,
-      keeping your links compliant with the Associates program, with no additional work.
-      <em>(Note: You may change that behavior in the Advanced settings. If so, be sure to indicate to your shoppers
-        that each link goes to iTunes)</em>
     </p>
     <p>
 
@@ -898,22 +892,6 @@
 
 
     <h4 id="ile-faq-on-click">How does the on-click feature work?</h4>
-    <p>
-      The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they
-      will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and
-      by using this option, you are not actually shortening your links.
-    </p>
-    <p> Please note:</p>
-    <ul class="faq-list">
-      <li>
-        <p>
-          Note: If you use another WordPress plugin that manipulates links, this option could conflict with it. Be sure to test.
-        </p>
-      </li>
-    </ul>
-
-
-    <h4 id="faq-on-click">How does the on-click feature work?</h4>
     <p>
       The preserve until click time option leaves your link URLs alone until the moment a visitor clicks them. This way, when visitors hover over or copy your product links, they
       will see the raw Amazon URL instead of the Geniuslink one. Some users prefer this method because Amazon Associates Program has additional guidelines for using short links, and
