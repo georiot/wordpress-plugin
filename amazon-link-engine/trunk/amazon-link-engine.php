@@ -8,12 +8,11 @@ Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
 
-// Jquery Dependency
-wp_enqueue_script( 'jquery');
 
 //Change this if you need to run a migration (eg change setting names, dbm etc). See genius_ale_update_db_check()
 global $genius_ale_db_version;
 $genius_ale_db_version = '1.1';
+
 
 if (!defined('WP_CONTENT_URL'))
       define('WP_CONTENT_URL', get_option('siteurl').'/wp-content');
@@ -23,6 +22,14 @@ if (!defined('WP_PLUGIN_URL'))
       define('WP_PLUGIN_URL', WP_CONTENT_URL.'/plugins');
 if (!defined('WP_PLUGIN_DIR'))
       define('WP_PLUGIN_DIR', WP_CONTENT_DIR.'/plugins');
+
+
+// Jquery Dependency
+function genius_autolinker_enqueue_script() {
+  wp_enqueue_script( 'jquery');
+}
+add_action('wp_enqueue_scripts', 'genius_autolinker_enqueue_script');
+add_action('admin_enqueue_scripts', 'genius_autolinker_enqueue_script');
 
 
 // OPTIONS

@@ -9,10 +9,6 @@ Author URI: http://geni.us
 */
 
 
-// Jquery Dependency
-wp_enqueue_script( 'jquery');
-
-
 //Change this if you need to run a migration (eg change setting names, dbm etc). See genius_ile_update_db_check()
 global $genius_ile_db_version;
 $genius_ile_db_version = '1.1';
@@ -28,8 +24,15 @@ if (!defined('WP_PLUGIN_DIR'))
       define('WP_PLUGIN_DIR', WP_CONTENT_DIR.'/plugins');
 
 
-// OPTIONS
+// Jquery Dependency
+function genius_ile_enqueue_script() {
+  wp_enqueue_script( 'jquery');
+}
+add_action('wp_enqueue_scripts', 'genius_ile_enqueue_script');
+add_action('admin_enqueue_scripts', 'genius_ile_enqueue_script');
 
+
+// OPTIONS
 function activate_genius_ile() {
   global $genius_ile_db_version;
 
