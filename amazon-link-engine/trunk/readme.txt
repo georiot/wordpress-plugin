@@ -197,7 +197,7 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 == Changelog ==
 
 = 1.3.7 =
-* Plugin defaults to "on click" method for easy Associates compliance
+* Link conversion script will not attempt to run if JS snippet is not available/allowed by browser
 * Tested up to WordPress 5.2
 
 
