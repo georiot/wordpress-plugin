@@ -2,8 +2,8 @@
 Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, Geniuslink, ile, javascript
 Requires at least: 2.7
-Tested up to: 5.2
-Stable tag: 1.3.7
+Tested up to: 5.6
+Stable tag: 1.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -143,6 +143,10 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 1. **The Results:** Each user gets sent to the correct item in their local store. This is an example of a user from the United States clicking your link. They’re sent to [iTunes US](https://itunes.apple.com/us/album/id46846?i=46803) with your affiliate token attached.
 
 == Changelog ==
+
+= 1.3.8 =
+* Tested up to WordPress 5.4
+
 = 1.3.7 =
 * Link conversion script will not attempt to run if JS snippet is not available/allowed by browser
 * Tested to Wordpress 5.2
