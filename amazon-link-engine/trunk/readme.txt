@@ -3,7 +3,7 @@ Contributors: GeoRiot
 Tags: amazon, associates, affiliate, universal, localize, link, engine, monetization, globalize, geniuslink, ale, javascript 
 Requires at least: 2.7
 Tested up to: 5.6
-Stable tag: 1.3.8
+Stable tag: 1.3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -195,6 +195,8 @@ The Amazon Publisher Studio tool is unfortunately not compatible with this versi
 
 
 == Changelog ==
+= 1.3.9 =
+* Updated snippet domain
 
 = 1.3.8 =
 * Tested up to WordPress 5.4

@@ -3,7 +3,7 @@
 Plugin Name: Amazon Link Engine
 Plugin URI:
 Description: Automatically optimizes Amazon product links for your global audience and allows you to earn commissions on sales.
-Version: 1.3.8
+Version: 1.3.9
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
@@ -294,7 +294,7 @@ function genius_ale() {
 
 ?>
 
-  <script src="//cdn.geni.us/snippet.min.js" defer></script>
+  <script src="//geniuslinkcdn.com/snippet.min.js" defer></script>
   <script type="text/javascript">
     jQuery(document).ready(function( $ ) {
 	  var ale_on_click_checkbox_is_checked="<?php echo ale_get_on_click_checkbox_state();?>";
