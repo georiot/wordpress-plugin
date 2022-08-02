@@ -2,8 +2,8 @@
 Contributors: GeoRiot
 Tags: apple, itunes, link, engine, localize, globalize, music, movies, TV, affiliate, Geniuslink, ile, javascript
 Requires at least: 2.7
-Tested up to: 5.7
-Stable tag: 1.4.0
+Tested up to: 6.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -143,6 +143,9 @@ The iTunes Widgets are unfortunately not compatible with this version of the iLE
 1. **The Results:** Each user gets sent to the correct item in their local store. This is an example of a user from the United States clicking your link. They’re sent to [iTunes US](https://itunes.apple.com/us/album/id46846?i=46803) with your affiliate token attached.
 
 == Changelog ==
+= 1.4.1 =
+* Update tested value 
+
 = 1.4.0 =
 * Removed prompt for user satisfaction rating
 
