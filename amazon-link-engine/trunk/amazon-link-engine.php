@@ -3,7 +3,7 @@
 Plugin Name: Amazon Link Engine
 Plugin URI:
 Description: Automatically optimizes Amazon product links for your global audience and allows you to earn commissions on sales.
-Version: 1.3.9
+Version: 1.4.0
 Author: GeoRiot Networks, Inc.
 Author URI: http://geni.us
 */
@@ -113,6 +113,7 @@ function options_page_genius_autolinker() {
 // Show notice in dashboard home page and plugin page if API isn't connected
 function genius_admin_notice(){
 
+  /*Disabled rating & feedback request
   $now = time();
   $date_diff = $now - get_option('genius_ale_install_date');
   $age_in_days = floor($date_diff / (60 * 60 * 24));
@@ -125,6 +126,7 @@ function genius_admin_notice(){
   } else if (get_option("genius_ale_liking") == 'no') {
     $form_class = 'disliking';
   }
+  */
 
 
   if (strpos($_SERVER['PHP_SELF'],'wp-admin/index.php') !== false  || strpos($_SERVER['PHP_SELF'],'wp-admin/plugins.php') !== false ) {
@@ -138,6 +140,7 @@ function genius_admin_notice(){
     }
 
     //Show Feedback form if it's been X days since signup and they haven't already dismissed it
+    /*Disabled rating & feedback request
     else if (get_option("genius_ale_dismiss_feedback") !== 'yes' && $age_in_days >= $age_to_show_prompt ) { //
     ?>
       <script>
@@ -261,6 +264,10 @@ function genius_admin_notice(){
 
       <?php
     } //End if they haven't dismissed the feedback prompt
+    
+    */
+    /* End Disabled rating & feedback request */
+
   }
 }
 
